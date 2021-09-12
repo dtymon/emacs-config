@@ -42,6 +42,7 @@
 
 ;; Setup basics
 (require 'setup-package)
+(require 'setup-dash)
 (require 'setup-defuns)
 
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
@@ -110,7 +111,6 @@
 ;; Lets start with a smattering of sanity
 (require 'sane-defaults)
 (require 'setup-no-littering)
-(require 'setup-dash)
 
 ;; Setup environment variables from the user's shell.
 (when is-mac
@@ -142,6 +142,9 @@
 (require 'my-misc)
 
 ;; Set up appearance early
+(require 'setup-doom-themes)
+(require 'setup-solarized-theme)
+(require 'setup-themes)
 (require 'appearance)
 ;;(require 'setup-fira-code)
 
@@ -206,9 +209,6 @@
 (require 'setup-smart-forward)
 ;;(require 'setup-emacs-server)
 ;;(require 'setup-prodigy)
-(require 'setup-doom-themes)
-(require 'setup-solarized-theme)
-(require 'setup-themes)
 (require 'setup-whitespace-cleanup)
 (require 'setup-makefile-mode)
 (require 'setup-nxml-mode)

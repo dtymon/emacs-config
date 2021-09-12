@@ -1,4 +1,5 @@
 (use-package prettier
+  :ensure t
   :diminish "Pr"
   )
 
