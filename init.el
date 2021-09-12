@@ -4,9 +4,10 @@
 (add-hook 'after-init-hook (lambda () (setq gc-cons-threshold 800000)))
 
 ;; Make the initial frame about 90% of display width and height
-;; (display-monitor-attributes-list)
-(setq davidt::frame-width (round (* 0.9 (display-pixel-width))))
-(setq davidt::frame-height (round (* 0.8 (display-pixel-height))))
+(setq davidt::monitor-width (nth 3 (assq 'geometry (frame-monitor-attributes))))
+(setq davidt::monitor-height (nth 4 (assq 'geometry (frame-monitor-attributes))))
+(setq davidt::frame-width (round (* 0.9 davidt::monitor-width)))
+(setq davidt::frame-height (round (* 0.85 davidt::monitor-height)))
 (add-to-list 'initial-frame-alist (cons 'width (cons 'text-pixels davidt::frame-width)))
 (add-to-list 'initial-frame-alist (cons 'height (cons 'text-pixels davidt::frame-height)))
 
