@@ -1,3 +1,5 @@
+(require 'which-key)
+
 (use-package lsp-mode
   :ensure t
   :init
