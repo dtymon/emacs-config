@@ -1,3 +1,11 @@
+(use-package tagedit
+  :ensure t
+  )
+
+(use-package simplezen
+  :ensure t
+  )
+
 (defun skip-to-next-blank-line ()
   (interactive)
   (let ((inhibit-changing-match-data t))

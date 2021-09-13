@@ -14,7 +14,7 @@
   :ensure t
   :init
   (define-key global-map (kbd "C-x m") 'magit-status)
-  (setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-topleft-v1
+  (setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1
         magit-bury-buffer-function #'magit-restore-window-configuration
         magit-auto-revert-mode nil
         )
