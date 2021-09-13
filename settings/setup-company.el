@@ -7,68 +7,44 @@
   (setq company-idle-delay nil)
   (setq company-echo-delay 0)
 
-  :bind (
-         ;; Replace `completion-at-point' and `complete-symbol' with
-         ;; `company-manual-begin'.
-         ([remap completion-at-point] . company-manual-begin)
-         ([remap complete-symbol] . company-manual-begin)
+  :bind (:map company-active-map
+              ;; Return and arrow keys should behave as normal until we interact
+              ;; with company
+              ("<return>" . nil)
+              ("RET" . nil)
+              ("<up>" . nil)
+              ("<down>" . nil)
 
-         ;; The following are keybindings that take effect whenever the
-         ;; completions menu is visible, even if the user has not explicitly
-         ;; interacted with company.
+              ;; A single Escape aborts completion
+              ("\e" . company-abort)
 
-         :map company-active-map
+              ;; When we are interacting with company, then Return and arrow
+              ;; keys do different things.
+              :map company-active-map
+              :filter (company-explicit-action-p)
 
-         ;; Make TAB always complete the current selection
-         ("<tab>" . company-complete-selection)
-
-         ;; Prevent SPC from ever triggering a completionxs
-         ("SPC" . nil)
-
-         ;; The following are keybindings that only take effect if the user has
-         ;; explicitly interacted with company.
-
-         :map company-active-map
-         :filter (company-explicit-action-p)
-
-         ;; Make RET trigger a completion if and only if the user has explicitly
-         ;; interacted with Company.
-         ("<return>" . company-complete-selection)
-
-         ;; We then do the same for the up and down arrows. Note that we use
-         ;; `company-select-previous' instead of
-         ;; `company-select-previous-or-abort'. I think the former makes more
-         ;; sense since the general idea of this `company' configuration is to
-         ;; decide whether or not to steal keypresses based on whether the user
-         ;; has explicitly interacted with `company', not based on the number of
-         ;; candidates.
-         ("<up>" . company-select-previous)
-         ("<down>" . company-select-next)
-
-         ("C-M-i" . company-complete-common)
-         )
-
+              ("<return>" . company-complete-selection)
+              ("RET" . company-complete-selection)
+              ("<up>" . company-select-previous)
+              ("<down>" . company-select-next)
+              )
   :bind* (
-          ;; The default keybinding for `completion-at-point' and
-          ;; `complete-symbol' is M-TAB or equivalently C-M-i. Here we make sure
-          ;; that no minor modes override this keybinding.
+          ;; Make sure that M-TAB always starts completion and is never
+          ;; overridden in other modes
           ("M-TAB" . company-manual-begin)
           )
 
   :config
-  ;; Show completions instantly, rather than after half a second.
-  (setq company-idle-delay 0)
+  ;; Show completions after a short delay
+  (setq company-idle-delay 0.4)
 
-  ;; Show completions after typing a single character, rather than after typing
-  ;; three characters.
-  (setq company-minimum-prefix-length 1)
+  ;; Show completions after typing a two characters
+  (setq company-minimum-prefix-length 2)
 
-  ;; Show a maximum of 10 suggestions. This is the default but I think it's best
-  ;; to be explicit.
-  (setq company-tooltip-limit 10)
+  ;; Set the maximum number of candidates to show
+  (setq company-tooltip-limit 15)
 
-  ;; Always display the entire suggestion list onscreen, placing it above the
-  ;; cursor if necessary.
+  ;; Show the entire suggestion
   (setq company-tooltip-minimum company-tooltip-limit)
 
   ;; Always display suggestions in the tooltip, even if there is only one. Also,
@@ -87,18 +63,15 @@
   ;; `company-auto-complete-chars'. Turning it off ensures we have full control.
   (setq company-auto-complete-chars nil)
 
-  ;; Prevent Company completions from being lowercased in the completion menu.
-  ;; This has only been observed to happen for comments and strings in Clojure.
+  ;; Prevent Company completions from being lowercased in the completion menu
   (setq company-dabbrev-downcase nil)
 
   ;; Only search the current buffer to get suggestions for company-dabbrev (a
   ;; backend that creates suggestions from text found in your buffers). This
   ;; prevents Company from causing lag once you have a lot of buffers open.
-  (setq company-dabbrev-other-buffers nil)
+  ;; (setq company-dabbrev-other-buffers nil)
 
-  ;; Make company-dabbrev case-sensitive. Case insensitivity seems like a great
-  ;; idea, but it turns out to look really bad when you have domain-specific
-  ;; words that have particular casing.
+  ;; Make company-dabbrev case-sensitive
   (setq company-dabbrev-ignore-case nil)
   )
 
