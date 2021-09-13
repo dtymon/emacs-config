@@ -1,7 +1,35 @@
+;; Turn off GUI components if present
+(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
+(if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+(if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+
 ;; Bump up the GC cons limit during initialisation but reset it after
 ;; loading to avoid large pauses during GC.
 (setq gc-cons-threshold 100000000)
 (add-hook 'after-init-hook (lambda () (setq gc-cons-threshold 800000)))
+
+;; Define some basic variables
+(setq
+ ;; No splash screen
+ inhibit-startup-message t
+
+ ;; Do not compact font caches during GC
+ inhibit-compacting-font-caches t
+
+ ;; Set path to dependencies
+ site-lisp-dir (expand-file-name "site-lisp" user-emacs-directory)
+ settings-dir (expand-file-name "settings" user-emacs-directory)
+
+ ;; Are we on a mac?
+ is-mac (equal system-type 'darwin)
+
+ ;; Make backups of files, even when they're in version control
+ vc-make-backup-files t
+ )
+
+;; Set up load path
+(add-to-list 'load-path settings-dir)
+(add-to-list 'load-path site-lisp-dir)
 
 ;; Make the initial frame about 90% of display width and height
 (setq davidt::monitor-width (nth 3 (assq 'geometry (frame-monitor-attributes))))
@@ -21,35 +49,13 @@
      (interactive)
      ,@body))
 
-;; No splash screen please
-(setq inhibit-startup-message t)
-
-;; Do not compact font caches during GC
-(setq inhibit-compacting-font-caches t)
-
 ;; Make sure we always default to the home directory when opening files
 (setq default-directory (concat (getenv "HOME") "/"))
-
-;; Set path to dependencies
-(setq site-lisp-dir
-      (expand-file-name "site-lisp" user-emacs-directory))
-
-(setq settings-dir
-      (expand-file-name "settings" user-emacs-directory))
-
-;; Set up load path
-(add-to-list 'load-path settings-dir)
-(add-to-list 'load-path site-lisp-dir)
 
 ;; Setup basics
 (require 'setup-package)
 (require 'setup-dash)
 (require 'setup-defuns)
-
-;; Turn off GUI components if present
-(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
-(if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
-(if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 
 ;; This is required as a workaround to bug:
 ;;    https://debbugs.gnu.org/cgi/bugreport.cgi?bug=25228
@@ -69,28 +75,15 @@
   (when (file-directory-p project)
     (add-to-list 'load-path project)))
 
-;; Make backups of files, even when they're in version control
-(setq vc-make-backup-files t)
-
-;; Are we on a mac?
-(setq is-mac (equal system-type 'darwin))
-
 ;; Install extensions if they're missing
 (defun init--install-packages ()
   (packages-install
    '(dired-sidebar
      f
      find-file-in-project
-     gist
-     move-text
      nodejs-repl
-     rhtml-mode
      s
      simple-httpd
-     simplezen
-     smooth-scrolling
-     string-edit
-     tagedit
      tern
      vscode-icon
      yasnippet
@@ -126,8 +119,6 @@
   (when (file-regular-p file)
     (load file)))
 
-;;(require 'multifiles)
-
 ;; Setup key bindings
 (require 'key-bindings)
 
@@ -150,6 +141,7 @@
 (require 'setup-global-bindings)
 (require 'setup-minibuffer)
 (require 'setup-windmove)
+(require 'setup-move-text)
 (require 'setup-all-the-icons)
 (require 'setup-undo-tree)
 (require 'setup-savehist)
@@ -241,16 +233,3 @@
 ;;           groovy-mode
 ;;           scala-mode)
 ;;   (add-hook it 'turn-on-smartparens-mode))
-
-;; Language specific setup files
-;;(eval-after-load 'clojure-mode '(require 'setup-clojure-mode))
-
-
-;;
-;; swiper
-;;
-;;(use-package swiper
-;;  :ensure t
-;;  :bind (("C-s" . swiper)
-;;         ))
-
