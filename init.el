@@ -46,6 +46,7 @@
 (require 'setup-dash)
 (require 'setup-defuns)
 
+;; Turn off GUI components if present
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
@@ -77,30 +78,22 @@
 ;; Install extensions if they're missing
 (defun init--install-packages ()
   (packages-install
-   '(diminish
-     dired-sidebar
-;;     eproject
-;;     evil
+   '(dired-sidebar
      f
      find-file-in-project
      gist
-;;     groovy-mode
      move-text
      nodejs-repl
-;;     paredit
      rhtml-mode
      s
      simple-httpd
      simplezen
-;;     smartparens
      smooth-scrolling
      string-edit
      tagedit
      tern
-     use-package
      vscode-icon
      yasnippet
-;;     yesql-ghosts
      )))
 
 (condition-case nil

@@ -6,7 +6,7 @@
 
 ;; Load and activate packages
 (package-initialize)
-(unless (file-exists-p "~/.emacs.d/elpa/archives/melpa")
+(unless (file-exists-p (expand-file-name "elpa/archives/melpa" user-emacs-directory))
   (package-refresh-contents))
 
 ;;; On-demand installation of packages
@@ -30,5 +30,10 @@ re-downloaded in order to locate PACKAGE."
 ;; Make sure use-package is installed
 (when (not (package-installed-p 'use-package))
   (package-install 'use-package))
+
+;; Make sure diminish is installed
+(use-package diminish
+  :ensure t
+  )
 
 (provide 'setup-package)
