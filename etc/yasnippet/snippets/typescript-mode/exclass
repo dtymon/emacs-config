@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# name: export-class
+# key: exclass
+# --
+export class $1 {
+  /**
+   * Constructor
+   *
+   * @param name - description
+   */
+  public constructor() {
+    //
+    $2
+  }
+}

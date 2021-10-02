@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# name: method-async
+# key: methasync
+# --
+/**
+ * Method description
+ *
+ * @param name - description
+ * @param name - description
+ * @returns a promise resolved
+ */
+$1 async $2(): Promise<void> {
+  //
+  $3
+}
