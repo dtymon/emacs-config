@@ -16,7 +16,7 @@
               (flycheck-mode 1)
               (fci-mode 1)
               (prettier-mode 1)
-              (davidt::auto-fill-comments-only-hook)
+              (dtymon::auto-fill-comments-only-hook)
               (flycheck-add-next-checker 'lsp 'javascript-eslint)
 
               (setq

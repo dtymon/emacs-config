@@ -11,7 +11,7 @@
   (let ((fill-column comment-fill-column))
     (fill-comment-paragraph)))
 
-(defun davidt::auto-fill-comments-only-hook ()
+(defun dtymon::auto-fill-comments-only-hook ()
   (auto-fill-mode 1)
   (set (make-local-variable 'fill-nobreak-predicate)
        (lambda ()
@@ -22,7 +22,7 @@
 
 ;; Define a function that inserts the primary selection at the current
 ;; point and bind this to Shift-Insert.
-(defun davidt::x-cut-buffer-yank ()
+(defun dtymon::x-cut-buffer-yank ()
   (interactive "*")
   (let ((cut-text (gui-get-selection 'PRIMARY)))
     (cond ((and cut-text (> (length cut-text) 0))
@@ -173,7 +173,7 @@
     (insert (int-to-string (floor (* 1000000 (float-time)))))
     ))
 
-(defun davidt::add-javadoc (str)
+(defun dtymon::add-javadoc (str)
   (save-excursion
     (beginning-of-line)
     (setq start (point))
@@ -182,12 +182,12 @@
     )
   )
 
-(defun davidt::add-class-javadoc ()
+(defun dtymon::add-class-javadoc ()
   (interactive)
-  (davidt::add-javadoc "/**\n * \n */\n"))
+  (dtymon::add-javadoc "/**\n * \n */\n"))
 
-(defun davidt::add-method-javadoc ()
+(defun dtymon::add-method-javadoc ()
   (interactive)
-  (davidt::add-javadoc "/**\n * \n *\n * @param \n * @return \n */\n"))
+  (dtymon::add-javadoc "/**\n * \n *\n * @param variable - description\n * @returns something\n */\n"))
 
 (provide 'setup-defuns)

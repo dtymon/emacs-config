@@ -8,25 +8,25 @@
   "\\.tf\\'"
   :config
   (setq terraform-indent-level 4)
-  (setq davidt::hcl--assignment-regexp
+  (setq dtymon::hcl--assignment-regexp
         "\\s-*\\(\\(?:[[:word:]]\\|_\\)+\\)\\s-*=\\(?:[^>=]\\)")
-  (setq davidt::hcl--map-regexp
+  (setq dtymon::hcl--map-regexp
         "\\s-*\\(\\(?:[[:word:]]\\|_\\)+\\)\\s-*{")
 
   ;; Fix up the broken word boundaries on terraform. It treats the first
   ;; underscore as a word boundary but not the subsequent ones.
-  (defun davidt::fix-terraform-word-boundaries ()
+  (defun dtymon::fix-terraform-word-boundaries ()
     ;;  (modify-syntax-entry ?_ "w" hcl-mode-syntax-table)
     (modify-syntax-entry ?_ "_" hcl-mode-syntax-table)
 
-    (setq davidt::terraform-font-lock-keywords
-          `((,davidt::hcl--assignment-regexp 1 font-lock-function-name-face)
-            (,davidt::hcl--map-regexp 1 font-lock-type-face)
+    (setq dtymon::terraform-font-lock-keywords
+          `((,dtymon::hcl--assignment-regexp 1 font-lock-function-name-face)
+            (,dtymon::hcl--map-regexp 1 font-lock-type-face)
             ,@terraform-font-lock-keywords))
-    (setq font-lock-defaults '((davidt::terraform-font-lock-keywords)))
+    (setq font-lock-defaults '((dtymon::terraform-font-lock-keywords)))
     )
 
-  (advice-add 'terraform-mode :after #'davidt::fix-terraform-word-boundaries)
+  (advice-add 'terraform-mode :after #'dtymon::fix-terraform-word-boundaries)
   )
 
 (use-package terraform-doc

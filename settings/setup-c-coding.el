@@ -3,13 +3,13 @@
 ;; ;; ----------------------------------------------------------------------
 ;;
 ;; ;; Some constants
-;; (defconst davidt::shift-width 4)
-;; (defconst davidt::tab-width   8)
-;; (defconst davidt::fill-column 80)
+;; (defconst dtymon::shift-width 4)
+;; (defconst dtymon::tab-width   8)
+;; (defconst dtymon::fill-column 80)
 ;;
 ;; (setq
-;;  ;;c-basic-offset         davidt::shift-width
-;;  tab-width              davidt::tab-width
+;;  ;;c-basic-offset         dtymon::shift-width
+;;  tab-width              dtymon::tab-width
 ;;  indent-tabs-mode       nil
 ;;  )
 ;;
@@ -85,14 +85,14 @@
 ;;
 ;; ;; Return t if we can find a line starting with an opening brace or a C++
 ;; ;; access keyword and the next line starts with a tab
-;; (defmacro davidt::c++-tab-search1 ()
+;; (defmacro dtymon::c++-tab-search1 ()
 ;;   (beginning-of-buffer)
 ;;   (re-search-forward
 ;;    "^\\({\\|public:\\|private:\\|protected:\\)\n\t" (point-max) t))
 ;;
 ;; ;; Return t if we can find an opening brace preceded only by tabs with the
 ;; ;; following line indented by one more tab
-;; (defmacro davidt::c++-tab-search2 ()
+;; (defmacro dtymon::c++-tab-search2 ()
 ;;   (let ((found nil) (pattern nil))
 ;;     (beginning-of-buffer)
 ;;     (while (and (not found)
@@ -111,16 +111,16 @@
 ;;
 ;;      ;; Opening brace (or public, protected or private) followed by a line
 ;;      ;; starting with a tab suggests a tab-width of 4
-;;      ((davidt::c++-tab-search1) 4)
+;;      ((dtymon::c++-tab-search1) 4)
 ;;
 ;;      ;; Search for an opening brace that only has preceding tabs and the next
 ;;      ;; line is indented by one more tab
-;;      ((davidt::c++-tab-search2) 4)
+;;      ((dtymon::c++-tab-search2) 4)
 ;;
 ;;      ;; Default to my preferred size
 ;;      (t
-;;       (message "Setting default C++ tab-width: %d" davidt::tab-width)
-;;       davidt::tab-width)
+;;       (message "Setting default C++ tab-width: %d" dtymon::tab-width)
+;;       dtymon::tab-width)
 ;;      )))
 ;;
 ;; ;; If this value is set to t, buffers contaiing C files will be cleaned before
@@ -141,14 +141,14 @@
 ;;
 ;;   ;; Configure auto-fill
 ;;   (auto-fill-mode 1)
-;;   (set-fill-column davidt::fill-column)
+;;   (set-fill-column dtymon::fill-column)
 ;;   (fci-mode 1)
 ;;
 ;;   ;; Other stuff
 ;;   (setq c-electric-pound-behavior       '(alignleft)
 ;;         ;; c-comment-continuation-stars    "* "
 ;;         c-tab-always-indent             1
-;;         ;; c-basic-offset                  davidt::shift-width
+;;         ;; c-basic-offset                  dtymon::shift-width
 ;;         tab-width                       (c++-tab-width)
 ;;         c-backslash-max-column          88
 ;;         indent-tabs-mode                nil
@@ -157,9 +157,9 @@
 ;;         )
 ;;
 ;;   (define-key c++-mode-map "\M-."     'dabbrev-expand)
-;;   (define-key c++-mode-map [f7]       'davidt::align-data-members)
-;;   (define-key c++-mode-map [f8]       'davidt::insert-method-separator)
-;;   (define-key c++-mode-map [f9]       'davidt::find-file-cycle)
+;;   (define-key c++-mode-map [f7]       'dtymon::align-data-members)
+;;   (define-key c++-mode-map [f8]       'dtymon::insert-method-separator)
+;;   (define-key c++-mode-map [f9]       'dtymon::find-file-cycle)
 ;;   (define-key c++-mode-map [f10]      'find-tag-at-point)
 ;;   (define-key c++-mode-map [f11]      'pop-tag-mark)
 ;;

@@ -27,7 +27,7 @@
             '(lambda ()
                (flycheck-mode 1)
                (fci-mode 1)
-               (davidt::auto-fill-comments-only-hook)
+               (dtymon::auto-fill-comments-only-hook)
 
                (make-variable-buffer-local 'whitespace-style)
                (add-hook 'before-save-hook 'whitespace-cleanup nil 'local)
