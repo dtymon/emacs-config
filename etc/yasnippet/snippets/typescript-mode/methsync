@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# name: method-sync
+# key: methsync
+# --
+/**
+ * Method description
+ *
+ * @param name - description
+ * @param name - description
+ * @returns a promise resolved
+ */
+$1 $2(): $3 {
+  //
+  $4
+}
