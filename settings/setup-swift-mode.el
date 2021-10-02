@@ -5,7 +5,7 @@
   :config
   (add-hook 'swift-mode-hook
             '(lambda ()
-               (davidt::auto-fill-comments-only-hook)
+               (dtymon::auto-fill-comments-only-hook)
                (make-variable-buffer-local 'whitespace-style)
                (add-hook 'before-save-hook 'whitespace-cleanup nil 'local)
                (setq whitespace-style '(face tabs trailing space-before-tab::tab empty))

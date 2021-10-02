@@ -16,7 +16,7 @@
 (global-set-key (kbd "C-x j") 'jump-to-register)
 
 
-(global-set-key [(shift insert)] 'davidt::x-cut-buffer-yank)
+(global-set-key [(shift insert)] 'dtymon::x-cut-buffer-yank)
 
 ;; (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 ;; (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)

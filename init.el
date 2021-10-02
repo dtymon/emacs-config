@@ -86,7 +86,6 @@
      simple-httpd
      tern
      vscode-icon
-     yasnippet
      )))
 
 (condition-case nil
@@ -152,6 +151,7 @@
 (require 'setup-smex)
 (require 'setup-dired)
 (require 'setup-flycheck)
+(require 'setup-flymake)
 (require 'setup-fci-mode)
 ;;(require 'setup-highlight-indent)
 ;;(require 'setup-multiple-cursors)
@@ -173,6 +173,8 @@
 (require 'setup-company)
 (require 'setup-which-key)
 (require 'setup-lsp-mode)
+;;(require 'setup-eglot)
+(require 'setup-yasnippet)
 (require 'setup-c-coding)
 (require 'setup-typescript-mode)
 (require 'setup-js2-mode)

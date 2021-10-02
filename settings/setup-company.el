@@ -4,8 +4,8 @@
   :diminish company-mode
   :init
   (global-company-mode)
-  (setq company-idle-delay nil)
-  (setq company-echo-delay 0)
+;;DAVIDT   (setq company-idle-delay nil)
+;;DAVIDT   (setq company-echo-delay 0)
 
   :bind (:map company-active-map
               ;; Return and arrow keys should behave as normal until we interact
@@ -35,44 +35,44 @@
           )
 
   :config
-  ;; Show completions after a short delay
-  (setq company-idle-delay 0.4)
+  (setq
+;;DAVIDT   ;; Show completions after a short delay
+;;DAVIDT   company-idle-delay 0.4
 
-  ;; Show completions after typing a two characters
-  (setq company-minimum-prefix-length 2)
+   ;; Show completions after typing a two characters
+   company-minimum-prefix-length 1
 
-  ;; Set the maximum number of candidates to show
-  (setq company-tooltip-limit 15)
+   ;; Set the maximum number of candidates to show
+   company-tooltip-limit 15
 
-  ;; Show the entire suggestion
-  (setq company-tooltip-minimum company-tooltip-limit)
+   ;; Show quick-reference numbers in the tooltip. (Select a completion with M-1
+   ;; through M-0.)
+   company-show-numbers t
 
-  ;; Always display suggestions in the tooltip, even if there is only one. Also,
-  ;; don't display metadata in the echo area. (This conflicts with ElDoc.)
-  (setq company-frontends '(company-pseudo-tooltip-frontend))
+   ;; Show the entire suggestion
+   ;; company-tooltip-minimum company-tooltip-limit
 
-  ;; Show quick-reference numbers in the tooltip. (Select a completion with M-1
-  ;; through M-0.)
-  (setq company-show-numbers t)
+;;DAVIDT   ;; Always display suggestions in the tooltip, even if there is only one. Also,
+;;DAVIDT   ;; don't display metadata in the echo area. (This conflicts with ElDoc.)
+;;DAVIDT   company-frontends '(company-pseudo-tooltip-frontend)
 
-  ;; Prevent non-matching input (which will dismiss the completions menu), but
-  ;; only if the user interacts explicitly with Company.
-  (setq company-require-match #'company-explicit-action-p)
+   ;; Prevent non-matching input (which will dismiss the completions menu), but
+   ;; only if the user interacts explicitly with Company.
+   ;; company-require-match #'company-explicit-action-p
 
-  ;; Company appears to override our settings in `company-active-map' based on
-  ;; `company-auto-complete-chars'. Turning it off ensures we have full control.
-  (setq company-auto-complete-chars nil)
+;;DAVIDT   ;; Company appears to override our settings in `company-active-map' based on
+;;DAVIDT   ;; `company-auto-complete-chars'. Turning it off ensures we have full control.
+;;DAVIDT   setq company-auto-complete-chars nil
 
-  ;; Prevent Company completions from being lowercased in the completion menu
-  (setq company-dabbrev-downcase nil)
+   ;; Prevent dabbrev completions from being lowercased and make the matching
+   ;; case-sensitive.
+   company-dabbrev-downcase nil
+   company-dabbrev-ignore-case nil
 
-  ;; Only search the current buffer to get suggestions for company-dabbrev (a
-  ;; backend that creates suggestions from text found in your buffers). This
-  ;; prevents Company from causing lag once you have a lot of buffers open.
-  ;; (setq company-dabbrev-other-buffers nil)
-
-  ;; Make company-dabbrev case-sensitive
-  (setq company-dabbrev-ignore-case nil)
+   ;; Whether to search other buffers for dabbrev matches: nil, t or 'all. A
+   ;; value of t limits the search to buffers of the same major mode.
+   ;; company-dabbrev-other-buffers nil
+   )
   )
 
 ;; This package adds usage-based sorting to company completions
@@ -86,7 +86,8 @@
 (use-package company-quickhelp
   :ensure t
   :defer t
-  :init (add-hook 'global-company-mode-hook #'company-quickhelp-mode)
+  :init
+  (add-hook 'global-company-mode-hook #'company-quickhelp-mode)
   )
 
 ;;(use-package company-box

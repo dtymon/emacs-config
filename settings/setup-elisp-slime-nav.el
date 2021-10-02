@@ -2,7 +2,11 @@
 (use-package elisp-slime-nav
   :ensure t
   :config
-  (add-hook 'emacs-lisp-mode-hook (lambda () (elisp-slime-nav-mode t) (eldoc-mode 1)))
+  (add-hook 'emacs-lisp-mode-hook
+            (lambda ()
+              (elisp-slime-nav-mode t)
+              (eldoc-mode 1)
+              ))
   )
 
 (provide 'setup-elisp-slime-nav)

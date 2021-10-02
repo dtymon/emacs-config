@@ -95,6 +95,11 @@
         (setq mode-name ,new-name))))
 
 (rename-modeline "js2-mode" js2-mode "JS2")
-;; (rename-modeline "clojure-mode" clojure-mode "Clj")
+
+;; This is really important otherwise the right-aligned messages displayed by
+;; lsp-ui-sideline cause a line wrap.
+;;
+;; https://github.com/emacs-lsp/lsp-ui/issues/285
+(fringe-mode '(12 . 0))
 
 (provide 'appearance)
