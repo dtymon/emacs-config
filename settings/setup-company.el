@@ -39,7 +39,7 @@
 ;;DAVIDT   ;; Show completions after a short delay
 ;;DAVIDT   company-idle-delay 0.4
 
-   ;; Show completions after typing a two characters
+   ;; Show completions after typing one character
    company-minimum-prefix-length 1
 
    ;; Set the maximum number of candidates to show
