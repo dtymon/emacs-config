@@ -6,13 +6,15 @@
 ;; Bump up the GC cons limit during initialisation but reset it after
 ;; loading to avoid large pauses during GC.
 (setq gc-cons-threshold 100000000)
-(add-hook 'after-init-hook (lambda () (setq gc-cons-threshold 800000)))
+;; let's try leaving it large for a bit
+;;(add-hook 'after-init-hook (lambda () (setq gc-cons-threshold 800000)))
 
 ;; Define some basic variables
 (setq
- ;; No splash screen
- inhibit-startup-message t
-
+ ;; Bump up the maximum number of bytes that can be read in one chunk from a
+ ;; process
+ read-process-output-max (* 1024 1024)
+ 
  ;; Do not compact font caches during GC
  inhibit-compacting-font-caches t
 
@@ -25,6 +27,7 @@
 
  ;; Make backups of files, even when they're in version control
  vc-make-backup-files t
+
  )
 
 ;; Set up load path
@@ -141,6 +144,7 @@
 (require 'setup-minibuffer)
 (require 'setup-windmove)
 (require 'setup-move-text)
+(require 'setup-diminish)
 (require 'setup-all-the-icons)
 (require 'setup-undo-tree)
 (require 'setup-savehist)

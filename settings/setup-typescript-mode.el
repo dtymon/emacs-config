@@ -11,13 +11,11 @@
   (add-hook 'typescript-mode-hook #'tree-sitter-mode)
   (add-hook 'typescript-mode-hook
             (lambda ()
-              (lsp)
-              (setq mode-name "TS")
+              (dtymon::auto-fill-comments-only-hook)
               (flycheck-mode 1)
               (fci-mode 1)
               (prettier-mode 1)
-              (dtymon::auto-fill-comments-only-hook)
-              (flycheck-add-next-checker 'lsp 'javascript-eslint)
+;;              (flycheck-add-next-checker 'lsp 'javascript-eslint)
 
               (setq
                truncate-lines      nil
