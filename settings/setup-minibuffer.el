@@ -1,3 +1,6 @@
+;; Show how deep the minibuffer is
+(minibuffer-depth-indicate-mode)
+
 ;; Bury the completions buffer after exiting the minibuffer
 (add-hook 'minibuffer-exit-hook
           '(lambda ()

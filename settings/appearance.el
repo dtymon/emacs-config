@@ -21,7 +21,7 @@
   ;; Set some basic appearance configuration
   (setq
    dtymon::theme                  'solarized-dtymon
-   dtymon::font-family            "Fira Code"
+   dtymon::font-family            "Fira Code"    ;; Use s-t to help choose fonts
    dtymon::font-size              150
    dtymon::presentation-font-size 180
    dtymon::in-presentation        nil
@@ -59,8 +59,10 @@
   (global-set-key (kbd "C-<f9>") 'dtymon::toggle-presentation-mode)
 )
 
-;; Highlight current line
-(global-hl-line-mode 1)
+;; Highlight current line in text and programming mode
+(add-hook 'prog-mode-hook #'hl-line-mode)
+(add-hook 'text-mode-hook #'hl-line-mode)
+;;(global-hl-line-mode 1)
 
 ;; Always show line numbers
 (global-display-line-numbers-mode)

@@ -34,6 +34,12 @@ clean buffer we're an order of magnitude laxer about checking."
 ;;
   )
 
+;; (use-package flycheck-inline
+;;   :ensure t
+;;   :config
+;;   (global-flycheck-inline-mode)
+;;  )
+
 (use-package flycheck-yamllint
   :ensure t
   :after (flycheck)
