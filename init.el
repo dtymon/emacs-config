@@ -151,7 +151,7 @@
 (require 'setup-smex)
 (require 'setup-dired)
 (require 'setup-flycheck)
-(require 'setup-flymake)
+;;(require 'setup-flymake)
 (require 'setup-fci-mode)
 ;;(require 'setup-highlight-indent)
 ;;(require 'setup-multiple-cursors)
