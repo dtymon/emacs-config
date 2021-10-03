@@ -39,6 +39,7 @@
 
 (use-package lsp-ui
   :ensure t
+  :after lsp-mode
   :commands lsp-ui-mode
   :config
   (setq

@@ -13,7 +13,7 @@
 (setq
  ;; Bump up the maximum number of bytes that can be read in one chunk from a
  ;; process
- read-process-output-max (* 1024 1024)
+ read-process-output-max (* 1024 1024 4)
  
  ;; Do not compact font caches during GC
  inhibit-compacting-font-caches t
@@ -133,6 +133,7 @@
 (require 'setup-solarized-theme)
 (require 'setup-themes)
 (require 'appearance)
+(require 'setup-dimmer)
 ;;(require 'setup-fira-code)
 
 ;; Run at full power please
@@ -162,6 +163,7 @@
 (require 'setup-hippie)
 (require 'setup-rgrep)
 (require 'setup-wgrep)
+(require 'setup-deadgrep)
 (require 'setup-magit)
 (require 'setup-git-gutter)
 (require 'setup-forge)
@@ -215,6 +217,7 @@
 (require 'setup-dockerfile-mode)
 (require 'setup-htmlize)
 (require 'setup-rainbow-delimiters)
+(require 'setup-vterm)
 
 (when is-mac (require 'setup-mac))
 

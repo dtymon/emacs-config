@@ -35,4 +35,14 @@
 ;;    (kbd "q") `vc-annotate-quit)
 ;;  )
 
+;; Bring in libgit to make magit faster
+(use-package libgit
+  :ensure t
+  )
+
+(use-package magit-libgit
+  :ensure t
+  :after (magit libgit)
+  )
+
 (provide 'setup-magit)
