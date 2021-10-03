@@ -5,6 +5,7 @@
   (setq which-key-popup-type 'minibuffer)
   (setq which-key-compute-remaps t)
   (setq which-key-allow-multiple-replacements t)
+  (which-key-mode 1)
   )
 
 (provide 'setup-which-key)

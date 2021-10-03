@@ -7,6 +7,7 @@
    ;; Setting this value too high seems to cause issues where lsp does not run
    ;; and errors that have been fixed are still marked as broken.
    lsp-idle-delay 0.2
+   lsp-restart 'auto-restart
    lsp-modeline-code-actions-enable nil
    lsp-lens-enable nil
    lsp-headerline-breadcrumb-enable nil
@@ -14,12 +15,24 @@
    lsp-enable-snippet t
 ;;   lsp-prefer-flymake t
 ;;   lsp-diagnostics-provider 'flymake
-   )
-  :config
-  (lsp-enable-which-key-integration)
 
-  :hook ((typescript-mode . lsp)
-         (js2-mode . lsp)
+   lsp-clients-typescript-log-verbosity "verbose"
+   )
+
+  :bind (
+         ("C-c e n" . flycheck-next-error)
+         ("C-c e p" . flycheck-previous-error)
+         ("C-c e e" . lsp-treemacs-errors-list)
+         ("C-c e r" . lsp-find-references)
+         ("C-c e R" . lsp-rename)
+         ("C-c e i" . lsp-find-implementation)
+         ("C-c e t" . lsp-find-type-definition)
+         )
+
+  :hook (
+         (typescript-mode . lsp-deferred)
+         (js2-mode . lsp-deferred)
+         (lsp-mode . lsp-enable-which-key-integration)
          )
   :commands lsp
   )
@@ -27,7 +40,6 @@
 (use-package lsp-ui
   :ensure t
   :commands lsp-ui-mode
-  :init
   :config
   (setq
    lsp-ui-doc-enable nil
