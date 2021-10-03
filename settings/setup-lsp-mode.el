@@ -11,6 +11,9 @@
    lsp-lens-enable nil
    lsp-headerline-breadcrumb-enable nil
    lsp-completion-provider :company-capf
+   lsp-enable-snippet t
+;;   lsp-prefer-flymake t
+;;   lsp-diagnostics-provider 'flymake
    )
   :config
   (lsp-enable-which-key-integration)
