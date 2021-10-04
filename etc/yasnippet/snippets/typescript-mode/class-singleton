@@ -1,0 +1,18 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: class-singleton
+# key: singleton
+# --
+class ${1:Class}Singleton${2: extends ${3:ParentClass}} {
+  /**
+   * Constructor
+   *
+   * @param name - description
+   */
+  public constructor() {
+    //
+  }
+
+  $0
+}
+
+export const ${1} = new ${1}Singleton();

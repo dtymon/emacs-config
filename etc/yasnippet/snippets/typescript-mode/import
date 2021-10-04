@@ -1,0 +1,5 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: import-class
+# key: import
+# --
+import { $1 } from '$2';

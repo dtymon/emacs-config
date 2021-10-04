@@ -1,0 +1,5 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: get-logger
+# key: getlogger
+# --
+const logger = LoggerFactory.getLogger('${1:Path}');

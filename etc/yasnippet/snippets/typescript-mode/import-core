@@ -1,0 +1,5 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: import-core
+# key: importcore
+# --
+import { $1 } from '@ben/nodejs-core/$2';

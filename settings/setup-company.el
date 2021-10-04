@@ -4,8 +4,6 @@
   :diminish company-mode
   :init
   (global-company-mode)
-;;DAVIDT   (setq company-idle-delay nil)
-;;DAVIDT   (setq company-echo-delay 0)
 
   :bind (:map company-active-map
               ;; Return and arrow keys should behave as normal until we interact
@@ -36,10 +34,7 @@
 
   :config
   (setq
-;;DAVIDT   ;; Show completions after a short delay
-;;DAVIDT   company-idle-delay 0.4
-
-   ;; Show completions after typing one character
+   ;; How many chars before showing suggestions
    company-minimum-prefix-length 1
 
    ;; Set the maximum number of candidates to show
@@ -73,6 +68,47 @@
    ;; value of t limits the search to buffers of the same major mode.
    ;; company-dabbrev-other-buffers nil
    )
+
+  ;; Setup company-tng
+  (add-hook 'after-init-hook 'company-tng-mode)
+  (define-key company-active-map (kbd "TAB") 'company-select-next)
+  (define-key company-active-map (kbd "<backtab>") 'company-select-previous)
+  (define-key company-active-map (kbd "RET") nil)
+  (setq company-require-match nil)
+
+
+;; ;;   (defun mars/company-backend-with-yas (backends)
+;; ;;     "Add :with company-yasnippet to company BACKENDS.
+;; ;; Taken from https://github.com/syl20bnr/spacemacs/pull/179."
+;; ;;     (if (and (listp backends) (memq 'company-yasnippet backends))
+;; ;;         backends
+;; ;;       (append (if (consp backends)
+;; ;;                   backends
+;; ;;                 (list backends))
+;; ;;               '(:with company-yasnippet))))
+;; ;;
+;; ;;   ;; add yasnippet to all backends
+;; ;; ;;  (setq company-backends
+;; ;; ;;        (mapcar #'mars/company-backend-with-yas company-backends))
+;; ;;   (setq company-backends (push 'company-yasnippet company-backends))
+;; ;;   (setq company-backends '(company-yasnippet company-capf))
+;; ;;   (setq company-backends '(company-capf :with company-yasnippet))
+;;
+   ;; Add yasnippet support for all company backends
+   ;; https://github.com/syl20bnr/spacemacs/pull/179
+   (defvar company-mode/enable-yas t
+     "Enable yasnippet for all backends.")
+
+   (defun company-mode/backend-with-yas (backend)
+     (if (or (not company-mode/enable-yas) (and (listp backend) (member 'company-yasnippet backend)))
+         backend
+       (append (if (consp backend) backend (list backend))
+               '(:with company-yasnippet)
+               )))
+
+   (setq company-backends (mapcar #'company-mode/backend-with-yas company-backends))
+;;   (setq company-backends '((:separate company-yasnippet company-capf)))
+;;   (message "%s" company-backends)
   )
 
 ;; This package adds usage-based sorting to company completions

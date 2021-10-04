@@ -1,0 +1,5 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: app-config
+# key: appconfig
+# --
+const appConfig = ConfigFactory.get();
