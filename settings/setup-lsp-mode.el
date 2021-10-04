@@ -11,7 +11,8 @@
    lsp-modeline-code-actions-enable nil
    lsp-lens-enable nil
    lsp-headerline-breadcrumb-enable nil
-   lsp-completion-provider :company-capf
+;;   lsp-completion-provider :company-capf
+   lsp-completion-provider :none
    lsp-enable-snippet t
 ;;   lsp-prefer-flymake t
 ;;   lsp-diagnostics-provider 'flymake

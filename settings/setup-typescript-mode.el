@@ -36,6 +36,14 @@
 
               ;; Don't use the fill column from the prettier config
               (and (eq (cadar prettier-sync-settings) ':printWidth) (pop prettier-sync-settings))
+
+;;              (push '(company-semantic :with company-yasnippet) company-backends)
+;;              (set (make-local-variable 'company-backends)
+;;                   '((company-dabbrev-code company-yasnippet)))
+;;              (set (make-local-variable 'company-backends)
+;;                   '((company-tide company-files :with company-yasnippet)
+;;                     (company-dabbrev-code company-dabbrev)))
+
               ))
   :bind (:map typescript-mode-map
               ("M-q" . dtymon::fill-comment-paragraph)

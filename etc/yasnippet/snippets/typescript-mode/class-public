@@ -1,0 +1,16 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: class-public
+# key: extcls
+# --
+export class ${1:Class}${2: extends ${3:ParentClass}} {
+  /**
+   * Constructor
+   *
+   * @param name - description
+   */
+  public constructor() {
+    //
+  }
+
+  $0
+}

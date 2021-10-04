@@ -1,15 +1,14 @@
-# -*- mode: snippet -*-
+# -*- mode: snippet; require-final-newline: nil -*-
 # name: method-async
-# key: methasync
+# key: masync
 # --
 /**
  * Method description
  *
  * @param name - description
- * @param name - description
  * @returns a promise resolved
  */
-$1 async $2(): Promise<void> {
+${1:Access} async ${2:Name}(): Promise<${3:Returns}> {
   //
-  $3
+  $0
 }

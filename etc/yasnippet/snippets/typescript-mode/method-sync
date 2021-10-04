@@ -1,0 +1,14 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: method-sync
+# key: msync
+# --
+/**
+ * Method description
+ *
+ * @param name - description
+ * @returns something
+ */
+${1:Access} ${2:Name}(): ${3:Returns} {
+  //
+  $0
+}
