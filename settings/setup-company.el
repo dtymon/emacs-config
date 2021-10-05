@@ -111,13 +111,97 @@
 ;;   (message "%s" company-backends)
   )
 
-;; This package adds usage-based sorting to company completions
-(use-package company-statistics
+(use-package company-tabnine
   :ensure t
-  :defer t
+  :requires company
   :config
-  (company-statistics-mode 1)
+  (setq company-tabnine--disable-next-transform nil)
+  (defun my-company--transform-candidates (func &rest args)
+    (if (not company-tabnine--disable-next-transform)
+        (apply func args)
+      (setq company-tabnine--disable-next-transform nil)
+      (car args)))
+
+  (defun my-company-tabnine (func &rest args)
+    (when (eq (car args) 'candidates)
+      (setq company-tabnine--disable-next-transform t))
+    (apply func args))
+
+  (advice-add #'company--transform-candidates :around #'my-company--transform-candidates)
+  (advice-add #'company-tabnine :around #'my-company-tabnine)
+  ;; Trigger completion immediately.
+  ;; (setq company-idle-delay 0)
+
+  ;; Use the tab-and-go frontend.
+  ;; Allows TAB to select and complete at the same time.
+;;   (company-tng-configure-default)
+  (setq company-frontends
+        '(company-tng-frontend
+          company-pseudo-tooltip-frontend
+          company-echo-metadata-frontend))
+
+  (dolist (mode (list
+               'c-mode
+               'c++-mode
+               'swift-mode
+               'lisp-mode
+               'emacs-lisp-mode
+               'sh-mode
+               'lua-mode
+               'haskell-mode
+               'go-mode
+               'java-mode
+               'python-mode
+               'typescript-mode
+               ))
+    (with-eval-after-load mode
+      (add-to-list 'company-backends #'company-tabnine))
+    )
+;;   (set-company-backend
+;;    '(c-mode
+;;      c++-mode
+;;      ess-mode
+;;      haskell-mode
+;;      ;;emacs-lisp-mode
+;;      conf-mode
+;;      lisp-mode
+;;      sh-mode
+;;      php-mode
+;;      python-mode
+;;      go-mode
+;;      ruby-mode
+;;      rust-mode
+;;      js-mode
+;;      css-mode
+;;      web-mode
+;;      nix-mode
+;;      json-mode
+;;      typescript-mode
+;;      )
+;;   '(
+;;     company-files
+;;     company-yasnippet
+;;     :separate
+;;     company-tabnine
+;;     ))
+
+  (setq lsp-company-backends
+        '(company-capf
+          company-files
+          company-yasnippet
+          :separate
+          company-tabnine
+          ))
+
   )
+
+;; This package adds usage-based sorting to company completions
+;; (use-package company-statistics
+;;   :ensure t
+;;   :defer t
+;;   :config
+;;   (company-statistics-mode 1)
+;;   )
 
 (use-package company-quickhelp
   :ensure t
