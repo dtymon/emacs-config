@@ -145,6 +145,7 @@
 (require 'setup-minibuffer)
 (require 'setup-windmove)
 (require 'setup-transpose-frame)
+(require 'setup-rotate)
 (require 'setup-move-text)
 (require 'setup-diminish)
 (require 'setup-all-the-icons)
