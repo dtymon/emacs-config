@@ -21,9 +21,13 @@
   ;; Set some basic appearance configuration
   (setq
    dtymon::theme                  'solarized-dtymon
-   dtymon::font-family            "Fira Code"    ;; Use s-t to help choose fonts
-   dtymon::font-size              150
-   dtymon::presentation-font-size 180
+;;   dtymon::font-family            "Fira Code"    ;; Use s-t to help choose fonts
+;;   dtymon::font-size              150
+   dtymon::font-family            "Ubuntu Mono"
+   dtymon::font-size              180
+;;   dtymon::font-family            "Hack"
+;;   dtymon::font-size              150
+   dtymon::presentation-font-size 200
    dtymon::in-presentation        nil
 
    frame-title-format '(buffer-file-name "%f" ("%b"))

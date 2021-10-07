@@ -11,13 +11,10 @@
    lsp-modeline-code-actions-enable nil
    lsp-lens-enable nil
    lsp-headerline-breadcrumb-enable nil
-;;   lsp-completion-provider :company-capf
    lsp-completion-provider :none
    lsp-enable-snippet t
-;;   lsp-prefer-flymake t
-;;   lsp-diagnostics-provider 'flymake
 
-   lsp-clients-typescript-log-verbosity "verbose"
+   ;;lsp-clients-typescript-log-verbosity "verbose"
    )
 
   :bind (
@@ -81,5 +78,4 @@
 ;; (use-package dap-LANGUAGE) to load the dap adapter for your language
 
 (provide 'setup-lsp-mode)
-;;; setup-lsp-mode.el ends here
 
