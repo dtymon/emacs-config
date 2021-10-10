@@ -9,7 +9,7 @@ class ${1:Class}${2: extends ${3:ParentClass}} {
    * @param name - description
    */
   public constructor() {
-    //
+    super();
   }
 
   $0
