@@ -14,6 +14,14 @@
    lsp-completion-provider :none
    lsp-enable-snippet t
 
+   ;; Run eslint on save not when typing as the prettier stuff is too annoying
+   lsp-eslint-run "onSave"
+   lsp-eslint-quiet t
+   lsp-eslint-package-manager "yarn"
+
+   ;; This doesn't seem to work but it should turn off prettier rules
+   lsp-eslint-rules-customizations [((rule . "prettier*") (severity . "off"))]
+
    ;;lsp-clients-typescript-log-verbosity "verbose"
    )
 
