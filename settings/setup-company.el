@@ -35,7 +35,7 @@
   :config
   (setq
    ;; How many chars before showing suggestions
-   company-minimum-prefix-length 1
+   company-minimum-prefix-length 3
 
    ;; Set the maximum number of candidates to show
    company-tooltip-limit 15
@@ -68,6 +68,10 @@
    ;; value of t limits the search to buffers of the same major mode.
    ;; company-dabbrev-other-buffers nil
    )
+
+  ;; Setup the transformers to change the list of candidates
+  (add-to-list 'company-transformers #'company-sort-prefer-same-case-prefix)
+  (add-to-list 'company-transformers #'company-sort-by-occurrence)
 
   ;; Setup company-tng
   (add-hook 'after-init-hook 'company-tng-mode)
@@ -111,97 +115,100 @@
 ;;   (message "%s" company-backends)
   )
 
-(use-package company-tabnine
-  :ensure t
-  :requires company
-  :config
-  (setq company-tabnine--disable-next-transform nil)
-  (defun my-company--transform-candidates (func &rest args)
-    (if (not company-tabnine--disable-next-transform)
-        (apply func args)
-      (setq company-tabnine--disable-next-transform nil)
-      (car args)))
-
-  (defun my-company-tabnine (func &rest args)
-    (when (eq (car args) 'candidates)
-      (setq company-tabnine--disable-next-transform t))
-    (apply func args))
-
-  (advice-add #'company--transform-candidates :around #'my-company--transform-candidates)
-  (advice-add #'company-tabnine :around #'my-company-tabnine)
-  ;; Trigger completion immediately.
-  ;; (setq company-idle-delay 0)
-
-  ;; Use the tab-and-go frontend.
-  ;; Allows TAB to select and complete at the same time.
-;;   (company-tng-configure-default)
-  (setq company-frontends
-        '(company-tng-frontend
-          company-pseudo-tooltip-frontend
-          company-echo-metadata-frontend))
-
-  (dolist (mode (list
-               'c-mode
-               'c++-mode
-               'swift-mode
-               'lisp-mode
-               'emacs-lisp-mode
-               'sh-mode
-               'lua-mode
-               'haskell-mode
-               'go-mode
-               'java-mode
-               'python-mode
-               'typescript-mode
-               ))
-    (with-eval-after-load mode
-      (add-to-list 'company-backends #'company-tabnine))
-    )
-;;   (set-company-backend
-;;    '(c-mode
-;;      c++-mode
-;;      ess-mode
-;;      haskell-mode
-;;      ;;emacs-lisp-mode
-;;      conf-mode
-;;      lisp-mode
-;;      sh-mode
-;;      php-mode
-;;      python-mode
-;;      go-mode
-;;      ruby-mode
-;;      rust-mode
-;;      js-mode
-;;      css-mode
-;;      web-mode
-;;      nix-mode
-;;      json-mode
-;;      typescript-mode
-;;      )
-;;   '(
-;;     company-files
-;;     company-yasnippet
-;;     :separate
-;;     company-tabnine
-;;     ))
-
-  (setq lsp-company-backends
-        '(company-capf
-          company-files
-          company-yasnippet
-          :separate
-          company-tabnine
-          ))
-
-  )
+;; (use-package company-tabnine
+;;   :ensure t
+;;   :requires company
+;;   :config
+;;   (setq company-tabnine--disable-next-transform nil)
+;;   (defun my-company--transform-candidates (func &rest args)
+;;     (if (not company-tabnine--disable-next-transform)
+;;         (apply func args)
+;;       (setq company-tabnine--disable-next-transform nil)
+;;       (car args)))
+;;
+;;   (defun my-company-tabnine (func &rest args)
+;;     (when (eq (car args) 'candidates)
+;;       (setq company-tabnine--disable-next-transform t))
+;;     (apply func args))
+;;
+;;   (advice-add #'company--transform-candidates :around #'my-company--transform-candidates)
+;;   (advice-add #'company-tabnine :around #'my-company-tabnine)
+;;   ;; Trigger completion immediately.
+;;   ;; (setq company-idle-delay 0)
+;;
+;;   ;; Use the tab-and-go frontend.
+;;   ;; Allows TAB to select and complete at the same time.
+;; ;;   (company-tng-configure-default)
+;;   (setq company-frontends
+;;         '(company-tng-frontend
+;;           company-pseudo-tooltip-frontend
+;;           company-echo-metadata-frontend))
+;;
+;;   (dolist (mode (list
+;;                'c-mode
+;;                'c++-mode
+;;                'swift-mode
+;;                'lisp-mode
+;;                'emacs-lisp-mode
+;;                'sh-mode
+;;                'lua-mode
+;;                'haskell-mode
+;;                'go-mode
+;;                'java-mode
+;;                'python-mode
+;;                'typescript-mode
+;;                ))
+;;     (with-eval-after-load mode
+;;       (add-to-list 'company-backends #'company-tabnine))
+;;     )
+;; ;;   (set-company-backend
+;; ;;    '(c-mode
+;; ;;      c++-mode
+;; ;;      ess-mode
+;; ;;      haskell-mode
+;; ;;      ;;emacs-lisp-mode
+;; ;;      conf-mode
+;; ;;      lisp-mode
+;; ;;      sh-mode
+;; ;;      php-mode
+;; ;;      python-mode
+;; ;;      go-mode
+;; ;;      ruby-mode
+;; ;;      rust-mode
+;; ;;      js-mode
+;; ;;      css-mode
+;; ;;      web-mode
+;; ;;      nix-mode
+;; ;;      json-mode
+;; ;;      typescript-mode
+;; ;;      )
+;; ;;   '(
+;; ;;     company-files
+;; ;;     company-yasnippet
+;; ;;     :separate
+;; ;;     company-tabnine
+;; ;;     ))
+;;
+;;   (setq lsp-company-backends
+;;         '(company-capf
+;;           company-files
+;;           company-yasnippet
+;;           :separate
+;;           company-tabnine
+;;           ))
+;;
+;;   )
 
 ;; This package adds usage-based sorting to company completions
-;; (use-package company-statistics
-;;   :ensure t
-;;   :defer t
-;;   :config
-;;   (company-statistics-mode 1)
-;;   )
+(use-package company-statistics
+  :ensure t
+  :defer t
+  :config
+  (company-statistics-mode 1)
+  (setq
+   company-statistics-size 2000
+   )
+  )
 
 (use-package company-quickhelp
   :ensure t
