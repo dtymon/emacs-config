@@ -35,10 +35,11 @@
   :config
   (setq
    ;; How many chars before showing suggestions
-   company-minimum-prefix-length 3
+   company-minimum-prefix-length 1
 
    ;; Set the maximum number of candidates to show
    company-tooltip-limit 15
+   company-tooltip-width-grow-only t
 
    ;; Show quick-reference numbers in the tooltip. (Select a completion with M-1
    ;; through M-0.)

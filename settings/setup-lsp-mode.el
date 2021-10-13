@@ -4,9 +4,6 @@
   :ensure t
   :init
   (setq
-   ;; Setting this value too high seems to cause issues where lsp does not run
-   ;; and errors that have been fixed are still marked as broken.
-   lsp-idle-delay 0.2
    lsp-restart 'auto-restart
    lsp-modeline-code-actions-enable nil
    lsp-lens-enable nil
@@ -62,6 +59,12 @@
    lsp-ui-doc-use-childframe t
    lsp-ui-doc-use-webkit t
 ;;   lsp-ui-doc-text-scale-level 1
+
+   ;; Do not display the code actions (ie: what can be done to fix the issue) as
+   ;; they are too distracting. Delay showing the sideline so that it does not
+   ;; show as we move around the file.
+   lsp-ui-sideline-show-code-actions nil
+   lsp-ui-sideline-delay 1
    )
   (set-face-attribute 'lsp-ui-doc-background nil :background "#10264a")
   (global-set-key (kbd "C-x s-d") 'lsp-ui-doc-glance)
