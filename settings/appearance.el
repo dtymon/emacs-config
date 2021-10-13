@@ -70,6 +70,12 @@
 
 ;; Always show line numbers
 (global-display-line-numbers-mode)
+(setq
+ ;; Do not shrink the width of the line numbers column as its really distracting
+ ;; and compute the width required for line numbers upfront.
+ display-line-numbers-grow-only t
+ display-line-numbers-width-start t
+ )
 
 ;; Highlight matching parentheses when the point is on them.
 (show-paren-mode 1)
