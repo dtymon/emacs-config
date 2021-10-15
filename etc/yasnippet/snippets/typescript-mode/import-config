@@ -1,5 +1,5 @@
 # -*- mode: snippet; require-final-newline: nil -*-
 # name: import-config
-# key: importconfig
+# key: impconfig
 # --
 import { ConfigFactory } from '@ben/nodejs-core/config';

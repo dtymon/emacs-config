@@ -1,5 +1,5 @@
 # -*- mode: snippet; require-final-newline: nil -*-
 # name: import-3rd-party
-# key: import3rd
+# key: imp3rd
 # --
 import { $1 } from '@ben/nodejs-3rd-party/$2';
