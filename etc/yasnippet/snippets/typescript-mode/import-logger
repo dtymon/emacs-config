@@ -1,5 +1,5 @@
 # -*- mode: snippet; require-final-newline: nil -*-
 # name: import-logger
-# key: importlogger
+# key: implogger
 # --
 import { Logger, LoggerFactory } from '@ben/nodejs-core/logging';
