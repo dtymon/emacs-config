@@ -1,6 +1,5 @@
 (use-package which-key
   :ensure t
-  :defer 10
   :config
   (setq
    ;; which-key-popup-type 'minibuffer
