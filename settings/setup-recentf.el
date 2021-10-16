@@ -4,6 +4,9 @@
   (setq recentf-max-saved-items 100)
   :config
   (recentf-mode 1)
+
+  ;; Do not include any elpa files and other state-related files
+  (add-to-list 'recentf-exclude "/\\.emacs\\.d/\\(var\\|elpa\\|\\.cache\\)/")
   )
 
 (provide 'setup-recentf)
