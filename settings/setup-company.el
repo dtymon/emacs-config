@@ -6,26 +6,26 @@
   (global-company-mode)
 
   :bind (:map company-active-map
-              ;; Return and arrow keys should behave as normal until we interact
-              ;; with company
-              ("<return>" . nil)
-              ("RET" . nil)
-              ("<up>" . nil)
-              ("<down>" . nil)
+         ;; Return and arrow keys should behave as normal until we interact with
+         ;; company
+         ("<return>" . nil)
+         ("RET"      . nil)
+         ("<up>"     . nil)
+         ("<down>"   . nil)
 
-              ;; A single Escape aborts completion
-              ("\e" . company-abort)
+         ;; A single Escape aborts completion
+         ("\e" . company-abort)
 
-              ;; When we are interacting with company, then Return and arrow
-              ;; keys do different things.
-              :map company-active-map
-              :filter (company-explicit-action-p)
+         ;; When we are interacting with company, then Return and arrow keys do
+         ;; different things.
+         :map company-active-map
+         :filter (company-explicit-action-p)
 
-              ("<return>" . company-complete-selection)
-              ("RET" . company-complete-selection)
-              ("<up>" . company-select-previous)
-              ("<down>" . company-select-next)
-              )
+         ("<return>" . company-complete-selection)
+         ("RET"      . company-complete-selection)
+         ("<up>"     . company-select-previous)
+         ("<down>"   . company-select-next)
+         )
   :bind* (
           ;; Make sure that M-TAB always starts completion and is never
           ;; overridden in other modes
@@ -35,7 +35,11 @@
   :config
   (setq
    ;; How many chars before showing suggestions
-   company-minimum-prefix-length 1
+   company-minimum-prefix-length 2
+
+   ;; Do not force a required match, must allow something to be added that is
+   ;; not in the candidate list.
+   company-require-match nil
 
    ;; Set the maximum number of candidates to show
    company-tooltip-limit 15
@@ -46,19 +50,15 @@
    company-show-numbers t
 
    ;; Show the entire suggestion
-   ;; company-tooltip-minimum company-tooltip-limit
+   company-tooltip-minimum company-tooltip-limit
 
-;;DAVIDT   ;; Always display suggestions in the tooltip, even if there is only one. Also,
-;;DAVIDT   ;; don't display metadata in the echo area. (This conflicts with ElDoc.)
-;;DAVIDT   company-frontends '(company-pseudo-tooltip-frontend)
-
-   ;; Prevent non-matching input (which will dismiss the completions menu), but
-   ;; only if the user interacts explicitly with Company.
-   ;; company-require-match #'company-explicit-action-p
-
-;;DAVIDT   ;; Company appears to override our settings in `company-active-map' based on
-;;DAVIDT   ;; `company-auto-complete-chars'. Turning it off ensures we have full control.
-;;DAVIDT   setq company-auto-complete-chars nil
+   ;; By default, use the pseudo-tooltip frontend which is the dropdown menu
+   ;; approach.
+   ;;
+   ;; FYI, company-preview-frontend shows the top selection like it was
+   ;; inserted. No menu is shown. company-echo-frontend shows candidates in the
+   ;; echo area
+   company-frontends '(company-pseudo-tooltip-frontend)
 
    ;; Prevent dabbrev completions from being lowercased and make the matching
    ;; case-sensitive.
@@ -67,55 +67,54 @@
 
    ;; Whether to search other buffers for dabbrev matches: nil, t or 'all. A
    ;; value of t limits the search to buffers of the same major mode.
-   ;; company-dabbrev-other-buffers nil
+   company-dabbrev-other-buffers t
    )
 
-  ;; Setup the transformers to change the list of candidates
+  ;; There doesn't seem any easy way to only consider completions that are
+  ;; anchored to the start. Candidates can include entries with the prefix
+  ;; appearing in the middle (funny, it is even referred to as the prefix by
+  ;; company and yet it is not used as a prefix, go figure).
+  ;;
+  ;; To achieve anchoring to the start, define a transformer function that
+  ;; will remove any candidate that does not start with the prefix. Not sure
+  ;; that this is legitimate actions for a transformer but it appears to work.
+  (defun dtymon::company-transformer-enforce-prefix (candidates)
+    (cl-delete-if (lambda (k) (not (s-starts-with? company-prefix k))) candidates)
+    )
+
+  ;; And set this as the first transformer
+  (add-to-list 'company-transformers #'dtymon::company-transformer-enforce-prefix)
+
+  ;; Setup other transformers to sort the list of candidates and remove
+  ;; duplicates
+  (add-to-list 'company-transformers #'delete-dups)
   (add-to-list 'company-transformers #'company-sort-prefer-same-case-prefix)
   (add-to-list 'company-transformers #'company-sort-by-occurrence)
 
-  ;; Setup company-tng
-  (add-hook 'after-init-hook 'company-tng-mode)
-  (define-key company-active-map (kbd "TAB") 'company-select-next)
-  (define-key company-active-map (kbd "<backtab>") 'company-select-previous)
-  (define-key company-active-map (kbd "RET") nil)
-  (setq company-require-match nil)
+  ;; Setup company-tng (tab-and-go). Seemed like a nice idea but could not find
+  ;; a way to do "complete common" to be able to do progressive completions by
+  ;; adding the prefix common to all candidates.
+;;  (add-hook 'after-init-hook 'company-tng-mode)
+;;  (define-key company-active-map (kbd "TAB") 'company-select-next)
+;;  (define-key company-active-map (kbd "<backtab>") 'company-select-previous)
+;;  (define-key company-active-map (kbd "RET") nil)
 
-
-;; ;;   (defun mars/company-backend-with-yas (backends)
-;; ;;     "Add :with company-yasnippet to company BACKENDS.
-;; ;; Taken from https://github.com/syl20bnr/spacemacs/pull/179."
-;; ;;     (if (and (listp backends) (memq 'company-yasnippet backends))
-;; ;;         backends
-;; ;;       (append (if (consp backends)
-;; ;;                   backends
-;; ;;                 (list backends))
-;; ;;               '(:with company-yasnippet))))
-;; ;;
-;; ;;   ;; add yasnippet to all backends
-;; ;; ;;  (setq company-backends
-;; ;; ;;        (mapcar #'mars/company-backend-with-yas company-backends))
-;; ;;   (setq company-backends (push 'company-yasnippet company-backends))
-;; ;;   (setq company-backends '(company-yasnippet company-capf))
-;; ;;   (setq company-backends '(company-capf :with company-yasnippet))
-;;
-   ;; Add yasnippet support for all company backends
-   ;; https://github.com/syl20bnr/spacemacs/pull/179
-   (defvar company-mode/enable-yas t
-     "Enable yasnippet for all backends.")
-
-   (defun company-mode/backend-with-yas (backend)
-     (if (or (not company-mode/enable-yas) (and (listp backend) (member 'company-yasnippet backend)))
-         backend
-       (append (if (consp backend) backend (list backend))
-               '(:with company-yasnippet)
-               )))
-
-   (setq company-backends (mapcar #'company-mode/backend-with-yas company-backends))
-;;   (setq company-backends '((:separate company-yasnippet company-capf)))
-;;   (message "%s" company-backends)
+   ;; Setup completion backends for programming modes
+   (add-hook 'prog-mode-hook
+             (lambda ()
+               (set (make-local-variable 'company-backends)
+                    '(
+                      (
+                       company-yasnippet
+                       company-capf
+                       company-dabbrev
+                       company-keywords
+                       ))
+                    )))
   )
 
+;; TabNine looks good and worked OK. Needs to be looked into again at some
+;; point.
 ;; (use-package company-tabnine
 ;;   :ensure t
 ;;   :requires company
@@ -162,33 +161,6 @@
 ;;     (with-eval-after-load mode
 ;;       (add-to-list 'company-backends #'company-tabnine))
 ;;     )
-;; ;;   (set-company-backend
-;; ;;    '(c-mode
-;; ;;      c++-mode
-;; ;;      ess-mode
-;; ;;      haskell-mode
-;; ;;      ;;emacs-lisp-mode
-;; ;;      conf-mode
-;; ;;      lisp-mode
-;; ;;      sh-mode
-;; ;;      php-mode
-;; ;;      python-mode
-;; ;;      go-mode
-;; ;;      ruby-mode
-;; ;;      rust-mode
-;; ;;      js-mode
-;; ;;      css-mode
-;; ;;      web-mode
-;; ;;      nix-mode
-;; ;;      json-mode
-;; ;;      typescript-mode
-;; ;;      )
-;; ;;   '(
-;; ;;     company-files
-;; ;;     company-yasnippet
-;; ;;     :separate
-;; ;;     company-tabnine
-;; ;;     ))
 ;;
 ;;   (setq lsp-company-backends
 ;;         '(company-capf
@@ -218,10 +190,37 @@
   (add-hook 'global-company-mode-hook #'company-quickhelp-mode)
   )
 
-;;(use-package company-box
+;; A nice looking frontend
+(use-package company-box
+  :ensure t
+  :defer t
+  :hook (company-mode . company-box-mode)
+  :init
+  (setq
+   company-box-icons-alist 'company-box-icons-all-the-icons
+   company-box-tooltip-minimum-width 80
+   company-box-tooltip-maximum-width 100
+   ;; company-box-backends-colors nil
+   company-box-show-single-candidate 'always
+   company-box-max-candidates 10
+   company-box-scrollbar nil
+
+   ;; Make snippets standout more
+   company-box-backends-colors
+   '(
+     (company-yasnippet . (:all "lime green" :selected (:background "lime green" :foreground "black")))
+     )
+   )
+  )
+
+;; company-posframe is causing a weird issue where the window is lowered after
+;; a period of inactivity after completion has started, causing Emacs to be
+;; placed behind all other windows.
+;;
+;;(use-package company-posframe
 ;;  :ensure t
 ;;  :defer t
-;;  :hook (company-mode . company-box-mode)
+;;  :hook (company-mode . company-posframe-mode)
 ;;  )
 
 (use-package company-go
