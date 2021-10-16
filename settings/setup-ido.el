@@ -31,9 +31,6 @@
   (defvar ido-cur-list nil)
   (defvar ido-require-match nil)
 
-  ;; Remove the save file from recent files
-  (add-to-list 'recentf-exclude ido-save-directory-list-file)
-
   :bind (:map ido-file-dir-completion-map
               ("<up>" . previous-history-element)
               ("<down>" . next-history-element)
