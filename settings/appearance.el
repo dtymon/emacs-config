@@ -1,12 +1,58 @@
+(defgroup dtymon-appearance nil
+  "Variables used to set the appearance of Emacs"
+  :group 'tools)
+
+(defcustom dtymon::theme 'solarized-dtymon
+  "The default theme to use"
+  :group 'dtymon-appearance
+  :type 'symbol)
+
+(defcustom dtymon::font-family "Ubuntu Mono"
+  "The default font family to use"
+  :group 'dtymon-appearance
+  :type 'string)
+
+(defcustom dtymon::font-size 180
+  "The default font size to use"
+  :group 'dtymon-appearance
+  :type 'number)
+
+(defcustom dtymon::presentation-font-size 200
+  "The default font size to use in presentation mode"
+  :group 'dtymon-appearance
+  :type 'number)
+
+(defcustom dtymon::frame-width (* 0.9 dtymon::monitor-width)
+  "The width of frames"
+  :group 'dtymon-appearance
+  :type 'float)
+
+(defcustom dtymon::frame-height (* 0.85 dtymon::monitor-height)
+  "The height of frames"
+  :group 'dtymon-appearance
+  :type 'float)
+
+(defcustom dtymon::reposition-initial-frame t
+  "If true, then reposition the initial frame"
+  :group 'dtymon-appearance
+  :type 'number)
+
+(defcustom dtymon::frame-top 0
+  "The vertical positioning of the frame's geometry"
+  :group 'dtymon-appearance
+  :type 'number)
+
+(defcustom dtymon::frame-left -1
+  "The horizontal positioning of the frame's geometry"
+  :group 'dtymon-appearance
+  :type 'number)
+
 (setq
  visible-bell nil
  font-lock-maximum-decoration t
  color-theme-is-global t
  truncate-partial-width-windows nil
  inhibit-startup-screen t
-
- ;; Don't defer screen updates when performing operations
- redisplay-dont-pause t
  )
 
 ;; Define the fonts to use
@@ -20,18 +66,27 @@
 
   ;; Set some basic appearance configuration
   (setq
-   dtymon::theme                  'solarized-dtymon
+;;   dtymon::theme                  'solarized-dtymon
 ;;   dtymon::font-family            "Fira Code"    ;; Use s-t to help choose fonts
 ;;   dtymon::font-size              150
-   dtymon::font-family            "Ubuntu Mono"
-   dtymon::font-size              180
+;;   dtymon::font-family            "Ubuntu Mono"
+;;   dtymon::font-size              (if (boundp 'dtymon::override-font-size) dtymon::override-font-size 190)
 ;;   dtymon::font-family            "Hack"
 ;;   dtymon::font-size              150
-   dtymon::presentation-font-size 200
+;;   dtymon::presentation-font-size 200
    dtymon::in-presentation        nil
 
    frame-title-format '(buffer-file-name "%f" ("%b"))
   )
+
+  (add-to-list 'initial-frame-alist (cons 'width (cons 'text-pixels (round dtymon::frame-width))))
+  (add-to-list 'initial-frame-alist (cons 'height (cons 'text-pixels (round dtymon::frame-height))))
+
+  ;; Move the initial frame to its desired location
+  (when dtymon::reposition-initial-frame
+    (add-to-list 'initial-frame-alist (cons 'top dtymon::frame-top))
+    (add-to-list 'initial-frame-alist (cons 'left dtymon::frame-left))
+    )
 
   ;; Set the default font and load the theme
   (set-face-attribute 'default nil :family dtymon::font-family :height dtymon::font-size)

@@ -1,3 +1,19 @@
+;; Define some constants for the monitor dimensions
+(defconst dtymon::monitor-width
+  (nth 3 (assq 'geometry (frame-monitor-attributes)))
+  "The width of the monitor in pixels"
+  )
+
+(defconst dtymon::monitor-height
+  (nth 4 (assq 'geometry (frame-monitor-attributes)))
+  "The height of the monitor in pixels"
+  )
+
+;; Load any pre-init-hooks
+(let ((hooks-file (expand-file-name "pre-init-hooks.el" user-emacs-directory)))
+  (when (file-exists-p hooks-file)
+    (load-file hooks-file)))
+
 ;; Turn off GUI components if present
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
@@ -33,18 +49,6 @@
 ;; Set up load path
 (add-to-list 'load-path settings-dir)
 (add-to-list 'load-path site-lisp-dir)
-
-;; Make the initial frame about 90% of display width and height
-(setq davidt::monitor-width (nth 3 (assq 'geometry (frame-monitor-attributes))))
-(setq davidt::monitor-height (nth 4 (assq 'geometry (frame-monitor-attributes))))
-(setq davidt::frame-width (round (* 0.9 davidt::monitor-width)))
-(setq davidt::frame-height (round (* 0.85 davidt::monitor-height)))
-(add-to-list 'initial-frame-alist (cons 'width (cons 'text-pixels davidt::frame-width)))
-(add-to-list 'initial-frame-alist (cons 'height (cons 'text-pixels davidt::frame-height)))
-
-;; Move the initial frame to top-right corner
-(add-to-list 'initial-frame-alist '(top . 0))
-(add-to-list 'initial-frame-alist '(left . -1))
 
 ;; shorthand for interactive lambdas
 (defmacro λ (&rest body)
@@ -224,24 +228,9 @@
 
 (when is-mac (require 'setup-mac))
 
-
-;; Setup extensions
-;; (eval-after-load 'org '(require 'setup-org))
 (eval-after-load 'shell '(require 'setup-shell))
-;; (require 'setup-yasnippet)
-;; (require 'setup-ffip)
-;; (require 'setup-html-mode)
-;; (require 'setup-paredit)
 
-;; Default setup of smartparens
-;; (require 'smartparens-config)
-;; (setq sp-autoescape-string-quote nil)
-;; (--each '(css-mode-hook
-;;           restclient-mode-hook
-;;           js-mode-hook
-;;           java-mode
-;;           ruby-mode
-;;           markdown-mode
-;;           groovy-mode
-;;           scala-mode)
-;;   (add-hook it 'turn-on-smartparens-mode))
+;; Load any post-init-hooks
+(let ((hooks-file (expand-file-name "post-init-hooks.el" user-emacs-directory)))
+  (when (file-exists-p hooks-file)
+    (load-file hooks-file)))
