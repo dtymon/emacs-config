@@ -1,3 +1,5 @@
 /.cache
 /elpa
 /var
+/pre-init-hooks.el
+/post-init-hooks.el
