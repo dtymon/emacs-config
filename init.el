@@ -218,6 +218,7 @@
 (require 'setup-css-eldoc)
 (require 'setup-dockerfile-mode)
 (require 'setup-htmlize)
+(require 'setup-smartparens)
 (require 'setup-rainbow-delimiters)
 (require 'setup-vterm)
 
