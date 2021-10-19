@@ -207,7 +207,7 @@
 
 ;; Move windows, even in org-mode
 (global-set-key (kbd "<C-S-kp-6>") 'other-frame)
-(global-set-key (kbd "<C-S-kp-4>") '(lambda() (interactive (other-frame -1))))
+(global-set-key (kbd "<C-S-kp-4>") (lambda() (interactive (other-frame -1))))
 
 ;; Clever newlines
 (global-set-key (kbd "C-o") 'open-line-and-indent)
