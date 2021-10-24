@@ -37,6 +37,9 @@
    ;; How many chars before showing suggestions
    company-minimum-prefix-length 2
 
+   ;; How long before company appears
+   company-idle-delay .1
+
    ;; Do not force a required match, must allow something to be added that is
    ;; not in the candidate list.
    company-require-match nil

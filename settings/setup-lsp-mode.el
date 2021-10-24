@@ -26,6 +26,9 @@
    ;; This doesn't seem to work but it should turn off prettier rules
    lsp-eslint-rules-customizations [((rule . "prettier*") (severity . "off"))]
 
+   ;; The eslint client seems to be very CPU-intensive so disable for now
+   lsp-disabled-clients '(eslint)
+
    ;;lsp-clients-typescript-log-verbosity "verbose"
    )
 
