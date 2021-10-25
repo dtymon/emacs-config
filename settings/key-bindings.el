@@ -79,10 +79,10 @@
 
 ;; Change word separators
 (global-unset-key (kbd "C-x +")) ;; used to be balance-windows
-(global-set-key (kbd "C-x + -") (λ (replace-region-by 's-dashed-words)))
-(global-set-key (kbd "C-x + _") (λ (replace-region-by 's-snake-case)))
-(global-set-key (kbd "C-x + c") (λ (replace-region-by 's-lower-camel-case)))
-(global-set-key (kbd "C-x + C") (λ (replace-region-by 's-upper-camel-case)))
+(global-set-key (kbd "C-x + -") (lambda (replace-region-by 's-dashed-words)))
+(global-set-key (kbd "C-x + _") (lambda (replace-region-by 's-snake-case)))
+(global-set-key (kbd "C-x + c") (lambda (replace-region-by 's-lower-camel-case)))
+(global-set-key (kbd "C-x + C") (lambda (replace-region-by 's-upper-camel-case)))
 
 ;; Killing text
 (global-set-key (kbd "C-S-k") 'kill-and-retry-line)
@@ -92,7 +92,7 @@
 ;; Use M-w for copy-line if no active region
 ;; (global-set-key (kbd "M-w") 'save-region-or-current-line)
 ;; (global-set-key (kbd "s-w") 'save-region-or-current-line)
-(global-set-key (kbd "M-W") (λ (save-region-or-current-line 1)))
+(global-set-key (kbd "M-W") (lambda (save-region-or-current-line 1)))
 
 ;; Make shell more convenient, and suspend-frame less
 ;; (global-set-key (kbd "C-z") 'shell)
@@ -128,7 +128,7 @@
 (global-set-key (kbd "s-y") 'bury-buffer)
 
 ;; Revert without any fuss
-;; (global-set-key (kbd "M-<escape>") (λ (revert-buffer t t)))
+;; (global-set-key (kbd "M-<escape>") (lambda (revert-buffer t t)))
 
 ;; Edit file with sudo
 ;; (global-set-key (kbd "M-s e") 'sudo-edit)
@@ -141,7 +141,7 @@
 (global-set-key (kbd "C-!") 'mf/mirror-region-in-multifile)
 
 ;; Indentation help
-(global-set-key (kbd "M-j") (λ (join-line -1)))
+(global-set-key (kbd "M-j") (lambda (join-line -1)))
 
 ;; Help should search more than just commands
 (global-set-key (kbd "<f1> a") 'apropos)
@@ -176,10 +176,10 @@
 (global-set-key (kbd "C-S-r") 'isearch-backward)
 
 ;; Move more quickly
-(global-set-key (kbd "C-S-n") (λ (ignore-errors (next-line 5))))
-(global-set-key (kbd "C-S-p") (λ (ignore-errors (previous-line 5))))
-(global-set-key (kbd "C-S-f") (λ (ignore-errors (forward-char 5))))
-(global-set-key (kbd "C-S-b") (λ (ignore-errors (backward-char 5))))
+(global-set-key (kbd "C-S-n") (lambda (ignore-errors (next-line 5))))
+(global-set-key (kbd "C-S-p") (lambda (ignore-errors (previous-line 5))))
+(global-set-key (kbd "C-S-f") (lambda (ignore-errors (forward-char 5))))
+(global-set-key (kbd "C-S-b") (lambda (ignore-errors (backward-char 5))))
 
 (global-set-key (kbd "H-*") 'beginning-of-buffer) ;; H-p
 (global-set-key (kbd "H-n") 'end-of-buffer)
@@ -250,7 +250,7 @@
 
 ;; Jump from file to containing directory
 (global-set-key (kbd "C-x C-j") 'dired-jump) (autoload 'dired-jump "dired")
-(global-set-key (kbd "C-x M-j") '(λ (dired-jump 1)))
+(global-set-key (kbd "C-x M-j") '(lambda (dired-jump 1)))
 
 ;; Easy-mode fullscreen rgrep
 (global-set-key (kbd "M-s s") 'git-grep-fullscreen)
@@ -308,11 +308,16 @@
 (define-key occur-mode-map (kbd "p") 'previous-line)
 
 ;; More neat bindings for C-x 8
-(global-set-key (kbd "C-x 8 t m") (λ (insert "™")))
-(global-set-key (kbd "C-x 8 ( c )") (λ (insert "©")))
-(global-set-key (kbd "C-x 8 - >") (λ (insert "→")))
-(global-set-key (kbd "C-x 8 8") (λ (insert "∞")))
-(global-set-key (kbd "C-x 8 ( c )") (λ (insert "©")))
-(global-set-key (kbd "C-x 8 v") (λ (insert "✓")))
+(global-set-key (kbd "C-x 8 t m") (lambda (insert "™")))
+(global-set-key (kbd "C-x 8 ( c )") (lambda (insert "©")))
+(global-set-key (kbd "C-x 8 - >") (lambda (insert "→")))
+(global-set-key (kbd "C-x 8 8") (lambda (insert "∞")))
+(global-set-key (kbd "C-x 8 ( c )") (lambda (insert "©")))
+(global-set-key (kbd "C-x 8 v") (lambda (insert "✓")))
+
+;; No need to ask for confirmation on these
+(put 'downcase-region 'disabled nil)
+(put 'upcase-region 'disabled nil)
+(put 'narrow-to-region 'disabled nil)
 
 (provide 'key-bindings)

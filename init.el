@@ -34,6 +34,9 @@
  ;; Do not compact font caches during GC
  inhibit-compacting-font-caches t
 
+ ;; Make sure we always default to the home directory when opening files
+ default-directory (concat (getenv "HOME") "/")
+
  ;; Set path to dependencies
  site-lisp-dir (expand-file-name "site-lisp" user-emacs-directory)
  settings-dir (expand-file-name "settings" user-emacs-directory)
@@ -43,21 +46,11 @@
 
  ;; Make backups of files, even when they're in version control
  vc-make-backup-files t
-
  )
 
 ;; Set up load path
 (add-to-list 'load-path settings-dir)
 (add-to-list 'load-path site-lisp-dir)
-
-;; shorthand for interactive lambdas
-(defmacro λ (&rest body)
-  `(lambda ()
-     (interactive)
-     ,@body))
-
-;; Make sure we always default to the home directory when opening files
-(setq default-directory (concat (getenv "HOME") "/"))
 
 ;; Setup basics
 (require 'setup-package)
@@ -82,42 +75,9 @@
   (when (file-directory-p project)
     (add-to-list 'load-path project)))
 
-;; Install extensions if they're missing
-(defun init--install-packages ()
-  (packages-install
-   '(dired-sidebar
-     f
-     find-file-in-project
-     nodejs-repl
-     s
-     simple-httpd
-     tern
-     vscode-icon
-     )))
-
-(condition-case nil
-    (init--install-packages)
-  (error
-   (package-refresh-contents)
-   (init--install-packages)))
-
-;; Lets start with a smattering of sanity
 (require 'sane-defaults)
 (require 'setup-no-littering)
-
-;; Setup environment variables from the user's shell.
-(when is-mac
-  (require-package 'exec-path-from-shell)
-  (exec-path-from-shell-initialize))
-
-
-;; Load stuff on demand
-(autoload 'skewer-start "setup-skewer" nil t)
-(autoload 'skewer-demo "setup-skewer" nil t)
-(autoload 'auto-complete-mode "auto-complete" nil t)
-
-;; Map files to modes
-(require 'mode-mappings)
+(require 'setup-mode-mappings)
  
 ;; Functions (load all files in defuns-dir)
 (setq defuns-dir (expand-file-name "defuns" user-emacs-directory))
@@ -140,11 +100,7 @@
 (require 'setup-dimmer)
 ;;(require 'setup-fira-code)
 
-;; Run at full power please
-(put 'downcase-region 'disabled nil)
-(put 'upcase-region 'disabled nil)
-(put 'narrow-to-region 'disabled nil)
-
+(require 'setup-desktop-mode)
 (require 'setup-global-bindings)
 (require 'setup-minibuffer)
 (require 'setup-windmove)
@@ -153,6 +109,7 @@
 (require 'setup-move-text)
 (require 'setup-diminish)
 (require 'setup-all-the-icons)
+(require 'setup-vscode-icon)
 (require 'setup-undo-tree)
 (require 'setup-savehist)
 (require 'setup-saveplace)
@@ -161,6 +118,7 @@
 (require 'setup-ido)
 (require 'setup-smex)
 (require 'setup-dired)
+(require 'setup-dired-sidebar)
 (require 'setup-flycheck)
 ;;(require 'setup-flymake)
 (require 'setup-fci-mode)
@@ -195,7 +153,7 @@
 (require 'setup-yaml-mode)
 (require 'setup-ruby-mode)
 ;;(require 'setup-tide)
-(require 'setup-skewer-mode)
+;;(require 'setup-skewer-mode)
 (require 'setup-tree-sitter)
 (require 'setup-restclient)
 (require 'setup-doom-modeline)
