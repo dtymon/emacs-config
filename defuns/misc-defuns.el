@@ -41,7 +41,7 @@
   (httpd-start)
   (browse-url (concat "http://localhost:" (number-to-string port) "/")))
 
-(global-set-key (kbd "s-l") (λ (insert "\u03bb")))
+(global-set-key (kbd "s-l") (lambda (insert "\u03bb")))
 
 ;; command to help set up magit-gh-pulls
 (defun magit-gh-pulls-setup (repoid)

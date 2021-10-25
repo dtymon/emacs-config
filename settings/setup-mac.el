@@ -64,4 +64,8 @@
 
 (advice-add 'mouse-set-region :around #'dragged-selection-to-clipboard)
 
+;; Setup environment variables from the user's shell.
+(require-package 'exec-path-from-shell)
+(exec-path-from-shell-initialize)
+
 (provide 'setup-mac)
