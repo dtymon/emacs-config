@@ -9,7 +9,7 @@
 (defun dtymon::fill-comment-paragraph ()
   (interactive)
   (let ((fill-column comment-fill-column))
-    (fill-comment-paragraph)))
+    (c-fill-paragraph)))
 
 (defun dtymon::auto-fill-comments-only-hook ()
   (auto-fill-mode 1)
