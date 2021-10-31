@@ -75,6 +75,9 @@
 
  ;; Comment region should include empty lines
  comment-empty-lines t
+
+ ;; Don't generate messages with defadvice when redefinitions occur
+ ad-redefinition-action 'accept
  )
 
 ;; Auto refresh buffers

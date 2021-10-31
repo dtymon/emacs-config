@@ -48,9 +48,8 @@
   (ido-at-point-mode)
   )
 
-;; Use ido everywhere
-(use-package ido-ubiquitous
-;;  :ensure t
+(use-package ido-completing-read+
+  :ensure t
   :config
   (ido-ubiquitous-mode 1)
   )

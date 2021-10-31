@@ -249,8 +249,9 @@
 ;;(global-set-key (kbd "C-x C-k") 'delete-current-buffer-file)
 
 ;; Jump from file to containing directory
-(global-set-key (kbd "C-x C-j") 'dired-jump) (autoload 'dired-jump "dired")
-(global-set-key (kbd "C-x M-j") '(lambda (dired-jump 1)))
+(global-set-key (kbd "C-x C-j") 'dired-jump)
+(autoload 'dired-jump "dired")
+(global-set-key (kbd "C-x M-j") (lambda (dired-jump 1)))
 
 ;; Easy-mode fullscreen rgrep
 (global-set-key (kbd "M-s s") 'git-grep-fullscreen)
