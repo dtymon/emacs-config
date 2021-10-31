@@ -5,33 +5,50 @@
   :interpreter "node"
   :after (flycheck tree-sitter)
   :config
+  ;; We use the comment wrapping function from js2-mode
+  (require 'js2-mode)
+
+  ;; Tweak some of the jsdoc faces
   (set-face-attribute 'typescript-jsdoc-tag nil :foreground "#445c60")
   (set-face-attribute 'typescript-jsdoc-value nil :foreground "SlateGray")
-  (add-to-list 'tree-sitter-major-mode-language-alist '(typescript-mode . javascript))
+
+  ;; Trun on tree-sitter
   (add-hook 'typescript-mode-hook #'tree-sitter-mode)
+
   (add-hook 'typescript-mode-hook
             (lambda ()
+              ;; Only auto-fill comment lines. prettier will handle the code
               (dtymon::auto-fill-comments-only-hook)
-              (flycheck-mode 1)
-              (fci-mode 1)
               (prettier-mode 1)
+
+              ;; Show the fill column indicator. This is the comment fill column
+              ;; and not the code fill column which is defined in prettier and
+              ;; could be different.
+              (fci-mode 1)
+
+              ;; Turn on flycheck
+              (flycheck-mode 1)
 ;;              (flycheck-add-next-checker 'lsp 'javascript-eslint)
 
               (setq
-               truncate-lines      nil
-               fill-column         80
-               ;; fill-column         120
+               ;; Long lines should wrap
+               truncate-lines nil
 
-               ;; Use a different fill column for comments
-               ;; comment-fill-column 80
+               ;; This is the fill column for comments
+               fill-column 80
+               ;; fill-column         120
 
                ;; Don't use js2-mode's comment wrapping override functions as
                ;; they don't indent properly. Instead use the standard C ones as
                ;; they appear to work better.
-               comment-multi-line t
+               ;;
+               ;; Actually revert back to js2-mode's comments as it seems to be
+               ;; working better these days.
                comment-line-break-function #'js2-line-break
                ;; comment-line-break-function #'indent-new-comment-line
                ;; comment-line-break-function #'c-indent-new-comment-line
+
+               comment-multi-line t
                )
 
               ;; Don't use the fill column from the prettier config
@@ -46,6 +63,8 @@
 
               ))
   :bind (:map typescript-mode-map
+              ;; Use my function for filling comments which handles both block
+              ;; and line comments.
               ("M-q" . dtymon::fill-comment-paragraph)
               )
   )
