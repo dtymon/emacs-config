@@ -48,8 +48,6 @@
 ;; (global-set-key (kbd "C-x r t") 'inline-string-rectangle)
 
 ;; Perform general cleanup.
-(global-set-key (kbd "C-c n") 'cleanup-buffer)
-(global-set-key (kbd "C-c C-n") 'cleanup-buffer)
 (global-set-key (kbd "C-c C-<return>") 'delete-blank-lines)
 
 ;; M-i for back-to-indentation
@@ -114,8 +112,6 @@
 ;; File finding
 (global-set-key (kbd "C-x M-f") 'ido-find-file-other-window)
 ;; (global-set-key (kbd "C-x f") 'recentf-ido-find-file)
-(global-set-key (kbd "C-x C-p") 'find-or-create-file-at-point)
-(global-set-key (kbd "C-x M-p") 'find-or-create-file-at-point-other-window)
 (global-set-key (kbd "C-c y") 'bury-buffer)
 (global-set-key (kbd "C-c r") 'revert-buffer)
 (global-set-key (kbd "M-`") 'file-cache-minibuffer-complete)
@@ -129,9 +125,6 @@
 
 ;; Revert without any fuss
 ;; (global-set-key (kbd "M-<escape>") (lambda (revert-buffer t t)))
-
-;; Edit file with sudo
-;; (global-set-key (kbd "M-s e") 'sudo-edit)
 
 ;; Window switching
 (global-set-key (kbd "C-x C--") 'rotate-windows)
@@ -150,9 +143,6 @@
 (global-set-key (kbd "C-c C-e") 'eval-and-replace)
 (global-set-key (kbd "M-s-e") 'eval-and-replace)
 
-;; Navigation bindings
-(global-set-key [remap goto-line] 'goto-line-with-feedback)
-
 ;;(global-set-key (kbd "<prior>") 'beginning-of-buffer)
 ;;(global-set-key (kbd "<next>") 'end-of-buffer)
 (global-set-key (kbd "<home>") 'beginning-of-line)
@@ -166,14 +156,6 @@
 
 ;; Completion at point
 (global-set-key (kbd "C-<tab>") 'completion-at-point)
-
-;; Like isearch, but adds region (if any) to history and deactivates mark
-(global-set-key (kbd "C-s") 'isearch-forward-use-region)
-(global-set-key (kbd "C-r") 'isearch-backward-use-region)
-
-;; Like isearch-*-use-region, but doesn't fuck with the active region
-(global-set-key (kbd "C-S-s") 'isearch-forward)
-(global-set-key (kbd "C-S-r") 'isearch-backward)
 
 ;; Move more quickly
 (global-set-key (kbd "C-S-n") (lambda (ignore-errors (next-line 5))))
@@ -192,9 +174,6 @@
 ;; Query replace regex key binding
 (global-set-key (kbd "M-&") 'query-replace-regexp)
 
-;; Yank selection in isearch
-(define-key isearch-mode-map (kbd "C-o") 'isearch-yank-selection)
-
 ;; Comment/uncomment block
 (global-set-key (kbd "C-c c") 'comment-or-uncomment-region)
 (global-set-key (kbd "C-c u") 'uncomment-region)
@@ -202,15 +181,11 @@
 ;; Eval buffer
 (global-set-key (kbd "C-c C-k") 'eval-buffer)
 
-;; Create scratch buffer
-(global-set-key (kbd "C-c b") 'create-scratch-buffer)
-
 ;; Move windows, even in org-mode
 (global-set-key (kbd "<C-S-kp-6>") 'other-frame)
 (global-set-key (kbd "<C-S-kp-4>") (lambda() (interactive (other-frame -1))))
 
 ;; Clever newlines
-(global-set-key (kbd "C-o") 'open-line-and-indent)
 (global-set-key (kbd "<C-return>") 'open-line-below)
 (global-set-key (kbd "<C-S-return>") 'open-line-above)
 ;;(global-set-key (kbd "<M-return>") 'new-line-dwim)
@@ -242,11 +217,6 @@
 (global-set-key (kbd "C-+") 'change-number-at-point)
 (global-set-key (kbd "C-?") 'subtract-number-at-point)
 (eval-after-load 'undo-tree '(define-key undo-tree-map (kbd "C-?") nil))
-
-;; Buffer file functions
-;;(global-set-key (kbd "C-x t") 'touch-buffer-file)
-;;(global-set-key (kbd "C-x C-r") 'rename-current-buffer-file)
-;;(global-set-key (kbd "C-x C-k") 'delete-current-buffer-file)
 
 ;; Jump from file to containing directory
 (global-set-key (kbd "C-x C-j") 'dired-jump)
