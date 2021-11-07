@@ -39,12 +39,10 @@
 
 (define-key clojure-mode-map (kbd "M-s-d") 'clj-duplicate-top-level-form)
 
-(add-to-list 'cljr-project-clean-functions 'cleanup-buffer)
-
 (define-key clojure-mode-map (kbd "C->") 'cljr-thread)
 (define-key clojure-mode-map (kbd "C-<") 'cljr-unwind)
 
-(define-key clojure-mode-map (kbd "s-j") 'clj-jump-to-other-file)
+;;(define-key clojure-mode-map (kbd "s-j") 'clj-jump-to-other-file)
 
 (define-key clojure-mode-map (kbd "C-.") 'clj-hippie-expand-no-case-fold)
 
