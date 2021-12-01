@@ -6,6 +6,7 @@
 (global-set-key (kbd "M-<left>") 'backward-sexp)
 (global-set-key (kbd "C-<tab>") 'other-window)
 (global-set-key (kbd "C-M-z") 'scroll-other-window-down)
+(global-set-key (kbd "C-x C-j") 'goto-line)
 
 (global-set-key (kbd "C-x r N") 'rectangle-insert-number-sequence)
 
