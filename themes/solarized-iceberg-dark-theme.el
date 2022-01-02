@@ -67,8 +67,8 @@
     (green-2fg . "#a3b2cb"))
   '((custom-theme-set-faces theme-name
                             `(default
-                               ((,class
-                                 (:foreground ,base3 :background ,base03))))
+                              ((,class
+                                (:foreground ,base3 :background ,base03))))
                             `(vertical-border
                               ((,class
                                 (:foreground ,base03))))
