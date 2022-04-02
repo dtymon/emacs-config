@@ -7,7 +7,7 @@
   :mode
   "\\.tf\\'"
   :config
-  (setq terraform-indent-level 4)
+  (setq terraform-indent-level 2)
   (setq dtymon::hcl--assignment-regexp
         "\\s-*\\(\\(?:[[:word:]]\\|_\\)+\\)\\s-*=\\(?:[^>=]\\)")
   (setq dtymon::hcl--map-regexp
