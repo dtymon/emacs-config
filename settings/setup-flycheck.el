@@ -11,6 +11,7 @@ clean buffer we're an order of magnitude laxer about checking."
   :init
   (global-flycheck-mode)
   (setq flycheck-display-errors-function #'flycheck-display-error-messages)
+  (setq flycheck-checker-error-threshold 2000)
 
   ;; Disable some annoying checkers
   (setq-default flycheck-disabled-checkers
