@@ -30,4 +30,20 @@
 ;;           (lambda ()
 ;;             (define-key shell-mode-map (kbd "C-d") 'comint-delchar-or-eof-or-kill-buffer)))
 ;;
+
+(use-package xterm-color
+  :ensure t
+  :defer t)
+
+(with-eval-after-load 'eshell
+  (require 'xterm-color)
+  (setenv "TERM" "xterm-256color")
+;;  (add-hook 'eshell-before-prompt-hook
+;;            (lambda ()
+;;              (setq xterm-color-preserve-properties t)))
+;;
+;;  (add-to-list 'eshell-preoutput-filter-functions 'xterm-color-filter)
+;;  (setq eshell-output-filter-functions (remove 'eshell-handle-ansi-color eshell-output-filter-functions))
+  )
+
 (provide 'setup-shell)
