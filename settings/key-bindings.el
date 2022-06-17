@@ -1,6 +1,3 @@
-;; I don't need to kill emacs that easily
-;; the mnemonic is C-x REALLY QUIT
-;; (global-set-key (kbd "C-x r q") 'save-buffers-kill-terminal)
 (global-set-key (kbd "C-x C-c") (lambda ()
                                   (interactive)
                                   (if (y-or-n-p "Do you really want to exit emacs ? ")
@@ -127,7 +124,7 @@
 ;; (global-set-key (kbd "M-<escape>") (lambda (revert-buffer t t)))
 
 ;; Window switching
-(global-set-key (kbd "C-x C--") 'rotate-windows)
+(global-set-key (kbd "C-x C-<left>") 'rotate-frame-clockwise)
 (global-unset-key (kbd "C-x C-+")) ;; don't zoom like this
 
 ;; Add region to *multifile*
