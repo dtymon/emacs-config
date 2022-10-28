@@ -3,6 +3,7 @@
   :init
   (setq doom-modeline-buffer-encoding nil)
   (setq doom-modeline-vcs-max-length 24)
+  (setq doom-modeline-buffer-file-name-style 'buffer-name)
   (doom-modeline-mode 1)
   :config
   ;; This is a bit crap. Want to remove selection-info from the standard

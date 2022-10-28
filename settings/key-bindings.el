@@ -8,6 +8,13 @@
                               (interactive)
                               (fill-comment-paragraph)))
 
+;; Font scaling
+(global-set-key (kbd "s-+") 'text-scale-increase)
+(global-set-key (kbd "s--") 'text-scale-decrease)
+(global-set-key (kbd "s-0") (lambda ()
+                              (interactive)
+                              (text-scale-adjust 0)))
+
 (require 'misc)
 (global-set-key (kbd "s-.") 'copy-from-above-command)
 

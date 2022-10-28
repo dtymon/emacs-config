@@ -10,6 +10,7 @@
   (eval-after-load "guide-key" '(diminish 'guide-key-mode))
   (eval-after-load "whitespace-cleanup-mode" '(diminish 'whitespace-cleanup-mode))
   (eval-after-load "subword" '(diminish 'subword-mode))
+  (diminish 'auto-fill-function)
   )
 
 (provide 'setup-diminish)

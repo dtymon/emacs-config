@@ -1,12 +1,12 @@
-;; Define some constants for the monitor dimensions
-(defconst dtymon::monitor-width
-  (nth 3 (assq 'geometry (frame-monitor-attributes)))
+;; Define some functions to get the monitor dimensions
+(defun dtymon::monitor-width ()
   "The width of the monitor in pixels"
+  (nth 3 (assq 'geometry (frame-monitor-attributes)))
   )
 
-(defconst dtymon::monitor-height
-  (nth 4 (assq 'geometry (frame-monitor-attributes)))
+(defun dtymon::monitor-height ()
   "The height of the monitor in pixels"
+  (nth 4 (assq 'geometry (frame-monitor-attributes)))
   )
 
 ;; Load any pre-init-hooks
@@ -21,12 +21,16 @@
 
 ;; Bump up the GC cons limit during initialisation but reset it after
 ;; loading to avoid large pauses during GC.
-(setq gc-cons-threshold 100000000)
+;;(setq gc-cons-threshold 100000000)
+(setq gc-cons-threshold (* 1024 1024 128))
 ;; let's try leaving it large for a bit
 ;;(add-hook 'after-init-hook (lambda () (setq gc-cons-threshold 800000)))
 
 ;; Define some basic variables
 (setq
+ ;; Turn on native compiling of external packages if available
+ package-native-compile t
+
  ;; Bump up the maximum number of bytes that can be read in one chunk from a
  ;; process
  read-process-output-max (* 1024 1024 4)
@@ -47,6 +51,11 @@
  ;; Make backups of files, even when they're in version control
  vc-make-backup-files t
  )
+
+;; Add extra CA certificates to trust
+;; (require 'gnutls)
+;; (add-to-list 'gnutls-trustfiles (concat (getenv "HOME") "/certs/bundle-firewall.pem"))
+(eval-after-load 'gnutls '(add-to-list 'gnutls-trustfiles (concat (getenv "HOME") "/certs/bundle-firewall.pem")))
 
 ;; Set up load path
 (add-to-list 'load-path settings-dir)
@@ -118,7 +127,7 @@
 (require 'setup-ido)
 (require 'setup-smex)
 (require 'setup-dired)
-(require 'setup-dired-sidebar)
+;;(require 'setup-dired-sidebar)
 (require 'setup-flycheck)
 ;;(require 'setup-flymake)
 (require 'setup-fci-mode)
@@ -127,16 +136,16 @@
 (require 'setup-hippie)
 (require 'setup-rgrep)
 (require 'setup-wgrep)
-(require 'setup-deadgrep)
+;;(require 'setup-deadgrep)
 (require 'setup-magit)
 (require 'setup-git-gutter)
 (require 'setup-forge)
 (require 'setup-gitlab)
 (require 'setup-elisp-slime-nav)
 ;;(require 'setup-helm-mode)
-(require 'setup-treemacs)
+;;(require 'setup-treemacs)
 ;;(require 'setup-neotree)
-(require 'setup-projectile)
+;;(require 'setup-projectile)
 ;;(require 'setup-perspective)
 ;;(require 'setup-counsel)
 (require 'setup-prettier)
@@ -156,7 +165,7 @@
 ;;(require 'setup-skewer-mode)
 (require 'setup-tree-sitter)
 (require 'setup-restclient)
-(require 'setup-doom-modeline)
+;;(require 'setup-doom-modeline)
 ;;(require 'setup-spaceline)
 (require 'setup-browse-kill-ring)
 (require 'setup-guide-key)
@@ -170,11 +179,11 @@
 (require 'setup-whitespace-cleanup)
 (require 'setup-makefile-mode)
 (require 'setup-nxml-mode)
-(require 'setup-antlr-mode)
+;;(require 'setup-antlr-mode)
 (require 'setup-terraform-mode)
 (require 'setup-cmake-mode)
 (require 'setup-go-mode)
-(require 'setup-swift-mode)
+;;(require 'setup-swift-mode)
 (require 'setup-sh-script)
 (require 'setup-markdown-mode)
 (require 'setup-css-eldoc)

@@ -1,5 +1,6 @@
 (use-package tree-sitter
   :ensure t
+  :diminish tree-sitter-mode
   :init (global-tree-sitter-mode)
 ;;  :hook (
 ;;         (typescript-mode . tree-sitter-hl-mode)

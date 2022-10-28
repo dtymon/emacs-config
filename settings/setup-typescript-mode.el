@@ -3,7 +3,7 @@
   :diminish "TS"
   :mode "\\.ts"
   :interpreter "node"
-  :after (flycheck tree-sitter)
+;;  :after (flycheck tree-sitter)
   :config
   ;; We use the comment wrapping function from js2-mode
   (require 'js2-mode)
@@ -12,7 +12,7 @@
   (set-face-attribute 'typescript-jsdoc-tag nil :foreground "#445c60")
   (set-face-attribute 'typescript-jsdoc-value nil :foreground "SlateGray")
 
-  ;; Trun on tree-sitter
+  ;; Turn on tree-sitter
   (add-hook 'typescript-mode-hook #'tree-sitter-mode)
 
   (add-hook 'typescript-mode-hook
@@ -27,10 +27,12 @@
               (fci-mode 1)
 
               ;; Turn on flycheck
-              (flycheck-mode 1)
+              ;; (flycheck-mode 1)
 ;;              (flycheck-add-next-checker 'lsp 'javascript-eslint)
 
               (setq
+               typescript-indent-level 2
+
                ;; Long lines should wrap
                truncate-lines nil
 
@@ -47,6 +49,7 @@
                comment-line-break-function #'js2-line-break
                ;; comment-line-break-function #'indent-new-comment-line
                ;; comment-line-break-function #'c-indent-new-comment-line
+               js2-basic-offset 2
 
                comment-multi-line t
                )

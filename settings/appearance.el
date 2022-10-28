@@ -22,13 +22,13 @@
   :group 'dtymon-appearance
   :type 'number)
 
-(defcustom dtymon::frame-width (* 0.9 dtymon::monitor-width)
-  "The width of frames"
+(defcustom dtymon::frame-width-factor 0.9
+  "The percentage of monitor width for frames"
   :group 'dtymon-appearance
   :type 'float)
 
-(defcustom dtymon::frame-height (* 0.85 dtymon::monitor-height)
-  "The height of frames"
+(defcustom dtymon::frame-height-factor 0.85
+  "The percentage of monitor height for frames"
   :group 'dtymon-appearance
   :type 'float)
 
@@ -79,15 +79,6 @@
    frame-title-format '(buffer-file-name "%f" ("%b"))
   )
 
-  (add-to-list 'initial-frame-alist (cons 'width (cons 'text-pixels (round dtymon::frame-width))))
-  (add-to-list 'initial-frame-alist (cons 'height (cons 'text-pixels (round dtymon::frame-height))))
-
-  ;; Move the initial frame to its desired location
-  (when dtymon::reposition-initial-frame
-    (add-to-list 'initial-frame-alist (cons 'top dtymon::frame-top))
-    (add-to-list 'initial-frame-alist (cons 'left dtymon::frame-left))
-    )
-
   ;; Set the default font and load the theme
   (set-face-attribute 'default nil :family dtymon::font-family :height dtymon::font-size)
   (load-theme dtymon::theme)
@@ -116,6 +107,18 @@
     )
 
   (global-set-key (kbd "C-<f9>") 'dtymon::toggle-presentation-mode)
+
+  ;; Move the initial frame to its desired location
+  (when dtymon::reposition-initial-frame
+    (add-to-list 'initial-frame-alist (cons 'top dtymon::frame-top))
+    (add-to-list 'initial-frame-alist (cons 'left dtymon::frame-left))
+    )
+  (set-frame-position (selected-frame) dtymon::frame-left dtymon::frame-top)
+;;  (sit-for 1)
+
+
+  (add-to-list 'initial-frame-alist (cons 'width (cons 'text-pixels 3192)))
+  (add-to-list 'initial-frame-alist (cons 'height (cons 'text-pixels 1739)))
 )
 
 ;; Highlight current line in text and programming mode

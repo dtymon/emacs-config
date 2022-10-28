@@ -185,4 +185,11 @@
 (set-fontset-font t 'hangul (font-spec :name "NanumGothic"))
 (set-fontset-font t 'cyrillic (font-spec :name "Droid Sans Mono"))
 
+;; This turns off bi-directional stuff but is supposed to make handling of
+;; things like long lines faster.
+(setq bidi-inhibit-bpa t
+      bidi-paragraph-direction 'left-to-right)
+(setq-default bidi-inhibit-bpa t
+              bidi-paragraph-direction 'left-to-right)
+
 (provide 'sane-defaults)

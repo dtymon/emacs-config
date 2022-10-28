@@ -3,12 +3,11 @@
 # key: msync
 # --
 /**
- * Method description
+ * $0
  *
  * @param name - description
  * @returns something
  */
 ${1:Access} ${2:Name}(): ${3:Returns} {
-  //
-  $0
+  return;
 }

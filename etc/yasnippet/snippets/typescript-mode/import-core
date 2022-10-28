@@ -2,4 +2,4 @@
 # name: import-core
 # key: impcore
 # --
-import { $1 } from '@ben/nodejs-core/$2';
+import { $1 } from '@ben/kelpie-core/$2';
