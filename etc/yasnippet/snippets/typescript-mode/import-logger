@@ -2,4 +2,4 @@
 # name: import-logger
 # key: implogger
 # --
-import { Logger, LoggerFactory } from '@ben/nodejs-core/logging';
+import { Logger, LoggerFactory } from '@ben/kelpie-core/logging';

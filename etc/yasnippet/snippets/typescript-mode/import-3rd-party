@@ -2,4 +2,4 @@
 # name: import-3rd-party
 # key: imp3rd
 # --
-import { $1 } from '@ben/nodejs-3rd-party/$2';
+import { $1 } from '@ben/kelpie-3rd-party/$2';

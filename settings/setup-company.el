@@ -39,13 +39,14 @@
 
    ;; How long before company appears
    company-idle-delay .1
+   company-tooltip-idle-delay .2
 
    ;; Do not force a required match, must allow something to be added that is
    ;; not in the candidate list.
    company-require-match nil
 
    ;; Set the maximum number of candidates to show
-   company-tooltip-limit 15
+   company-tooltip-limit 10
    company-tooltip-width-grow-only t
 
    ;; Show quick-reference numbers in the tooltip. (Select a completion with M-1
@@ -91,8 +92,9 @@
   ;; Setup other transformers to sort the list of candidates and remove
   ;; duplicates
   (add-to-list 'company-transformers #'delete-dups)
-  (add-to-list 'company-transformers #'company-sort-prefer-same-case-prefix)
-  (add-to-list 'company-transformers #'company-sort-by-occurrence)
+  (add-to-list 'company-transformers #'company-sort-by-backend-importance)
+  ;; (add-to-list 'company-transformers #'company-sort-prefer-same-case-prefix)
+  ;; (add-to-list 'company-transformers #'company-sort-by-occurrence)
 
   ;; Setup company-tng (tab-and-go). Seemed like a nice idea but could not find
   ;; a way to do "complete common" to be able to do progressive completions by
@@ -103,16 +105,31 @@
 ;;  (define-key company-active-map (kbd "RET") nil)
 
    ;; Setup completion backends for programming modes
+   ;; (add-hook 'prog-mode-hook
+   ;;           (lambda ()
+   ;;             (set (make-local-variable 'company-backends)
+   ;;                  '(
+   ;;                    (
+   ;;                     company-yasnippet
+   ;;                     company-capf
+   ;;                     company-dabbrev
+   ;;                     company-keywords
+   ;;                     ))
+   ;;                  )))
    (add-hook 'prog-mode-hook
              (lambda ()
                (set (make-local-variable 'company-backends)
                     '(
                       (
-                       company-yasnippet
+                       company-semantic
                        company-capf
-                       company-dabbrev
+                       :with
+                       company-yasnippet
+                       company-dabbrev-code
                        company-keywords
-                       ))
+                       )
+                       company-files
+                      )
                     )))
   )
 
@@ -197,6 +214,7 @@
 (use-package company-box
   :ensure t
   :defer t
+  :diminish company-box-mode
   :hook (company-mode . company-box-mode)
   :init
   (setq

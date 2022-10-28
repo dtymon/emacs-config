@@ -3,6 +3,8 @@
   :init
   ;; Reduce the limits from the defaults
   (setq
+   ;; Don't save the undo history as it is too slow
+   undo-tree-auto-save-history nil
    undo-tree-limit          8000000
    undo-tree-strong-limit  12000000
    undo-tree-outer-limit   36000000

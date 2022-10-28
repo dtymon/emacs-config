@@ -1,6 +1,6 @@
 # -*- mode: snippet; require-final-newline: nil -*-
 # name: multiline-comment
-# key: /**
+# key: mcomm
 # --
 /**
  * $0

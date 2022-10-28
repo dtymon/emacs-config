@@ -1,6 +1,8 @@
 (use-package prettier
   :ensure t
-  :diminish "Pr"
+  :diminish prettier-mode
+  :init
+  (setq prettier-mode-sync-config-flag nil)
   )
 
 (provide 'setup-prettier)

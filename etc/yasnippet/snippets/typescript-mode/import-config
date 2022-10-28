@@ -2,4 +2,4 @@
 # name: import-config
 # key: impconfig
 # --
-import { ConfigFactory } from '@ben/nodejs-core/config';
+import { ConfigFactory } from '@ben/kelpie-core/config';
