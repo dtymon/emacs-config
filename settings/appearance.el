@@ -142,7 +142,7 @@
 ;; lsp-ui-sideline cause a line wrap.
 ;;
 ;; https://github.com/emacs-lsp/lsp-ui/issues/285
-(fringe-mode '(12 . 0))
+(fringe-mode '(16 . 0))
 
 
 ;; (defun use-default-theme ()

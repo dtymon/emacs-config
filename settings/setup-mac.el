@@ -66,6 +66,7 @@
 
 ;; Setup environment variables from the user's shell.
 (require-package 'exec-path-from-shell)
+(setq exec-path-from-shell-arguments '("-l"))
 (exec-path-from-shell-initialize)
 
 (provide 'setup-mac)
