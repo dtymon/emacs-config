@@ -33,6 +33,7 @@
  '(show-paren-mismatch ((t (:background "Red" :foreground "Yellow" :weight bold))))
  '(whitespace-trailing ((t (:background "red4" :foreground "yellow" :weight bold))))
  '(yas-field-highlight-face ((nil (:background "#333399"))))
+ '(flymake-error ((t (:background "green"))))
  )
 
 (provide-theme 'default-davidt)

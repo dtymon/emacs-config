@@ -6,6 +6,11 @@
       (package-install it)))
   (delete-other-windows))
 
+(defun dtymon::kill-buffer-and-window (buffer window)
+  (and (kill-buffer buffer)
+       (not (eq window nil))
+       (delete-window window)))
+
 (defun dtymon::fill-comment-paragraph ()
   (interactive)
   (let ((fill-column comment-fill-column))
