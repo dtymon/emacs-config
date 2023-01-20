@@ -17,7 +17,7 @@
 
   (add-hook 'typescript-mode-hook
             (lambda ()
-              (eglot-ensure)
+;;              (eglot-ensure)
 
               ;; Only auto-fill comment lines. prettier will handle the code
               (dtymon::auto-fill-comments-only-hook)
