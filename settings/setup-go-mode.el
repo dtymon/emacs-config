@@ -6,7 +6,7 @@
   (add-hook 'go-mode-hook
             (lambda ()
               (fci-mode 1)
-              (flycheck-mode 1)
+              ;; (flycheck-mode 1)
               (setq
                truncate-lines   nil
                indent-tabs-mode nil

@@ -1,5 +1,7 @@
 (use-package yasnippet
   :ensure t
+  :mode (("yasnippet/snippets" . snippet-mode)
+         ("\\.yasnippet\\'" . snippet-mode))
   :config
   (yas-global-mode 1)
 

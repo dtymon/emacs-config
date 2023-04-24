@@ -1,8 +1,8 @@
 (use-package restclient
-  :mode ("\\.http\\'" . restclient-mode)
   :ensure t
-  :defer t
+  :mode ("\\.http\\'" . restclient-mode)
   :config
+  (require 'restclient-jq)
   (add-hook 'restclient-mode-hook (lambda ()
                                     (setq lexical-binding t)))
 
@@ -12,5 +12,9 @@
                ))
   )
 
-(require 'restclient-jq)
+(use-package restclient-jq
+  :ensure t
+  :defer t
+  )
+
 (provide 'setup-restclient)

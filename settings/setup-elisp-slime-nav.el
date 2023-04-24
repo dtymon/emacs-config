@@ -1,6 +1,6 @@
-;; Elisp go-to-definition with M-. and back again with M-,
 (use-package elisp-slime-nav
   :ensure t
+  :diminish elisp-slime-nav-mode
   :config
   (add-hook 'emacs-lisp-mode-hook
             (lambda ()

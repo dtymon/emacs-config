@@ -2,21 +2,24 @@
   :ensure t
   :commands eglot
   :config
-  (add-hook 'eglot-managed-mode-hook
-            (lambda ()
-              (set (make-local-variable 'company-backends)
-                   '(
-                     (
-                      company-semantic
-                      company-capf
-                      :with
-                      company-yasnippet
-                      company-dabbrev-code
-                      company-keywords
-                      )
-                     company-files
-                     )
-                   )))
+  ;;(add-to-list 'eglot-stay-out-of 'flymake)
+  ;;(add-to-list 'eglot-stay-out-of 'company)
+
+  ;; (add-hook 'eglot-managed-mode-hook
+  ;;           (lambda ()
+  ;;             (set (make-local-variable 'company-backends)
+  ;;                  '(
+  ;;                    (
+  ;;                     company-semantic
+  ;;                     company-capf
+  ;;                     :with
+  ;;                     company-yasnippet
+  ;;                     company-dabbrev-code
+  ;;                     company-keywords
+  ;;                     )
+  ;;                    company-files
+  ;;                    )
+  ;;                  )))
 
 ;;                                     (add-to-list 'company-backends
 ;;                                                  '(company-capf :with company-yasnippet))))

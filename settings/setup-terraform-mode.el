@@ -1,9 +1,11 @@
 (use-package hcl-mode
   :ensure t
+  :defer t
   )
 
 (use-package terraform-mode
   :ensure t
+  :defer t
   :mode
   "\\.tf\\'"
   :config
@@ -34,10 +36,10 @@
   :defer t
   )
 
-(use-package company-terraform
-  :ensure t
-  :defer t
-  :after (terraform company)
-  )
+;; (use-package company-terraform
+;;   :ensure t
+;;   :defer t
+;;   :after (terraform company)
+;;   )
 
 (provide 'setup-terraform-mode)
