@@ -1,11 +1,3 @@
-(require 'dash)
-
-(defun packages-install (packages)
-  (--each packages
-    (when (not (package-installed-p it))
-      (package-install it)))
-  (delete-other-windows))
-
 (defun dtymon::kill-buffer-and-window (buffer window)
   (and (kill-buffer buffer)
        (not (eq window nil))
@@ -25,8 +17,6 @@
                     (eq text-face 'font-lock-doc-face)))
            ))))
 
-;; Define a function that inserts the primary selection at the current
-;; point and bind this to Shift-Insert.
 (defun dtymon::x-cut-buffer-yank ()
   (interactive "*")
   (let ((cut-text (gui-get-selection 'PRIMARY)))
@@ -35,22 +25,6 @@
            (insert cut-text)
            )
           )))
-
-(defun copy-entire-line ()
-  (interactive)
-  (kill-ring-save (line-beginning-position)
-                  (line-end-position)))
-
-(defun replace-regexp-in-region (start end)
-      (interactive "*r")
-      (save-excursion
-        (save-restriction
-          (let ((regexp (read-string "Regexp: "))
-                (to-string (read-string "Replacement: ")))
-            (narrow-to-region start end)
-            (goto-char (point-min))
-            (while (re-search-forward regexp nil t)
-              (replace-match to-string nil nil))))))
 
 (defun uuidgen ()
   "Generate a new uuid and insert at the point"
@@ -177,22 +151,5 @@
   (save-excursion
     (insert (int-to-string (floor (* 1000000 (float-time)))))
     ))
-
-(defun dtymon::add-javadoc (str)
-  (save-excursion
-    (beginning-of-line)
-    (setq start (point))
-    (insert str)
-    (indent-region start (point))
-    )
-  )
-
-(defun dtymon::add-class-javadoc ()
-  (interactive)
-  (dtymon::add-javadoc "/**\n * \n */\n"))
-
-(defun dtymon::add-method-javadoc ()
-  (interactive)
-  (dtymon::add-javadoc "/**\n * \n *\n * @param variable - description\n * @returns something\n */\n"))
 
 (provide 'setup-defuns)

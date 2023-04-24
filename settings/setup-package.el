@@ -1,31 +1,17 @@
-(require 'package)
+(setq
+ ;; The archives to use
+ package-archives
+ '(("elpa"       . "https://elpa.gnu.org/packages/")
+   ("elpa-devel" . "https://elpa.gnu.org/devel/")
+   ("nongnu"     . "https://elpa.nongnu.org/nongnu/")
+   ("melpa"      . "https://melpa.org/packages/"))
 
-;; Add melpa to package repos
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+ ;; Set the priorities
+ package-archive-priorities
+ '(("elpa"   . 2)
+   ("nongnu" . 1))
 
-;; Load and activate packages
-(package-initialize)
-(unless (file-exists-p (expand-file-name "elpa/archives/melpa" user-emacs-directory))
-  (package-refresh-contents))
-
-;;; On-demand installation of packages
-
-(defun require-package (package &optional min-version no-refresh)
-  "Install given PACKAGE, optionally requiring MIN-VERSION.
-If NO-REFRESH is non-nil, the available package lists will not be
-re-downloaded in order to locate PACKAGE."
-  (if (package-installed-p package min-version)
-      t
-    (if (or (assoc package package-archive-contents) no-refresh)
-        (package-install package)
-      (progn
-        (package-refresh-contents)
-        (require-package package min-version t)))))
-
-;; bind-key is required for use-package to load successfully
-(when (not (package-installed-p 'bind-key))
-  (package-install 'bind-key))
+ )
 
 ;; Make sure use-package is installed
 (when (not (package-installed-p 'use-package))
@@ -35,5 +21,10 @@ re-downloaded in order to locate PACKAGE."
 (use-package diminish
   :ensure t
   )
+
+;; Remove some annoying modes from the modeline
+(diminish 'subword-mode)
+
+(add-hook 'package-menu-mode-hook #'hl-line-mode)
 
 (provide 'setup-package)

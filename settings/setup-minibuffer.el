@@ -1,3 +1,6 @@
+;; Allow recursive minibuffers
+(setq enable-recursive-minibuffers t)
+
 ;; Show how deep the minibuffer is
 (minibuffer-depth-indicate-mode)
 
