@@ -16,7 +16,7 @@
   ;;      ido-max-prospects 10)
   (setq
    ido-enable-prefix                      nil
-   ido-enable-flex-matching               t
+   ido-enable-flex-matching               nil
    ido-case-fold                          t
    ido-auto-merge-work-directories-length 0
    ido-create-new-buffer                  'prompt
@@ -44,8 +44,8 @@
   :bind (:map global-map
               ;; Use beframe for default bindings and ido for capitalised
               ;; versions
-              ("C-x B" . ido-switch-buffer)
-              ("C-x C-B" . ibuffer)
+              ("C-x b" . ido-switch-buffer)
+              ("C-x B" . ibuffer)
               )
 
 ;; (add-to-list 'ido-ignore-directories "target")

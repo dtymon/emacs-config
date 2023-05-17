@@ -12,8 +12,8 @@
 ;; Load any pre-init-hooks
 (load (locate-user-emacs-file "pre-init-hooks.el") :no-error :no-message)
 
-;; Don't want a custom file so point it to a temporary file
-(setq custom-file (make-temp-file "emacs-custom-"))
+;; Don't want a custom file
+(setq custom-file "/dev/null")
 
 ;; Turn off GUI components if present
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))

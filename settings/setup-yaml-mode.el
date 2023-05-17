@@ -11,8 +11,16 @@
                             ))
   )
 
-(use-package flymake-yamllint
-  :ensure t
-  )
+(cond
+ (use-flymake
+  (use-package flymake-yamllint
+    :ensure t
+    ))
+ (t
+  (use-package flycheck-yamllint
+    :ensure t
+    :after (flycheck)
+    ))
+ )
 
 (provide 'setup-yaml-mode)
