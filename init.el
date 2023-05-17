@@ -13,7 +13,10 @@
 (defconst site-lisp-dir (expand-file-name "site-lisp" user-emacs-directory))
 (defconst settings-dir (expand-file-name "settings" user-emacs-directory))
 
- ;; Are we on a mac?
+;; Whether to use flymake/eglot or flycheck/lsp
+(defconst use-flymake nil)
+
+;; Are we on a mac?
 (defconst is-mac (equal system-type 'darwin))
 
 ;; Define some basic variables
@@ -81,7 +84,7 @@
 ;; Completions
 (require 'setup-company)
 (require 'setup-consult)
-(require 'setup-mct)
+;;(require 'setup-mct)
 (require 'setup-hippie)
 
 ;; Dired
@@ -93,9 +96,15 @@
 (require 'setup-visual-regexp)
 
 ;; Coding
-(require 'setup-flymake)
-;;(require 'setup-flycheck)
-(require 'setup-eglot)
+(cond
+ (use-flymake
+  (require 'setup-flymake)
+  (require 'setup-eglot))
+ (t
+  (require 'setup-flycheck)
+  (require 'setup-lsp-mode))
+ )
+
 (require 'setup-tree-sitter)
 (require 'setup-magit)
 (require 'setup-prettier)

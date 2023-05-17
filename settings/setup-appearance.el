@@ -81,6 +81,8 @@
 
   ;; Set the default font
   (set-face-attribute 'default nil :family dtymon::font-family :height dtymon::font-size)
+  (set-face-attribute 'fixed-pitch nil :family dtymon::font-family :height dtymon::font-size)
+  (set-face-attribute 'fixed-pitch-serif nil :family dtymon::font-family :height dtymon::font-size)
 
   ;; Modus vivendi overrides
   (add-to-list 'load-path (expand-file-name "modus-themes" site-lisp-dir))
@@ -113,18 +115,22 @@
       (add-to-list var (cons 'width (cons 'text-pixels initial-frame-width)))
       (add-to-list var (cons 'height (cons 'text-pixels initial-frame-height)))
       )
+
+    ;; Set the cursor colour in all frames. This doesn't seem to work for some
+    ;; reason so setting it via the hook below.
+    (add-to-list var (cons 'cursor-color "red"))
     )
 
-  ;; (when dtymon::reposition-initial-frame
-  ;;   (add-to-list 'initial-frame-alist (cons 'top dtymon::frame-top))
-  ;;   (add-to-list 'initial-frame-alist (cons 'left dtymon::frame-left))
-  ;;   )
-  ;; (set-frame-position (selected-frame) dtymon::frame-left dtymon::frame-top)
+  ;; This seems to be the only way to get a red cursor in new frames
+  (defun dtymon::change-cursor-colour (frame)
+    (set-frame-parameter frame 'cursor-color "red")
+    )
+  (add-hook 'after-make-frame-functions #'dtymon::change-cursor-colour)
 )
 
 ;; Highlight current line in text and programming mode
-;;(add-hook 'prog-mode-hook #'prot-sideline-mode)
-;;(add-hook 'text-mode-hook #'prot-sideline-mode)
+(add-hook 'prog-mode-hook #'hl-line-mode)
+(add-hook 'text-mode-hook #'hl-line-mode)
 (setq
  ;; Do not shrink the width of the line numbers column as its really distracting
  ;; and compute the width required for line numbers upfront.

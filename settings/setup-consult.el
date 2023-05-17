@@ -34,8 +34,6 @@
     (define-key map (kbd "C-c C-f") #'consult-focus-lines)
 
     ;; Override the default behaviour with the consult variants
-    (define-key map (kbd "C-x x")   #'consult-register-store)
-    (define-key map (kbd "C-x /")   #'consult-register-store)
     (define-key map (kbd "C-x g")   #'consult-register-load)
     (define-key map (kbd "C-x j")   #'consult-register-load)
     )

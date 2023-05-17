@@ -3,10 +3,7 @@
   :diminish tree-sitter-mode
   :init
   (global-tree-sitter-mode)
-  :hook (
-         ;; (typescript-mode . tree-sitter-hl-mode)
-         (yaml-mode . tree-sitter-hl-mode)
-         )
+
   :config
   ;; (set-face-attribute 'tree-sitter-hl-face:property nil :slant 'normal)
   ;; (set-face-attribute 'tree-sitter-hl-face:function.call nil :weight 'normal)

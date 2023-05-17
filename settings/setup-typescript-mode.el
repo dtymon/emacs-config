@@ -9,8 +9,10 @@
   (add-hook 'typescript-mode-hook #'tree-sitter-mode)
   (add-hook 'typescript-mode-hook #'tree-sitter-hl-mode)
 
-  ;; Turn on eglot
-  (add-hook 'typescript-mode-hook 'eglot-ensure)
+  ;; Enable either eglot or lsp depending on the current preference
+  (add-hook 'typescript-mode-hook
+            (cond (use-flymake 'eglot-ensure)
+                  (t 'lsp-deferred)))
 
   (add-hook 'typescript-mode-hook
             (lambda ()
