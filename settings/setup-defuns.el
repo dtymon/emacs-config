@@ -14,7 +14,9 @@
        (lambda ()
          (let ((text-face (get-text-property (point) 'face)))
            (not (or (eq text-face 'font-lock-comment-face)
-                    (eq text-face 'font-lock-doc-face)))
+                    (eq text-face 'font-lock-doc-face)
+                    (eq text-face 'tree-sitter-hl-face:comment)
+                    ))
            ))))
 
 (defun dtymon::x-cut-buffer-yank ()
