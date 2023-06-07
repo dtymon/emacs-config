@@ -2,12 +2,13 @@
   :ensure t
   :mode "\\.ya?ml"
   :config
-  (add-hook 'yaml-mode-hook 'flymake-yamllint-setup)
   (add-hook 'yaml-mode-hook (lambda ()
-                            ;; (flycheck-mode 1)
-                            (flymake-mode 1)
-                            (prettier-mode 1)
-                            (fci-mode 1)
+                              (cond
+                               (use-flymake (flymake-mode 1))
+                               (t (flycheck-mode 1))
+                               )
+                              (prettier-mode 1)
+                              (display-fill-column-indicator-mode 1)
                             ))
   )
 
@@ -15,6 +16,8 @@
  (use-flymake
   (use-package flymake-yamllint
     :ensure t
+    :config
+    (add-hook 'yaml-mode-hook 'flymake-yamllint-setup)
     ))
  (t
   (use-package flycheck-yamllint
