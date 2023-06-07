@@ -102,6 +102,10 @@
   (set-face-background 'cursor "red")
   (blink-cursor-mode -1)
 
+  ;; Set the fill colour indicator background
+  (set-face-foreground 'fill-column-indicator "#884444")
+  (set-face-background 'fill-column-indicator "#884444")
+
   (dolist (var '(default-frame-alist initial-frame-alist))
     ;; Set the desired locations for frames
     (when dtymon::reposition-initial-frame
