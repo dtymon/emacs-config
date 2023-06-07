@@ -19,7 +19,7 @@
               ;; Show the fill column indicator. This is the comment fill column
               ;; and not the code fill column which is defined in prettier and
               ;; could be different.
-              (fci-mode 1)
+              (display-fill-column-indicator-mode 1)
 
               ;; Only auto-fill comment lines. prettier will handle the code.
               (dtymon::auto-fill-comments-only-hook)

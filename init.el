@@ -71,7 +71,8 @@
 (require 'setup-appearance)
 (require 'setup-modeline)
 (require 'setup-dimmer)
-(require 'setup-fci-mode)
+;; fci-mode breaks lsp-ui-sideline causing it to wrap
+;; (require 'setup-fci-mode)
 (require 'setup-rainbow-delimiters)
 ;;(require 'setup-all-the-icons)
 ;;(require 'setup-vscode-icon)

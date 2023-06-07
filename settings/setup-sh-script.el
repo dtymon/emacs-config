@@ -2,7 +2,7 @@
   :config
   (add-hook 'sh-mode-hook
             (lambda ()
-              (fci-mode 1)
+              (display-fill-column-indicator-mode 1)
               ))
   )
 
