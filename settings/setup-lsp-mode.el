@@ -3,14 +3,23 @@
   :defer t
   :after (which-key)
   :commands (lsp lsp-deferred)
+  :hook
+  (typescript-mode    . lsp-deferred)
+  (typescript-ts-mode . lsp-deferred)
+  (python-mode        . lsp-deferred)
+  (python-ts-mode     . lsp-deferred)
 
   :init
   (setq
    ;; Restart lsp if/when it crashes which it does a bit
    lsp-restart 'auto-restart
 
-   ;; The eslint client seems to be very CPU-intensive so disable for now
-   lsp-disabled-clients '(eslint)
+   ;; The eslint client seems to be very CPU-intensive so disable for now. Also
+   ;; disable some Python checkers as we are going to use ruff instead.
+   lsp-disabled-clients '(eslint pyls)
+
+   ;; Turn this on for verbose logging to debug lsp
+   ;; lsp-log-io t
 
    ;; Turn off some features
    lsp-eldoc-enable-hover                nil
@@ -28,6 +37,12 @@
    )
 
   :config
+  ;; This is ugly but looks like it's the only way to have ruff (via lsp)
+  ;; followed by MyPy for Python files.
+  (require 'lsp-diagnostics)
+  (lsp-diagnostics-flycheck-enable)
+  (flycheck-add-next-checker 'lsp 'python-mypy)
+
   (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]\\docs\\'")
 
   :bind (
