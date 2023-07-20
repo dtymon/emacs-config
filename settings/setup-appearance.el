@@ -160,6 +160,7 @@
 (dtymon::rename-modeline "js2-mode" js2-mode "JS2")
 (dtymon::rename-modeline "typescript-mode" typescript-mode "TS")
 (dtymon::rename-modeline "python-mode" python-mode "Py")
+(dtymon::rename-modeline "python-black" python-black-on-save-mode "Bl")
 
 (provide 'setup-appearance)
 
