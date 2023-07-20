@@ -24,4 +24,10 @@
   :after (tree-sitter)
   )
 
+(use-package treesit-auto
+  :demand t
+  :config
+  (global-treesit-auto-mode)
+  )
+
 (provide 'setup-tree-sitter)
