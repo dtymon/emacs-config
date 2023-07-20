@@ -15,7 +15,7 @@
             (propertize " ▶ " 'face 'dtymon::mode-line-intense))))
 
 (defvar dtymon::mode-line-flymake
-  '(:eval (when flymake-mode
+  '(:eval (if (bound-and-true-p flymake-mode)
             flymake-mode-line-format)))
 
 (defvar dtymon::mode-line-align-right
