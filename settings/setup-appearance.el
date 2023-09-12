@@ -141,6 +141,7 @@
  display-line-numbers-grow-only t
  display-line-numbers-width-start t
  )
+(global-display-line-numbers-mode)
 
 ;; Highlight matching parentheses when the point is on them.
 (show-paren-mode 1)
