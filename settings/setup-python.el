@@ -13,6 +13,7 @@
   (add-to-list 'flycheck-disabled-checkers 'python-pylint)
   (add-to-list 'flycheck-disabled-checkers 'python-pycompile)
 
+  (auto-fill-mode 1)
   (setq
    tab-width 4
    python-indent-offset 4
@@ -23,8 +24,8 @@
    ;; This is the fill column for comments
    fill-column 79
 
-   ;; We don't want ruff to organise imports
-   lsp-ruff-lsp-advertize-organize-imports nil
+   ;; We want ruff to organise imports
+   lsp-ruff-lsp-advertize-organize-imports t
 
    ;; Change pylsp to use codestyle rather than flake8
    lsp-pylsp-configuration-sources ["pycodestyle"]
@@ -69,16 +70,47 @@
   (add-hook 'python-ts-mode-hook 'dtymon::common-python-hook)
   )
 
+(use-package python-black
+  :ensure t
+  :after python
+  :diminish "Bl"
+  )
+
 (use-package pyenv-mode
   :ensure t
   :config
   (pyenv-mode)
   )
 
-(use-package python-black
-  :ensure t
-  :after python
-  :diminish "Bl"
-  )
+;; (use-package auto-virtualenv
+;;   :ensure t
+;;   :config
+;;   (add-hook 'python-mode-hook 'auto-virtualenv-set-virtualenv)
+;;   (add-hook 'projectile-after-switch-project-hook 'auto-virtualenv-set-virtualenv)
+;;   )
+
+;; (flycheck-define-checker python-dtymon
+;;   "A Python syntax and style checker using the ruff utility.
+;; To override the path to the ruff executable, set
+;; `flycheck-python-ruff-executable'.
+;; See URL `http://pypi.python.org/pypi/ruff'."
+;;   :command ("ruff"
+;;             "--format=text"
+;;             (eval (when buffer-file-name
+;;                     (concat "--stdin-filename=" buffer-file-name)))
+;;             "-")
+;;   :standard-input t
+;;   :error-filter (lambda (errors)
+;;                   (let ((errors (flycheck-sanitize-errors errors)))
+;;                     (seq-map #'flycheck-flake8-fix-error-level errors)))
+;;   :error-patterns
+;;   ((warning line-start
+;;             (file-name) ":" line ":" (optional column ":") " "
+;;             (id (one-or-more (any alpha)) (one-or-more digit)) " "
+;;             (message (one-or-more not-newline))
+;;             line-end))
+;;   :modes python-ts-mode)
+;;
+;; (add-to-list 'flycheck-checkers 'python-dtymon)
 
 (provide 'setup-python)

@@ -27,7 +27,7 @@
    lsp-lens-enable                       nil
    lsp-enable-symbol-highlighting        nil
    lsp-apply-edits-after-file-operations nil
-   lsp-modeline-code-actions-enable      nil
+   lsp-modeline-code-actions-enable      t
 
    ;; It looks like this poorly named variable is used to enable or disable lsp
    ;; displaying diagnostics in the minibuffer.
@@ -41,7 +41,10 @@
   ;; followed by MyPy for Python files.
   (require 'lsp-diagnostics)
   (lsp-diagnostics-flycheck-enable)
-  (flycheck-add-next-checker 'lsp 'python-mypy)
+  ;;(flycheck-add-next-checker 'lsp 'python-mypy)
+  (flycheck-add-next-checker 'lsp '(warning . python-mypy))
+  ;; (flycheck-add-next-checker 'lsp 'python-dtymon)
+  ;; (flycheck-add-next-checker 'python-dtymon 'python-mypy)
 
   (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]\\docs\\'")
 
@@ -70,6 +73,9 @@
     lsp-ui-doc-enable           nil
     lsp-ui-doc-show-with-cursor nil
     lsp-ui-doc-show-with-mouse  nil
+
+    lsp-ui-sideline-delay       0.5
+    lsp-ui-sideline-show-code-actions t
     )
 )
 
