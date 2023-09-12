@@ -53,7 +53,7 @@
  ns-pop-up-frames nil
 
  ;; Use aspell for spell checking: brew install aspell --lang=en
- ispell-program-name "/usr/local/bin/aspell"
+ ispell-program-name "aspell"
 
  ;; Disable automatic interaction with the clipboard as this copies kill-ring
  ;; entries too. We only want dragged selections to be copied.
