@@ -7,8 +7,8 @@
 
 (define-minor-mode prot-sideline-mode
   "Buffer-local wrapper mode for presentations."
-  :init-value nil
-  :global nil)
+  :init-value t
+  :global t)
 
 (defun prot-sideline--numbers-toggle ()
   "Toggle line numbers."
