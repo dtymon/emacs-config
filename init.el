@@ -106,6 +106,7 @@
   (require 'setup-lsp-mode))
  )
 
+(require 'setup-treemacs)
 (require 'setup-tree-sitter)
 (require 'setup-magit)
 (require 'setup-prettier)
@@ -135,5 +136,8 @@
 
 ;; Load any post-init-hooks
 (load (locate-user-emacs-file "post-init-hooks.el") :no-error :no-message)
+
+;; Load this as late as possible
+(require 'setup-envrc)
 
 ;;; init.el ends here
