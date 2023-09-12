@@ -55,14 +55,16 @@
                 mode-line-buffer-identification
                 "  "
                 mode-line-position
+                dtymon::mode-line-misc-info
                 (vc-mode vc-mode)
                 " "
                 mode-line-modes
                 dtymon::mode-line-flymake
                 " "
                 " "
-                dtymon::mode-line-align-right
-                dtymon::mode-line-misc-info)
+                ;; dtymon::mode-line-align-right
+                ;; dtymon::mode-line-misc-info)
+                )
               )
 
 (provide 'setup-modeline)
