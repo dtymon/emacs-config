@@ -93,22 +93,22 @@
   ;; And set this as the first transformer
   (add-to-list 'company-transformers #'dtymon::company-transformer-enforce-prefix)
 
-  ;; Setup completion backends for programming modes
-  (add-hook 'prog-mode-hook
-            (lambda ()
-              (set (make-local-variable 'company-backends)
-                   '(
-                     (
-;;                      company-semantic
-                      company-capf
-                      :with
-                      company-yasnippet
-                      company-dabbrev-code
-                      company-keywords
-                      )
-                     company-files
-                     )
-                   )))
+;;   ;; Setup completion backends for programming modes
+;;   (add-hook 'prog-mode-hook
+;;             (lambda ()
+;;               (set (make-local-variable 'company-backends)
+;;                    '(
+;;                      (
+;; ;;                      company-semantic
+;;                       company-capf
+;;                       :with
+;;                       company-yasnippet
+;;                       company-dabbrev-code
+;;                       company-keywords
+;;                       )
+;;                      company-files
+;;                      )
+;;                   )))
   )
 
 (provide 'setup-company)
