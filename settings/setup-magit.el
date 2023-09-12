@@ -13,7 +13,20 @@
 (use-package magit
   :ensure t
   :init
-  (define-key global-map (kbd "C-x m") 'magit-status)
+
+  (let ((map global-map))
+    ;; (define-key map (kbd "C-x m") #'magit-status)
+    (define-key map (kbd "C-x m") (lambda ()
+                                    (interactive)
+                                    (other-frame-prefix)
+                                    (magit-status)))
+
+    (define-key map (kbd "C-c C-m l") #'magit-log-buffer-file)
+    (define-key map (kbd "C-c C-m b") #'magit-blame-addition)
+    (define-key map (kbd "C-c C-m d") #'magit-diff)
+    (define-key map (kbd "C-c C-m s") #'magit-stash)
+    )
+
   (setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1
         magit-bury-buffer-function #'magit-restore-window-configuration
         magit-auto-revert-mode nil
