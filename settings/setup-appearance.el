@@ -1,3 +1,9 @@
+(defun dtymon::default-font-size ()
+  (cond ((eq (dtymon::monitor-width) 3840) 240)
+        ((eq (dtymon::monitor-width) 1920) 140)
+        ((eq (dtymon::monitor-width) 3440) 200)
+        (t 180)))
+
 (defgroup dtymon-appearance nil
   "Variables used to set the appearance of Emacs."
   :group 'tools)
@@ -14,7 +20,7 @@
   :group 'dtymon-appearance
   :type 'string)
 
-(defcustom dtymon::font-size 180
+(defcustom dtymon::font-size (dtymon::default-font-size)
   "The default font size to use."
   :group 'dtymon-appearance
   :type 'number)

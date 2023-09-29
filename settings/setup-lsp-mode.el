@@ -74,8 +74,9 @@
     lsp-ui-doc-show-with-cursor nil
     lsp-ui-doc-show-with-mouse  nil
 
-    lsp-ui-sideline-delay       0.5
+    lsp-ui-sideline-delay             1
     lsp-ui-sideline-show-code-actions t
+    lsp-ui-sideline-update-mode       'line
     )
 )
 

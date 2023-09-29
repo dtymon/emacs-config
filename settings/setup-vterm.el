@@ -7,6 +7,9 @@
     (hl-line-mode -1)
     (display-line-numbers-mode -1))
 
+  (let ((map vterm-mode-map))
+    (define-key map (kbd "C-c C-x") #'vterm--self-insert)
+    )
   :hook (vterm-mode . dtymon::vterm-turn-off-chrome)
   )
 
