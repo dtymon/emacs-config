@@ -27,8 +27,28 @@
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 
+;; Enable saving and restoring the desktop session
+(desktop-save-mode 1)
+(setq
+  desktop-auto-save-timeout 300
+  desktop-missing-file-warning nil
+;;   desktop-files-not-to-save ".*"
+;;   desktop-buffers-not-to-save ".*"
+;;   desktop-globals-to-clear nil
+;;   desktop-load-locked-desktop t
+;;   desktop-restore-eager 0
+;;   desktop-restore-frames 0
+;;   desktop-save 'ask-if-new
+  )
+
+;; (dolist (symbol '(kill-ring log-edit-comment-ring))
+;;   (add-to-list 'desktop-globals-to-save symbol))
+
 ;; Turn off other stuff too
 (setq
+ ;; We want confirmation on kill
+ confirm-kill-emacs 'yes-or-no-p
+
  ;; Don't flash the screen on a bell
  visible-bell nil
 
