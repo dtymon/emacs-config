@@ -1,8 +1,8 @@
 ;; Ask for confirmation before exiting to cater for fat fingers
-(global-set-key (kbd "C-x C-c") (lambda ()
-                                  (interactive)
-                                  (if (y-or-n-p "Do you really want to exit Emacs ? ")
-                                      (save-buffers-kill-emacs))))
+;; (global-set-key (kbd "C-x C-c") (lambda ()
+;;                                   (interactive)
+;;                                   (if (y-or-n-p "Do you really want to exit Emacs ? ")
+;;                                       (save-buffers-kill-emacs))))
 
 ;; Avoid exiting abruptly if I accidentally hit s-q instead of M-q
 (global-set-key (kbd "s-q") (lambda ()
@@ -127,6 +127,7 @@
 (require 'setup-cmake-mode)
 (require 'setup-go-mode)
 (require 'setup-restclient)
+(require 'setup-ztree)
 
 ;; Terminals
 (require 'setup-vterm)
