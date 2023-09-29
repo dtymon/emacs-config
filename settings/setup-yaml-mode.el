@@ -2,12 +2,13 @@
   :ensure t
   :mode "\\.ya?ml"
   :config
+  (setq yaml-indent-offset 2)
   (add-hook 'yaml-mode-hook (lambda ()
                               (cond
                                (use-flymake (flymake-mode 1))
                                (t (flycheck-mode 1))
                                )
-                              (prettier-mode 1)
+                              ;;(prettier-mode 1)
                               (display-fill-column-indicator-mode 1)
                             ))
   )

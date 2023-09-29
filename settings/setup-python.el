@@ -13,7 +13,10 @@
   (add-to-list 'flycheck-disabled-checkers 'python-pylint)
   (add-to-list 'flycheck-disabled-checkers 'python-pycompile)
 
+  ;; Turn on auto fill but only for comments
   (auto-fill-mode 1)
+  (dtymon::auto-fill-comments-only-hook)
+
   (setq
    tab-width 4
    python-indent-offset 4
@@ -75,6 +78,12 @@
   :after python
   :diminish "Bl"
   )
+
+;; (use-package lsp-pyright
+;;   :ensure t
+;;   :after python
+;;   :diminish ""
+;;   )
 
 (use-package pyenv-mode
   :ensure t
