@@ -31,6 +31,11 @@
         magit-bury-buffer-function #'magit-restore-window-configuration
         magit-auto-revert-mode nil
         )
+
+  :config
+  (let ((map magit-status-mode-map))
+    (define-key map (kbd "S-<prior>") #'magit-section-up)
+    )
 )
 
 ;;
@@ -57,5 +62,14 @@
 ;;   :ensure t
 ;;   :after (magit libgit)
 ;;   )
+
+;; (use-package difftastic
+;;   :ensure t
+;;   :defer t
+;;   :after magit-diff
+;;   :config
+;;   (transient-append-suffix 'magit-diff '(-1 -1)
+;;        [("D" "Difftastic diff (dwim)" difftastic-magit-diff)
+;;         ("S" "Difftastic show" difftastic-magit-show)]))
 
 (provide 'setup-magit)
