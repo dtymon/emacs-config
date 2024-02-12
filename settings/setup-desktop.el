@@ -10,7 +10,7 @@
    desktop-missing-file-warning nil
    desktop-restore-eager 0
    desktop-restore-frames 0
-   desktop-save 'ask-if-new
+   desktop-save 'ask
    )
 
   (dolist (symbol '(kill-ring log-edit-comment-ring))

@@ -1,4 +1,4 @@
-(defun ztree-diff-node-ignore-p (node)
+(defun dtymon::ztree-diff-node-ignore-p (node)
   "Determine if the NODE is in filter list.
 If the node is in the filter list it shall not be visible,
 unless it is a parent node."
@@ -24,12 +24,14 @@ unless it is a parent node."
 
 (use-package ztree
   :ensure t
-  :config
+  )
+
+(with-eval-after-load 'ztree
+  (defun ztree-diff-node-ignore-p (node) (dtymon::ztree-diff-node-ignore-p node))
   (setq
    ztree-diff-filter-list '("^\\." "__pycache__")
    ztree-diff-dir-ignore-list '("/\\(__pycache__\\|\\.git\\)")
    ztree-draw-unicode-lines t
-   )
-  )
+   ))
 
 (provide 'setup-ztree)

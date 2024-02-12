@@ -34,7 +34,7 @@
           )
   :custom
    ;; How many chars before showing suggestions
-  (company-minimum-prefix-length 2)
+  (company-minimum-prefix-length 1)
 
    ;; How long before company appears
   (company-idle-delay .1)

@@ -74,8 +74,8 @@
 ;; fci-mode breaks lsp-ui-sideline causing it to wrap
 ;; (require 'setup-fci-mode)
 (require 'setup-rainbow-delimiters)
-;;(require 'setup-all-the-icons)
-;;(require 'setup-vscode-icon)
+(require 'setup-all-the-icons)
+(require 'setup-vscode-icon)
 (require 'setup-highlight-escape-sequences)
 
 ;; Minibuffer
@@ -106,6 +106,9 @@
   (require 'setup-lsp-mode))
  )
 
+(require 'setup-compilation-mode)
+(require 'setup-ediff)
+(require 'setup-projectile)
 (require 'setup-treemacs)
 (require 'setup-tree-sitter)
 (require 'setup-magit)
@@ -128,6 +131,7 @@
 (require 'setup-go-mode)
 (require 'setup-restclient)
 (require 'setup-ztree)
+(require 'setup-string-inflection)
 
 ;; Terminals
 (require 'setup-vterm)

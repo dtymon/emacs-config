@@ -56,7 +56,7 @@
  comment-fill-column 80
 
  ;; Setup ediff
- ediff-diff-options "-w"
+ ;; ediff-diff-options "-w"
  ediff-split-window-function 'split-window-horizontally
  ediff-window-setup-function 'ediff-setup-windows-plain
 
