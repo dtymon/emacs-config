@@ -91,6 +91,25 @@
   (pyenv-mode)
   )
 
+(use-package poetry
+  :ensure t
+  :defer t
+  :commands poetry-tracking-mode
+  :config
+  (setq poetry-tracking-strategy 'switch-buffer)
+  )
+
+(use-package python-pytest
+  :ensure t
+  :config
+  (let ((map python-mode-map))
+    (define-key map (kbd "C-c t a") #'python-pytest)
+    (define-key map (kbd "C-c t f") #'python-pytest-file)
+    (define-key map (kbd "C-c t t") #'python-pytest-function-dwim)
+    (define-key map (kbd "C-c t r") #'python-pytest-repeat)
+    )
+  )
+
 ;; (use-package auto-virtualenv
 ;;   :ensure t
 ;;   :config
