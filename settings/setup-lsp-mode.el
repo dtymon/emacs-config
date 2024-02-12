@@ -126,3 +126,18 @@
 ;;   )
 
 (provide 'setup-lsp-mode)
+
+;; ;; Custom LSP modeline print function without process id
+;; (defun dtymon::lsp--workspace-print (workspace)
+;;   "Visual representation WORKSPACE."
+;;   (let* ((proc (lsp--workspace-cmd-proc workspace))
+;;          (status (lsp--workspace-status workspace))
+;;          (server-id (-> workspace lsp--workspace-client lsp--client-server-id symbol-name)))
+;;     ;; (if (eq 'initialized status)
+;;     ;;     (format "%s" server-id)
+;;     ;;   (format "%s/%s" server-id status))
+;;     t
+;;     ))
+;;
+;;  ;; Don't show process id in modeline
+;; (advice-add #'lsp--workspace-print :override #'dtymon::lsp--workspace-print)

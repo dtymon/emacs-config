@@ -44,8 +44,16 @@
 (use-package flycheck
   :ensure t
   :init
-  (setq flycheck-display-errors-function #'flycheck-display-error-messages)
-  (setq flycheck-checker-error-threshold 2000)
+  (setq
+   flycheck-display-errors-function #'flycheck-display-error-messages
+   flycheck-checker-error-threshold 2000
+   flycheck-idle-change-delay 2
+   flycheck-check-syntax-automatically '(save
+                                         idle-change
+                                         idle-buffer-switch
+                                         new-line
+                                         mode-enabled)
+   )
 
   :config
   (set-face-attribute 'flycheck-fringe-error nil :background "yellow" :foreground "red")
