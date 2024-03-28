@@ -1,6 +1,6 @@
 (use-package tree-sitter
   :ensure t
-  :diminish tree-sitter-mode
+  :blackout tree-sitter-mode
   :init
   (global-tree-sitter-mode)
 

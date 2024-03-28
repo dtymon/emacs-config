@@ -158,16 +158,16 @@
 ;; https://github.com/emacs-lsp/lsp-ui/issues/285
 (fringe-mode '(16 . 0))
 
-;; Some modes don't seem to play well with diminish
-(defmacro dtymon::rename-modeline (package-name mode new-name)
-  `(eval-after-load ,package-name
-     '(defadvice ,mode (after rename-modeline activate)
-        (setq mode-name ,new-name))))
-
-(dtymon::rename-modeline "js2-mode" js2-mode "JS2")
-(dtymon::rename-modeline "typescript-mode" typescript-mode "TS")
-(dtymon::rename-modeline "python-mode" python-mode "Py")
-(dtymon::rename-modeline "python-black" python-black-on-save-mode "Bl")
+;; ;; Some modes don't seem to play well with diminish
+;; (defmacro dtymon::rename-modeline (package-name mode new-name)
+;;   `(eval-after-load ,package-name
+;;      '(defadvice ,mode (after rename-modeline activate)
+;;         (setq mode-name ,new-name))))
+;;
+;; (dtymon::rename-modeline "js2-mode" js2-mode "JS2")
+;; (dtymon::rename-modeline "typescript-mode" typescript-mode "TS")
+;; (dtymon::rename-modeline "python-mode" python-mode "Py")
+;; (dtymon::rename-modeline "python-black" python-black-on-save-mode "Bl")
 
 (provide 'setup-appearance)
 

@@ -51,6 +51,9 @@
  line-number-mode t
  column-number-mode t
 
+ ;; Column numbers should start from one
+ column-number-indicator-zero-based nil
+
  ;; Lines should be 80 characters wide by default
  fill-column 80
  comment-fill-column 80
@@ -73,6 +76,9 @@
 
  ;; Don't generate messages with defadvice when redefinitions occur
  ad-redefinition-action 'accept
+
+ ;; Scroll interpreter output automatically
+ comint-move-point-for-output t
  )
 
 ;; 80 chars is the default fill column

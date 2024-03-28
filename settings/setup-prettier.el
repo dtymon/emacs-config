@@ -1,6 +1,6 @@
 (use-package prettier
   :ensure t
-  :diminish prettier-mode
+  :blackout prettier-mode
   :init
   (setq prettier-mode-sync-config-flag nil)
   )

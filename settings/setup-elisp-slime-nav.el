@@ -1,6 +1,6 @@
 (use-package elisp-slime-nav
   :ensure t
-  :diminish elisp-slime-nav-mode
+  :blackout elisp-slime-nav-mode
   :config
   (add-hook 'emacs-lisp-mode-hook
             (lambda ()

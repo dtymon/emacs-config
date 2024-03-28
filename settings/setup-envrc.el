@@ -1,5 +1,6 @@
 (use-package envrc
   :ensure t
+  :blackout envrc-mode
   :init
   (envrc-global-mode)
   )

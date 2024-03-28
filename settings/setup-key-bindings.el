@@ -7,9 +7,17 @@
   (define-key map (kbd "M-p")    #'backward-paragraph)
   (define-key map (kbd "M-n")    #'forward-paragraph)
 
+  ;; Page up and down
+  (define-key map (kbd "C-v") #'scroll-up-command)
+  (define-key map (kbd "C-z") #'scroll-down-command)
+  (define-key map (kbd "<next>") #'scroll-up-command)
+  (define-key map (kbd "<prior>") #'scroll-down-command)
+
   ;; Move more quickly
-  (define-key map (kbd "M-<right>") #'forward-sexp)
+  (define-key map (kbd "M-<up>")  #'backward-sexp)
+  (define-key map (kbd "M-<down>") #'forward-sexp)
   (define-key map (kbd "M-<left>")  #'backward-sexp)
+  (define-key map (kbd "M-<right>") #'forward-sexp)
   (define-key map (kbd "C-S-n")     (lambda () (interactive) (ignore-errors (next-line 5))))
   (define-key map (kbd "C-S-p")     (lambda () (interactive) (ignore-errors (previous-line 5))))
   (define-key map (kbd "C-S-f")     (lambda () (interactive) (ignore-errors (forward-char 5))))
@@ -84,7 +92,6 @@
   )
 
 ;; Stop me minimising the frame when I accidentally hit C-z instead of C-x
-(global-unset-key (kbd "C-z"))
 (global-unset-key (kbd "C-x C-z"))
 
 ;; No need to ask for confirmation on these
