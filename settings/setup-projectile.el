@@ -1,5 +1,6 @@
 (use-package projectile
   :ensure t
+  :blackout projectile-mode
   :init
   (setq projectile-project-search-path '("~/work/judo/repos"))
   (setq projectile-mode-line-prefix " ")

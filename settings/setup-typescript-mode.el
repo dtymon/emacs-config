@@ -1,6 +1,6 @@
 (use-package typescript-mode
   :ensure t
-  :diminish "TS"
+  :blackout (typescript-mode . "TS")
   :mode "\\.ts"
   :interpreter "node"
 

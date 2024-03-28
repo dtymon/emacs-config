@@ -1,6 +1,6 @@
 (use-package whitespace-cleanup-mode
   :ensure t
-  :diminish whitespace-cleanup-mode
+  :blackout whitespace-cleanup-mode
   :config
   (setq whitespace-style '(trailing lines space-before-tab
                                     indentation space-after-tab)

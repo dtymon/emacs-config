@@ -1,3 +1,9 @@
+(defun dtymon::flycheck-after-save ()
+  (run-with-timer 3 nil (lambda ()
+                          (flycheck-buffer)
+                          ))
+  )
+
 (defun dtymon::common-python-hook ()
   ;; Format on save
   (python-black-on-save-mode)
@@ -16,6 +22,8 @@
   ;; Turn on auto fill but only for comments
   (auto-fill-mode 1)
   (dtymon::auto-fill-comments-only-hook)
+
+  (add-hook 'after-save-hook #'dtymon::flycheck-after-save t t)
 
   (setq
    tab-width 4
@@ -66,7 +74,7 @@
 
 (use-package python
   :ensure t
-  :diminish "Py"
+  :blackout (python-mode . "Py")
   :commands python-mode
   :init
   (add-hook 'python-mode-hook    'dtymon::common-python-hook)
@@ -76,13 +84,13 @@
 (use-package python-black
   :ensure t
   :after python
-  :diminish "Bl"
+  :blackout python-black-on-save-mode
   )
 
 ;; (use-package lsp-pyright
 ;;   :ensure t
 ;;   :after python
-;;   :diminish ""
+;;   :blackout
 ;;   )
 
 (use-package pyenv-mode

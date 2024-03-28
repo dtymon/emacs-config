@@ -2,6 +2,7 @@
   :ensure t
   :defer t
   :after (which-key)
+  :blackout lsp-mode
   :commands (lsp lsp-deferred)
   :hook
   (typescript-mode    . lsp-deferred)
@@ -27,7 +28,9 @@
    lsp-lens-enable                       nil
    lsp-enable-symbol-highlighting        nil
    lsp-apply-edits-after-file-operations nil
-   lsp-modeline-code-actions-enable      t
+   lsp-modeline-code-actions-enable      nil
+   lsp-modeline-diagnostics-enable       nil
+   lsp-modeline-workspace-status-enable  nil
 
    ;; It looks like this poorly named variable is used to enable or disable lsp
    ;; displaying diagnostics in the minibuffer.
@@ -43,8 +46,8 @@
   (lsp-diagnostics-flycheck-enable)
   ;;(flycheck-add-next-checker 'lsp 'python-mypy)
   (flycheck-add-next-checker 'lsp '(warning . python-mypy))
-  ;; (flycheck-add-next-checker 'lsp 'python-dtymon)
-  ;; (flycheck-add-next-checker 'python-dtymon 'python-mypy)
+  ;; (flycheck-add-next-checker 'lsp '(warning . python-pyright))
+  ;; (flycheck-add-next-checker 'python-mypy '(warning . python-pyright))
 
   (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]\\docs\\'")
 
@@ -127,17 +130,22 @@
 
 (provide 'setup-lsp-mode)
 
+;; This isn't the best way to shorten the lsp presence in the modeline because
+;; this function is called to get the pids to restart when attempting to restart
+;; a workspace
+;;
 ;; ;; Custom LSP modeline print function without process id
 ;; (defun dtymon::lsp--workspace-print (workspace)
 ;;   "Visual representation WORKSPACE."
-;;   (let* ((proc (lsp--workspace-cmd-proc workspace))
-;;          (status (lsp--workspace-status workspace))
-;;          (server-id (-> workspace lsp--workspace-client lsp--client-server-id symbol-name)))
-;;     ;; (if (eq 'initialized status)
-;;     ;;     (format "%s" server-id)
-;;     ;;   (format "%s/%s" server-id status))
-;;     t
-;;     ))
+;;   t
+;;   ;; (let* ((proc (lsp--workspace-cmd-proc workspace))
+;;   ;;        (status (lsp--workspace-status workspace))
+;;   ;;        (server-id (-> workspace lsp--workspace-client lsp--client-server-id symbol-name)))
+;;   ;;   (if (eq 'initialized status)
+;;   ;;       (format "%s" server-id)
+;;   ;;     (format "%s/%s" server-id status))
+;;   ;;   )
+;;   )
 ;;
 ;;  ;; Don't show process id in modeline
 ;; (advice-add #'lsp--workspace-print :override #'dtymon::lsp--workspace-print)

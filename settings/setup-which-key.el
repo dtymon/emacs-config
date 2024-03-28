@@ -1,6 +1,6 @@
 (use-package which-key
   :ensure t
-  :diminish which-key-mode
+  :blackout which-key-mode
   :config
   (setq
    ;; which-key-popup-type 'minibuffer

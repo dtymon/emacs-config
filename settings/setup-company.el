@@ -1,7 +1,7 @@
 (use-package company
   :ensure t
   :defer t
-  :diminish company-mode
+  :blackout company-mode
   :init
   (global-company-mode)
 

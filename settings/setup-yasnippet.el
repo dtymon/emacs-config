@@ -1,5 +1,6 @@
 (use-package yasnippet
   :ensure t
+  :blackout yas-minor-mode
   :mode (("yasnippet/snippets" . snippet-mode)
          ("\\.yasnippet\\'" . snippet-mode))
   :config
