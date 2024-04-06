@@ -41,34 +41,33 @@
    ;; Change pylsp to use codestyle rather than flake8
    lsp-pylsp-configuration-sources ["pycodestyle"]
 
-   ;; Disable docstyle linting
-   ;; lsp-pylsp-plugins-pydocstyle-enabled nil
+   ;; Disable code and doc style linting
    lsp-pylsp-plugins-pycodestyle-enabled nil
+   lsp-pylsp-plugins-pydocstyle-enabled  nil
 
    ;; Use Jedi for completion
-   lsp-pylsp-plugins-jedi-completion-enabled     t
-   lsp-pylsp-plugins-jedi-definition-enabled     t
-   lsp-pylsp-plugins-jedi-hover-enabled          t
-   lsp-pylsp-plugins-jedi-references-enabled     t
-   lsp-pylsp-plugins-jedi-signature-help-enabled t
-   lsp-pylsp-plugins-jedi-symbols-enabled        t
-   lsp-pylsp-plugins-jedi-use-pyenv-environment  t
+   lsp-pylsp-plugins-jedi-completion-enabled        t
+   lsp-pylsp-plugins-jedi-completion-include-params nil
+   lsp-pylsp-plugins-jedi-definition-enabled        t
+   lsp-pylsp-plugins-jedi-hover-enabled             t
+   lsp-pylsp-plugins-jedi-references-enabled        t
+   lsp-pylsp-plugins-jedi-signature-help-enabled    t
+   lsp-pylsp-plugins-jedi-symbols-enabled           t
+   lsp-pylsp-plugins-jedi-use-pyenv-environment     t
 
-   lsp-pylsp-plugins-flake8-enabled              nil
-   ;; lsp-pylsp-plugins-flake8-ignore               '("D103")
-   ;; lsp-pylsp-plugins-flake8-max-line-length      88
-   ;; lsp-pylsp-plugins-pycodestyle-max-line-length 88
-
-   ;; Disable code complexity measure
-   ;; lsp-pylsp-plugins-mccabe-enabled          nil
-
-   ;; lsp-pylsp-plugins-preload-enabled         nil
-   ;; lsp-pylsp-plugins-pylint-enabled          nil
-   ;; lsp-pylsp-plugins-pyflakes-enabled        nil
-   ;; lsp-pylsp-plugins-rope-completion-enabled nil
-   ;; lsp-pylsp-plugins-autopep8-enabled        nil
-   ;; lsp-pylsp-plugins-yapf-enabled            nil
-   ;; lsp-pylsp-plugins-black-enabled           nil
+   ;; Disable the pylsp modules that are not required. Descriptions of these
+   ;; can be found here:
+   ;;   https://github.com/python-lsp/python-lsp-server/blob/develop/CONFIGURATION.md
+   ;;
+   lsp-pylsp-plugins-flake8-enabled          nil
+   lsp-pylsp-plugins-mccabe-enabled          nil
+   lsp-pylsp-plugins-preload-enabled         nil
+   lsp-pylsp-plugins-pylint-enabled          nil
+   lsp-pylsp-plugins-pyflakes-enabled        nil
+   lsp-pylsp-plugins-rope-completion-enabled nil
+   lsp-pylsp-plugins-autopep8-enabled        nil
+   lsp-pylsp-plugins-yapf-enabled            nil
+   lsp-pylsp-plugins-black-enabled           nil
    )
   )
 
@@ -117,13 +116,6 @@
     (define-key map (kbd "C-c t r") #'python-pytest-repeat)
     )
   )
-
-;; (use-package auto-virtualenv
-;;   :ensure t
-;;   :config
-;;   (add-hook 'python-mode-hook 'auto-virtualenv-set-virtualenv)
-;;   (add-hook 'projectile-after-switch-project-hook 'auto-virtualenv-set-virtualenv)
-;;   )
 
 ;; (flycheck-define-checker python-dtymon
 ;;   "A Python syntax and style checker using the ruff utility.

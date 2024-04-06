@@ -56,7 +56,8 @@
                 "  "
                 mode-line-position
                 dtymon::mode-line-misc-info
-                (:eval (concat " [" (replace-regexp-in-string "^ Git." "" vc-mode) "]"))
+                ;;(vc-mode vc-mode)
+                (:eval (if vc-mode (concat " [" (replace-regexp-in-string "^ Git." "" vc-mode) "]")))
                 " "
                 mode-line-modes
                 dtymon::mode-line-flymake

@@ -19,8 +19,11 @@
 ;; Load any pre-init-hooks
 (load (locate-user-emacs-file "pre-init-hooks.el") :no-error :no-message)
 
-;; Don't want a custom file
-(setq custom-file "/dev/null")
+;; Don't want a custom file. Can't use /dev/null with Emacs 30 as it complains
+;; amount maximum buffer size exceeded.
+;; (setq custom-file "/dev/null")
+(setq custom-file (make-temp-file "emacs-custom."))
+(add-hook 'kill-emacs-hook (lambda () (delete-file custom-file)))
 
 ;; Turn off GUI components if present
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))

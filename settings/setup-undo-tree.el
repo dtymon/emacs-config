@@ -16,9 +16,9 @@
 
   ;; Compress the files because there is a lot of them and they can be very
   ;; large.
-  (defadvice undo-tree-make-history-save-file-name
-      (after undo-tree activate)
-    (setq ad-return-value (concat ad-return-value ".gz")))
+  ;; (defadvice undo-tree-make-history-save-file-name
+  ;;     (after undo-tree activate)
+  ;;   (setq ad-return-value (concat ad-return-value ".gz")))
   )
 
 (provide 'setup-undo-tree)
