@@ -64,10 +64,10 @@
     (delete-other-windows)
     (beginning-of-buffer)))
 
-(defvar grep-match-positions nil)
-(make-variable-buffer-local 'grep-match-positions)
+(defvar dtymon::grep-match-positions nil)
+(make-variable-buffer-local 'dtymon::grep-match-positions)
 
-(defun grep-register-match-positions ()
+(defun dtymon::grep-register-match-positions ()
   (save-excursion
     (forward-line 0)
     (let ((end (point)) beg)
@@ -80,7 +80,10 @@
         (setq end (copy-marker end))
         ;; Register all positions of matches
         (while (re-search-forward "\033\\[0?1;31m\\(.*?\\)\033\\[[0-9]*m" end 1)
-          (add-to-list 'grep-match-positions (set-marker (make-marker) (match-beginning 1))))))))
+          (add-to-list 'dtymon::grep-match-positions (set-marker (make-marker) (match-beginning 1))))))))
+
+(defun dtymon::grep-after-advice ()
+  (add-hook 'compilation-filter-hook 'dtymon::grep-register-match-positions nil t))
 
 (eval-after-load 'grep
   '(progn
@@ -88,8 +91,7 @@
      (add-to-list 'grep-find-ignored-directories "target")
      (add-to-list 'grep-find-ignored-directories "node_modules")
      (add-to-list 'grep-find-ignored-directories "vendor")
-     (defadvice grep-mode (after grep-register-match-positions activate)
-       (add-hook 'compilation-filter-hook 'grep-register-match-positions nil t))
+     (advice-add 'grep-mode :after #'dtymon::grep-after-advice)
 
      (define-key grep-mode-map (kbd "q") 'rgrep-quit-window)
      (define-key grep-mode-map (kbd "C-<return>") 'rgrep-goto-file-and-close-rgrep)
