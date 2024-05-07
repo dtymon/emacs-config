@@ -41,9 +41,6 @@
  ;; location.
  mouse-yank-at-point t
 
- ;; Replace selection when key is pressed
- delete-selection-mode t
-
  ;; After an initial C-u C-SPC, additional C-SPC calls continue to pop the mark
  set-mark-command-repeat-pop t
 
@@ -100,8 +97,8 @@
 (put 'transient-mark-mode 'permanent-local nil)
 (setq-default transient-mark-mode nil)
 
-;; Typing does not replace the selected region
-(delete-selection-mode -1)
+;; Typing will replace the selected region
+(delete-selection-mode t)
 
 ;; Undo/redo window configuration with C-c <left>/<right>
 (winner-mode 1)
@@ -121,6 +118,9 @@
 ;; Enable this to avoid long lines wrapping and taking up two or more screen
 ;; lines
 ;; (setq-default truncate-lines t)
+
+;; This works better. Protect against very long lines.
+(global-so-long-mode 1)
 
 ;; Keep cursor away from edges when scrolling up/down
 ;;(require 'smooth-scrolling)
@@ -163,8 +163,5 @@
       (make-directory parent-directory t))))
 
 (add-to-list 'find-file-not-found-functions 'dtymon::create-non-existent-directory)
-
-;; Protect against very long lines
-(global-so-long-mode 1)
 
 (provide 'setup-defaults)

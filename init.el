@@ -1,9 +1,3 @@
-;; Ask for confirmation before exiting to cater for fat fingers
-;; (global-set-key (kbd "C-x C-c") (lambda ()
-;;                                   (interactive)
-;;                                   (if (y-or-n-p "Do you really want to exit Emacs ? ")
-;;                                       (save-buffers-kill-emacs))))
-
 ;; Avoid exiting abruptly if I accidentally hit s-q instead of M-q
 (global-set-key (kbd "s-q") (lambda ()
                               (interactive)
@@ -28,7 +22,7 @@
  site-lisp-dir (expand-file-name "site-lisp" user-emacs-directory)
  settings-dir (expand-file-name "settings" user-emacs-directory)
 
- ;; Don't make backups of files under version control
+ ;; Don't make backups of files that are under version control
  vc-make-backup-files nil
  )
 
@@ -52,6 +46,7 @@
 (require 'setup-browse-kill-ring)
 
 ;; Saving history, state etc
+;; now setup earlier in early-init.el
 ;;(require 'setup-desktop)
 (require 'setup-savehist)
 (require 'setup-saveplace)
@@ -71,8 +66,6 @@
 (require 'setup-appearance)
 (require 'setup-modeline)
 (require 'setup-dimmer)
-;; fci-mode breaks lsp-ui-sideline causing it to wrap
-;; (require 'setup-fci-mode)
 (require 'setup-rainbow-delimiters)
 (require 'setup-all-the-icons)
 (require 'setup-vscode-icon)
@@ -91,7 +84,7 @@
 ;; Dired
 (require 'setup-dired)
 
-;; Searching
+;; Search and Replace
 (require 'setup-rgrep)
 (require 'setup-wgrep)
 (require 'setup-visual-regexp)
