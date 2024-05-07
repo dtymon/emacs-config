@@ -25,6 +25,7 @@
   (advice-add #'register-preview :override #'consult-register-window)
 
   :config
+  (setq consult-narrow-key "<")
   (let ((map global-map))
     (define-key map (kbd "C-c M-x") #'consult-mode-command)
     (define-key map (kbd "M-y")     #'consult-yank-pop)
@@ -36,6 +37,22 @@
     ;; Override the default behaviour with the consult variants
     (define-key map (kbd "C-x g")   #'consult-register-load)
     (define-key map (kbd "C-x j")   #'consult-register-load)
+    )
+  )
+
+(use-package consult-projectile
+  :ensure t
+  :config
+  (setq consult-projectile-sources
+        '(consult-projectile--source-projectile-buffer
+          consult-projectile--source-projectile-file
+          consult-projectile--source-projectile-project
+          consult-projectile--source-projectile-dir
+          consult-projectile--source-projectile-recentf
+          ))
+
+  (let ((map global-map))
+    (define-key map (kbd "C-c s-p") #'consult-projectile)
     )
   )
 
