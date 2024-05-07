@@ -35,7 +35,6 @@
   (defvar ido-cur-list nil)
   (defvar ido-require-match nil)
 
-
   :bind (:map ido-file-dir-completion-map
               ("<up>" . previous-history-element)
               ("<down>" . next-history-element)
