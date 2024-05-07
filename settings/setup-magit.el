@@ -15,8 +15,10 @@
   :init
 
   (let ((map global-map))
-    ;; (define-key map (kbd "C-x m") #'magit-status)
-    (define-key map (kbd "C-x m") (lambda ()
+    (define-key map (kbd "C-c g") #'magit-dispatch)
+    (define-key map (kbd "C-c f") #'magit-file-dispatch)
+    (define-key map (kbd "C-x m") #'magit-status)
+    (define-key map (kbd "C-x M") (lambda ()
                                     (interactive)
                                     (other-frame-prefix)
                                     (magit-status)))
@@ -30,6 +32,7 @@
   (setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1
         magit-bury-buffer-function #'magit-restore-window-configuration
         magit-auto-revert-mode nil
+        magit-define-global-key-bindings 'recommended
         )
 
   :config
