@@ -7,6 +7,7 @@
 
   ;; Do not include any elpa files and other state-related files
   (add-to-list 'recentf-exclude "/\\.emacs\\.d/\\(var\\|elpa\\|\\.cache\\)/")
+  (add-to-list 'recentf-exclude "^/private/var/")
   )
 
 (provide 'setup-recentf)

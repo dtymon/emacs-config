@@ -10,7 +10,6 @@
                                         extended-command-history))
 
   (savehist-mode 1)
-
   )
 
 (provide 'setup-savehist)
