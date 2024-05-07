@@ -1,3 +1,4 @@
+;; Set the font size to use based on the monitor width
 (defun dtymon::default-font-size ()
   (cond ((eq (dtymon::monitor-width) 3840) 240)
         ((eq (dtymon::monitor-width) 1920) 140)
@@ -22,11 +23,6 @@
 
 (defcustom dtymon::font-size (dtymon::default-font-size)
   "The default font size to use."
-  :group 'dtymon-appearance
-  :type 'number)
-
-(defcustom dtymon::presentation-font-size 200
-  "The default font size to use in presentation mode."
   :group 'dtymon-appearance
   :type 'number)
 
@@ -74,8 +70,8 @@
   (set-fontset-font t 'hangul (font-spec :name "NanumGothic"))
   (set-fontset-font t 'cyrillic (font-spec :name "Droid Sans Mono"))
 
-  ;; This turns off bi-directional stuff but is supposed to make handling of
-  ;; things like long lines faster.
+  ;; This turns off bi-directional font stuff but is supposed to make handling
+  ;; of things like long lines faster.
   (setq
    bidi-inhibit-bpa         t
    bidi-paragraph-direction 'left-to-right
@@ -157,17 +153,6 @@
 ;;
 ;; https://github.com/emacs-lsp/lsp-ui/issues/285
 (fringe-mode '(16 . 0))
-
-;; ;; Some modes don't seem to play well with diminish
-;; (defmacro dtymon::rename-modeline (package-name mode new-name)
-;;   `(eval-after-load ,package-name
-;;      '(defadvice ,mode (after rename-modeline activate)
-;;         (setq mode-name ,new-name))))
-;;
-;; (dtymon::rename-modeline "js2-mode" js2-mode "JS2")
-;; (dtymon::rename-modeline "typescript-mode" typescript-mode "TS")
-;; (dtymon::rename-modeline "python-mode" python-mode "Py")
-;; (dtymon::rename-modeline "python-black" python-black-on-save-mode "Bl")
 
 (provide 'setup-appearance)
 
