@@ -40,12 +40,12 @@
               ("<down>" . next-history-element)
               )
 
-  :bind (:map global-map
-              ;; Use beframe for default bindings and ido for capitalised
-              ;; versions
-              ("C-x b" . ido-switch-buffer)
-              ("C-x B" . ibuffer)
-              )
+  ;; :bind (:map global-map
+  ;;             ;; Use beframe for default bindings and ido for capitalised
+  ;;             ;; versions
+  ;;             ("C-x b" . ido-switch-buffer)
+  ;;             ("C-x B" . ibuffer)
+  ;;             )
 
 ;; (add-to-list 'ido-ignore-directories "target")
 ;; (add-to-list 'ido-ignore-directories "node_modules")

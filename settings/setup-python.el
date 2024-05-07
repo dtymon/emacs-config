@@ -8,9 +8,6 @@
   ;; Format on save
   (python-black-on-save-mode)
 
-  ;; Show the fill column indicator
-  (display-fill-column-indicator-mode 1)
-
   ;; For now, show the docs in the minibuffer
   (setq-local lsp-eldoc-enable-hover t)
 

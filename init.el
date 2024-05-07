@@ -101,6 +101,7 @@
   (require 'setup-lsp-mode))
  )
 
+(require 'setup-prog-mode)
 (require 'setup-compilation-mode)
 (require 'setup-ediff)
 (require 'setup-projectile)

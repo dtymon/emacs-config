@@ -25,9 +25,8 @@ frame name."
    ;; NOTE: This predicate is not needed if `beframe-mode' is
    ;; non-nil because it sets the `read-buffer-function'.
    (lambda (buf)
-     (beframe--read-buffer-p buf frame))))
-
-
+     (beframe--read-buffer-p buf frame))
+   ))
   )
 
 (provide 'setup-beframe)

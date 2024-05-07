@@ -9,7 +9,6 @@
                                (t (flycheck-mode 1))
                                )
                               (prettier-mode 1)
-                              (display-fill-column-indicator-mode 1)
                             ))
   )
 
