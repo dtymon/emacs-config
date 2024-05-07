@@ -35,13 +35,18 @@
 (setq
   desktop-auto-save-timeout 300
   desktop-missing-file-warning nil
+
+  ;; Don't load a locked desktop
+  desktop-load-locked-desktop nil
+
+  ;; And ask to save the desktop if it is new
+  desktop-save 'ask-if-new
+
 ;;   desktop-files-not-to-save ".*"
 ;;   desktop-buffers-not-to-save ".*"
 ;;   desktop-globals-to-clear nil
-;;   desktop-load-locked-desktop t
 ;;   desktop-restore-eager 0
 ;;   desktop-restore-frames 0
-;;   desktop-save 'ask-if-new
   )
 
 ;; (dolist (symbol '(kill-ring log-edit-comment-ring))

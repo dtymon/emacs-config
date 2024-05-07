@@ -1,13 +1,3 @@
-;; (with-eval-after-load 'ediff
-;;   ;; Setup ediff
-;;   ediff-diff-options "-w"
-;;   ediff-split-window-function 'split-window-horizontally
-;;   ediff-window-setup-function 'ediff-setup-windows-plain
-;;
-;;   (set-face-attribute 'ediff-even-diff-A nil :background "#2a3a5a")
-;;   (set-face-attribute 'ediff-even-diff-B nil :background "#2a3a5a")
-;;   )
-
 (use-package ediff
   :defer t
   :config

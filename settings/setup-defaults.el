@@ -55,11 +55,6 @@
  fill-column 80
  comment-fill-column 80
 
- ;; Setup ediff
- ;; ediff-diff-options "-w"
- ediff-split-window-function 'split-window-horizontally
- ediff-window-setup-function 'ediff-setup-windows-plain
-
  electric-indent-mode t
 
  ;; Show the full stack when eval'ing an expression

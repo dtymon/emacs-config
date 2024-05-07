@@ -78,7 +78,7 @@
 ;; Completions
 (require 'setup-company)
 (require 'setup-consult)
-;;(require 'setup-mct)
+(require 'setup-mct)
 (require 'setup-hippie)
 
 ;; Dired
