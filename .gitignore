@@ -1,7 +1,9 @@
 /.cache
+/.log
 /eln-cache
 /elpa
-/var
-/pre-init-hooks.el
 /post-init-hooks.el
-/.log
+/pre-init-hooks.el
+/pre-init-hooks.el
+/tree-sitter
+/var

@@ -95,6 +95,8 @@
 (require 'setup-rgrep)
 (require 'setup-wgrep)
 (require 'setup-visual-regexp)
+(require 'setup-ripgrep)
+(require 'setup-iedit)
 
 ;; Coding
 (cond
@@ -111,6 +113,7 @@
 (require 'setup-projectile)
 (require 'setup-treemacs)
 (require 'setup-tree-sitter)
+;; (require 'setup-treesit)
 (require 'setup-magit)
 (require 'setup-prettier)
 (require 'setup-elisp-slime-nav)
