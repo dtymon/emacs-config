@@ -1,5 +1,3 @@
-(require 'misc)
-
 (let ((map global-map))
   ;; Simple navigation
   (define-key map (kbd "<home>") #'beginning-of-line)
@@ -8,14 +6,14 @@
   (define-key map (kbd "M-n")    #'forward-paragraph)
 
   ;; Page up and down
-  (define-key map (kbd "C-v") #'scroll-up-command)
-  (define-key map (kbd "C-z") #'scroll-down-command)
-  (define-key map (kbd "<next>") #'scroll-up-command)
+  (define-key map (kbd "C-v")     #'scroll-up-command)
+  (define-key map (kbd "C-z")     #'scroll-down-command)
+  (define-key map (kbd "<next>")  #'scroll-up-command)
   (define-key map (kbd "<prior>") #'scroll-down-command)
 
   ;; Move more quickly
-  (define-key map (kbd "M-<up>")  #'backward-sexp)
-  (define-key map (kbd "M-<down>") #'forward-sexp)
+  (define-key map (kbd "M-<up>")    #'backward-sexp)
+  (define-key map (kbd "M-<down>")  #'forward-sexp)
   (define-key map (kbd "M-<left>")  #'backward-sexp)
   (define-key map (kbd "M-<right>") #'forward-sexp)
   (define-key map (kbd "C-S-n")     (lambda () (interactive) (ignore-errors (next-line 5))))
@@ -61,7 +59,7 @@
 
 ;; Undo and restore window configurations
 (let ((map global-map))
-  (define-key map (kbd "C-x <left>") #'winner-undo)
+  (define-key map (kbd "C-x <left>")  #'winner-undo)
   (define-key map (kbd "C-x <right>") #'winner-redo)
   )
 

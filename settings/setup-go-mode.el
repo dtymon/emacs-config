@@ -5,7 +5,6 @@
   :config
   (add-hook 'go-mode-hook
             (lambda ()
-              (display-fill-column-indicator-mode 1)
               ;; (flycheck-mode 1)
               (setq
                truncate-lines   nil

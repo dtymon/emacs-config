@@ -39,31 +39,11 @@
   (let ((map magit-status-mode-map))
     (define-key map (kbd "S-<prior>") #'magit-section-up)
     )
-)
+  )
 
-;;
-;;  (add-hook 'git-commit-mode-hook (lambda ()
-;;                                    (beginning-of-buffer)
-;;                                    (when (looking-at "#")
-;;                                      (forward-line 2))))
-;;
-;;  (defadvice vc-annotate (around fullscreen activate)
-;;    (window-configuration-to-register :vc-annotate-fullscreen)
-;;    ad-do-it
-;;    (delete-other-windows))
-;;
-;;  (define-key vc-annotate-mode-map
-;;    (kbd "q") `vc-annotate-quit)
-;;  )
-
-;; Bring in libgit to make magit faster
-;; (use-package libgit
+;; (use-package magit-delta
 ;;   :ensure t
-;;   )
-;;
-;; (use-package magit-libgit
-;;   :ensure t
-;;   :after (magit libgit)
+;;   :hook (magit-mode . magit-delta-mode)
 ;;   )
 
 ;; (use-package difftastic

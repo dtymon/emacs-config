@@ -1,9 +1,13 @@
-(require 'hippie-exp)
+(use-package hippie-exp
+  )
 
-(defvar he-search-loc-backward (make-marker))
-(defvar he-search-loc-forward (make-marker))
+;; These additions have been graciously put together by Magnar Sveen
+;; https://gist.github.com/magnars/4060654
 
-(defun try-expand-dabbrev-closest-first (old)
+(defvar magnar::he-search-loc-backward (make-marker))
+(defvar magnar::he-search-loc-forward (make-marker))
+
+(defun magnar::try-expand-dabbrev-closest-first (old)
   "Try to expand word \"dynamically\", searching the current buffer.
 The argument OLD has to be nil the first call of this function, and t
 for subsequent calls (for further possible expansions of the same
@@ -11,8 +15,8 @@ string).  It returns t if a new expansion is found, nil otherwise."
   (let (expansion)
     (unless old
       (he-init-string (he-dabbrev-beg) (point))
-      (set-marker he-search-loc-backward he-string-beg)
-      (set-marker he-search-loc-forward he-string-end))
+      (set-marker magnar::he-search-loc-backward he-string-beg)
+      (set-marker magnar::he-search-loc-forward he-string-end))
 
     (if (not (equal he-search-string ""))
         (save-excursion
@@ -29,7 +33,7 @@ string).  It returns t if a new expansion is found, nil otherwise."
                   chosen)
 
               ;; search backward
-              (goto-char he-search-loc-backward)
+              (goto-char magnar::he-search-loc-backward)
               (setq expansion (he-dabbrev-search he-search-string t))
 
               (when expansion
@@ -38,7 +42,7 @@ string).  It returns t if a new expansion is found, nil otherwise."
                 (setq backward-distance (- he-string-beg backward-point)))
 
               ;; search forward
-              (goto-char he-search-loc-forward)
+              (goto-char magnar::he-search-loc-forward)
               (setq expansion (he-dabbrev-search he-search-string nil))
 
               (when expansion
@@ -56,11 +60,11 @@ string).  It returns t if a new expansion is found, nil otherwise."
 
               (when (equal chosen :forward)
                 (setq expansion forward-expansion)
-                (set-marker he-search-loc-forward forward-point))
+                (set-marker magnar::he-search-loc-forward forward-point))
 
               (when (equal chosen :backward)
                 (setq expansion backward-expansion)
-                (set-marker he-search-loc-backward backward-point))
+                (set-marker magnar::he-search-loc-backward backward-point))
 
               ))))
 
@@ -72,7 +76,7 @@ string).  It returns t if a new expansion is found, nil otherwise."
         (he-substitute-string expansion t)
         t))))
 
-(defun try-expand-line-closest-first (old)
+(defun magnar::try-expand-line-closest-first (old)
   "Try to complete the current line to an entire line in the buffer.
 The argument OLD has to be nil the first call of this function, and t
 for subsequent calls (for further possible completions of the same
@@ -83,8 +87,8 @@ string).  It returns t if a new completion is found, nil otherwise."
                            comint-prompt-regexp)))
     (unless old
       (he-init-string (he-line-beg strip-prompt) (point))
-      (set-marker he-search-loc-backward he-string-beg)
-      (set-marker he-search-loc-forward he-string-end))
+      (set-marker magnar::he-search-loc-backward he-string-beg)
+      (set-marker magnar::he-search-loc-forward he-string-end))
 
     (if (not (equal he-search-string ""))
         (save-excursion
@@ -101,7 +105,7 @@ string).  It returns t if a new completion is found, nil otherwise."
                   chosen)
 
               ;; search backward
-              (goto-char he-search-loc-backward)
+              (goto-char magnar::he-search-loc-backward)
               (setq expansion (he-line-search he-search-string
                                               strip-prompt t))
 
@@ -111,7 +115,7 @@ string).  It returns t if a new completion is found, nil otherwise."
                 (setq backward-distance (- he-string-beg backward-point)))
 
               ;; search forward
-              (goto-char he-search-loc-forward)
+              (goto-char magnar::he-search-loc-forward)
               (setq expansion (he-line-search he-search-string
                                               strip-prompt nil))
 
@@ -130,11 +134,11 @@ string).  It returns t if a new completion is found, nil otherwise."
 
               (when (equal chosen :forward)
                 (setq expansion forward-expansion)
-                (set-marker he-search-loc-forward forward-point))
+                (set-marker magnar::he-search-loc-forward forward-point))
 
               (when (equal chosen :backward)
                 (setq expansion backward-expansion)
-                (set-marker he-search-loc-backward backward-point))
+                (set-marker magnar::he-search-loc-backward backward-point))
 
               ))))
 
@@ -146,18 +150,25 @@ string).  It returns t if a new completion is found, nil otherwise."
         (he-substitute-string expansion t)
         t))))
 
-(setq hippie-expand-try-functions-list '(try-expand-dabbrev-closest-first
-                                         try-complete-file-name
-                                         try-expand-dabbrev-all-buffers
-                                         try-expand-dabbrev-from-kill
-                                         try-expand-all-abbrevs
-                                         try-complete-lisp-symbol-partially
-                                         try-complete-lisp-symbol))
+(setq hippie-expand-try-functions-list
+      '(magnar::try-expand-dabbrev-closest-first
+        try-complete-file-name-partially
+        try-complete-file-name
+        try-expand-all-abbrevs
+        try-expand-list
+        try-expand-line
+        try-expand-dabbrev
+        try-expand-dabbrev-all-buffers
+        try-expand-dabbrev-from-kill
+        try-complete-lisp-symbol-partially
+        try-complete-lisp-symbol))
+
 
 (defun hippie-expand-lines ()
   (interactive)
-  (let ((hippie-expand-try-functions-list '(try-expand-line-closest-first
-                                            try-expand-line-all-buffers)))
+  (let ((hippie-expand-try-functions-list
+         '(magnar::try-expand-line-closest-first
+           try-expand-line-all-buffers)))
     (end-of-line)
     (hippie-expand nil)))
 

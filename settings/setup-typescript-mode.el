@@ -11,11 +11,6 @@
 
   (add-hook 'typescript-mode-hook
             (lambda ()
-              ;; Show the fill column indicator. This is the comment fill column
-              ;; and not the code fill column which is defined in prettier and
-              ;; could be different.
-              (display-fill-column-indicator-mode 1)
-
               ;; Only auto-fill comment lines. prettier will handle the code.
               (dtymon::auto-fill-comments-only-hook)
               (prettier-mode 1)
@@ -41,6 +36,9 @@
                js-indent-level 2
 
                comment-multi-line t
+
+               ;; These code actions are very OTT
+               lsp-ui-sideline-show-code-actions nil
                )
 
               ;; Don't use the fill column from the prettier config

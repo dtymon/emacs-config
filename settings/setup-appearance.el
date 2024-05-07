@@ -134,8 +134,7 @@
   (add-hook 'after-make-frame-functions #'dtymon::change-cursor-colour)
 )
 
-;; Highlight current line in text and programming mode
-(add-hook 'prog-mode-hook #'hl-line-mode)
+;; Highlight current line in text
 (add-hook 'text-mode-hook #'hl-line-mode)
 (setq
  ;; Do not shrink the width of the line numbers column as its really distracting

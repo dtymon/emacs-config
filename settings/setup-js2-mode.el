@@ -26,7 +26,6 @@
   (add-hook 'js2-mode-hook
             (lambda ()
 ;;              (flycheck-mode 1)
-              (display-fill-column-indicator-mode 1)
               (dtymon::auto-fill-comments-only-hook)
 
               (make-variable-buffer-local 'whitespace-style)
