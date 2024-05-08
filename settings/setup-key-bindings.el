@@ -78,7 +78,6 @@
                                          (other-frame-prefix)
                                          (switch-to-buffer "*scratch*")))
                                  ))
-
   ;; Cycle through frames
   (define-key map (kbd "<f8>") #'other-frame)
   )
