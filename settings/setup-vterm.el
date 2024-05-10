@@ -1,5 +1,8 @@
 (use-package vterm
   :ensure t
+  :bind (:map vterm-mode-map
+              ("C-c C-x" . vterm--self-insert)
+              )
   :config
   ;; (setq term-prompt-regexp "^\nzsh .*\n[0-9][0-9]:[0-9][0-9][AP]M .*> ")
 
@@ -7,9 +10,6 @@
     (hl-line-mode -1)
     (display-line-numbers-mode -1))
 
-  (let ((map vterm-mode-map))
-    (define-key map (kbd "C-c C-x") #'vterm--self-insert)
-    )
   :hook (vterm-mode . dtymon::vterm-turn-off-chrome)
   )
 

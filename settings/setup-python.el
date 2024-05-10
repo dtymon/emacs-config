@@ -105,13 +105,12 @@
 
 (use-package python-pytest
   :ensure t
-  :config
-  (let ((map python-mode-map))
-    (define-key map (kbd "C-c t a") #'python-pytest)
-    (define-key map (kbd "C-c t f") #'python-pytest-file)
-    (define-key map (kbd "C-c t t") #'python-pytest-function-dwim)
-    (define-key map (kbd "C-c t r") #'python-pytest-repeat)
-    )
+  :bind (:map python-mode-map
+              ("C-c t a" . python-pytest)
+              ("C-c t f" . python-pytest-file)
+              ("C-c t t" . python-pytest-function-dwim)
+              ("C-c t r" . python-pytest-repeat)
+              )
   )
 
 ;; (flycheck-define-checker python-dtymon

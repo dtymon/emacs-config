@@ -1,4 +1,7 @@
 (use-package hippie-exp
+  :bind (
+         ("M-/" . hippie-expand-no-case-fold)
+         )
   )
 
 ;; These additions have been graciously put together by Magnar Sveen

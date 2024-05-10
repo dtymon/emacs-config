@@ -4,7 +4,12 @@
          ("C-c M-x" . consult-mode-command)
          ("M-y"     . consult-yank-pop)
          ("C-x C-j" . consult-goto-line)
-
+         ("C-c C-l" . consult-line)
+         ("C-c C-r" . consult-line-multi)
+         ("C-c C-f" . consult-focus-lines)
+         ;; Override the default behaviour with the consult variants
+         ("C-x g"   . consult-register-load)
+         ("C-x j"   . consult-register-load)
          )
 
   ;; Enable automatic preview at point in the *Completions* buffer. This is
@@ -26,22 +31,14 @@
 
   :config
   (setq consult-narrow-key "<")
-  (let ((map global-map))
-    (define-key map (kbd "C-c M-x") #'consult-mode-command)
-    (define-key map (kbd "M-y")     #'consult-yank-pop)
-    (define-key map (kbd "C-x C-j") #'consult-goto-line)
-    (define-key map (kbd "C-c C-l") #'consult-line)
-    (define-key map (kbd "C-c C-r") #'consult-line-multi)
-    (define-key map (kbd "C-c C-f") #'consult-focus-lines)
-
-    ;; Override the default behaviour with the consult variants
-    (define-key map (kbd "C-x g")   #'consult-register-load)
-    (define-key map (kbd "C-x j")   #'consult-register-load)
-    )
   )
 
 (use-package consult-projectile
   :ensure t
+  :bind (
+         ("C-c s-p" . consult-projectile)
+         )
+
   :config
   (setq consult-projectile-sources
         '(consult-projectile--source-projectile-buffer
@@ -51,9 +48,6 @@
           consult-projectile--source-projectile-recentf
           ))
 
-  (let ((map global-map))
-    (define-key map (kbd "C-c s-p") #'consult-projectile)
-    )
   )
 
 (provide 'setup-consult)
