@@ -4,8 +4,8 @@
   (beframe-mode 1)
   :bind (:map global-map
               ;; Use beframe for default bindings
-              ("C-x b" . beframe-switch-buffer)
-              ("C-x C-b" . beframe-buffer-menu)
+              ("C-x C-b" . beframe-switch-buffer)
+              ("C-x S-C-b" . beframe-buffer-menu)
               )
 
   :config
