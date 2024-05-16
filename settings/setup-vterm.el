@@ -2,6 +2,7 @@
   :ensure t
   :bind (:map vterm-mode-map
               ("C-c C-x" . vterm--self-insert)
+              ("C-x <prior>" . vterm-copy-mode)
               )
   :config
   ;; (setq term-prompt-regexp "^\nzsh .*\n[0-9][0-9]:[0-9][0-9][AP]M .*> ")
