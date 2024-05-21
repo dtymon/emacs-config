@@ -37,6 +37,9 @@
    ;; lsp--show-message nil
 
 ;;   lsp-completion-provider :none
+
+   ;; Do not auto-configure dap-mode
+   lsp-enable-dap-auto-configure nil
    )
 
   :config

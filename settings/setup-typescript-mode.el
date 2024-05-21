@@ -53,14 +53,35 @@
 
   (add-hook 'typescript-mode-hook 'dtymon::common-ts-mode-hook)
   (add-hook 'typescript-ts-mode-hook 'dtymon::common-ts-mode-hook)
+  :config
+  (require 'dap-node)
+  (dap-node-setup)
 )
 
 (use-package jest-test-mode
   :ensure t
   :commands jest-test-mode
   :hook (typescript-mode typescript-mode-ts)
+  :bind (:map typescript-mode-map
+              ("C-c t a" . jest-test-run-all-tests)
+              ("C-c t f" . jest-test-run)
+              ("C-c t t" . jest-test-run-at-point)
+              ("C-c t r" . jest-test-rerun-test)
+              )
   :config
-  (setq jest-test-command-string "yarn %s test %s")
+  (setq
+   ;; Run node rather than npx so we can pass some special arguments
+   jest-test-command-string "node %s ./node_modules/.bin/jest %s %s"
+
+   ;; The arguments for node
+   jest-test-npx-options '("--experimental-vm-modules")
+
+   ;; The arguments for jest
+   jest-test-options '("--color"
+                       "--coverage=false"
+                       "--verbose=false"
+                       "--passWithNoTests")
+   )
   )
 
 (provide 'setup-typescript-mode)
