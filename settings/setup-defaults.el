@@ -71,6 +71,21 @@
 
  ;; Scroll interpreter output automatically
  comint-move-point-for-output t
+
+ ;; Timezones to show with world-clock
+ world-clock-time-format "%Y-%m-%dT%H:%M:%S%z %a, %d %b %H:%M %Z"
+ world-clock-list '(("Etc/UTC" "UTC")
+                    ("Pacific/Auckland" "Auckland")
+                    ("Australia/Melbourne" "Melbourne")
+                    ("Asia/Tokyo" "Tokyo")
+                    ("Asia/Singapore" "Singapore")
+                    ("Asia/Dubai" "Dubai")
+                    ("Europe/Athens" "Athens")
+                    ("Europe/Paris" "Paris")
+                    ("Europe/London" "London")
+                    ("America/New_York" "New York")
+                    ("America/Denver" "Denver")
+                    ("America/Los_Angeles" "Los Angeles"))
  )
 
 ;; 80 chars is the default fill column
