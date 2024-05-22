@@ -28,4 +28,9 @@
         )
   )
 
+(use-package git-timemachine
+  :ensure t
+  :defer t
+  )
+
 (provide 'setup-magit)
