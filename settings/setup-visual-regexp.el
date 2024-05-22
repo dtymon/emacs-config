@@ -1,8 +1,10 @@
 (use-package visual-regexp
   :ensure t
-  :bind (("M-&" . vr/query-replace)
-         ("C-M-&" . vr/replace)
-         )
-  )
+  :config (define-key global-map (kbd "M-%")
+                      (lambda (&optional prefix)
+                        (interactive "P")
+                        (call-interactively
+                         (if prefix  #'vr/replace #'vr/query-replace)
+                         ))))
 
 (provide 'setup-visual-regexp)
