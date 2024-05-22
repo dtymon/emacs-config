@@ -14,7 +14,7 @@
  )
 
 ;; Make sure use-package is installed
-(when (not (package-installed-p 'use-package))
+(unless (package-installed-p 'use-package)
   (package-install 'use-package))
 
 ;; Make sure blackout is installed to be able to cleanup the minor modes in the
