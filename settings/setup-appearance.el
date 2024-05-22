@@ -1,6 +1,6 @@
 ;; Set the font size to use based on the monitor width
 (defun dtymon::default-font-size ()
-  (cond ((eq (dtymon::monitor-width) 3840) 240)
+  (cond ((eq (dtymon::monitor-width) 3840) 190)
         ((eq (dtymon::monitor-width) 1920) 140)
         ((eq (dtymon::monitor-width) 3440) 180)
         (t 180)))
@@ -16,10 +16,14 @@
   :group 'dtymon-appearance
   :type 'symbol)
 
-(defcustom dtymon::font-family "Ubuntu Mono"
+(defcustom dtymon::font-family "Monaco"
   "The default font family to use."
   :group 'dtymon-appearance
   :type 'string)
+;; (defcustom dtymon::font-family "Ubuntu Mono"
+;;   "The default font family to use."
+;;   :group 'dtymon-appearance
+;;   :type 'string)
 
 (defcustom dtymon::font-size (dtymon::default-font-size)
   "The default font size to use."
