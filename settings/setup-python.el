@@ -105,12 +105,19 @@
 
 (use-package python-pytest
   :ensure t
-  :bind (:map python-mode-map
-              ("C-c t a" . python-pytest)
-              ("C-c t f" . python-pytest-file)
-              ("C-c t t" . python-pytest-function-dwim)
-              ("C-c t r" . python-pytest-repeat)
-              )
+  :config
+  (defalias 'dtymon::python-test-map
+    (let ((prefix-map (make-sparse-keymap)))
+      (define-key prefix-map "a" '("all" . python-pytest))
+      (define-key prefix-map "f" '("file" . python-pytest-file))
+      (define-key prefix-map "t" '("single" . python-pytest-function-dwim))
+      (define-key prefix-map "r" '("repeat" . python-pytest-repeat))
+      prefix-map
+      ))
+
+  (let ((map python-mode-map))
+    (define-key map (kbd "C-c t") '("test" . dtymon::python-test-map))
+    )
   )
 
 ;; (flycheck-define-checker python-dtymon
