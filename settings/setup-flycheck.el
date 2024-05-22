@@ -20,11 +20,11 @@
 (defun dtymon::toggle-flycheck-show-buffer-diagnostics ()
   "Show or destroy the flycheck buffer diagnostics"
   (interactive)
-  (let* ((name "Flycheck errors")
+  (let* ((name "*Flycheck errors*")
          (target (get-buffer name)))
     (cond ((eq target nil)
            (flycheck-list-errors))
-          (t (dtymon::kill-buffer-and-window target (get-buffer-window target)))
+          (t (kill-buffer target))
           )
     ))
 
@@ -32,10 +32,11 @@
   "Show or destroy the flycheck project diagnostics"
   (interactive)
   (let* ((prj (project-current))
-         (root (project-root prj))
          (name "*Project errors*")
          (target (get-buffer name)))
-    (cond ((eq target nil)
+    (cond ((not prj)
+           (dtymon::toggle-flycheck-show-buffer-diagnostics))
+          ((eq target nil)
            (flycheck-projectile-list-errors))
           (t (kill-buffer target))
           )
@@ -71,18 +72,17 @@
                           javascript-standard)))
 
   ;; Key bindings
+  (defalias 'dtymon::flycheck-diag-map
+    (let ((prefix-map (make-sparse-keymap)))
+      (define-key prefix-map "b" '("buffer" . dtymon::toggle-flycheck-show-buffer-diagnostics))
+      (define-key prefix-map "p" '("project" . dtymon::toggle-flycheck-show-project-diagnostics))
+      prefix-map
+      ))
+
   (let ((map flycheck-mode-map))
-    (define-key map (kbd "C-c C-p") #'flycheck-previous-error)
-    (define-key map (kbd "C-c C-n") #'flycheck-next-error)
-    (let ((diag-map (define-prefix-command 'dtymon::diag-map)))
-      (define-key diag-map "p" (lambda ()
-                                 (interactive)
-                                 (cond ((project-current) (dtymon::toggle-flycheck-show-project-diagnostics))
-                                       (t (dtymon::toggle-flycheck-show-buffer-diagnostics)))))
-      (define-key diag-map "b" (lambda ()
-                                 (interactive)
-                                 (dtymon::toggle-flycheck-show-buffer-diagnostics))))
-    (define-key map (kbd "C-c C-d") 'dtymon::diag-map)
+    (define-key map (kbd "C-c C-p") '("previous error" . flycheck-previous-error))
+    (define-key map (kbd "C-c C-n") '("next error" . flycheck-next-error))
+    (define-key map (kbd "C-c C-d") '("diagnostics" . dtymon::flycheck-diag-map))
     )
   )
 
