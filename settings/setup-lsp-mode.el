@@ -23,7 +23,7 @@
    ;; lsp-log-io t
 
    ;; Turn off some features
-   lsp-eldoc-enable-hover                nil
+   ;; lsp-eldoc-enable-hover                t
    lsp-headerline-breadcrumb-enable      nil
    lsp-lens-enable                       nil
    lsp-enable-symbol-highlighting        nil
@@ -67,15 +67,13 @@
   :ensure t
   :after lsp-mode
   :commands lsp-ui-mode
-  :bind (:map global-map
-              ;; Bind a global key to bring up the documentation on on-demand
-              ("C-x s-d" . lsp-ui-doc-glance))
+  :bind (:map lsp-ui-mode-map
+              ("C-c d" . lsp-ui-doc-glance))
 
   :config
   (setq
-    lsp-ui-peek-enable          nil
-    lsp-ui-doc-enable           nil
     lsp-ui-imenu-enable         nil
+    lsp-ui-peek-enable          nil
     lsp-ui-doc-enable           nil
     lsp-ui-doc-show-with-cursor nil
     lsp-ui-doc-show-with-mouse  nil

@@ -12,10 +12,6 @@
          ("C-c g"     . magit-dispatch)
          ("C-c f"     . magit-file-dispatch)
          ("C-x m"     . magit-status)
-         ("C-c C-m l" . magit-log-buffer-file)
-         ("C-c C-m b" . magit-blame-addition)
-         ("C-c C-m d" . magit-diff)
-         ("C-c C-m s" . magit-stash)
          :map magit-status-mode-map
          ("S-<prior>" . magit-section-up)
          )
@@ -30,7 +26,6 @@
 
 (use-package git-timemachine
   :ensure t
-  :defer t
   )
 
 (provide 'setup-magit)

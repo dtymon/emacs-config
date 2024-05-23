@@ -42,6 +42,9 @@
   :blackout (typescript-mode . "TS")
   :mode "\\.[cm]?[jt]s"
   :interpreter "node"
+  :bind (:map typescript-mode-map
+              ("C-c C-t" . git-timemachine-toggle)
+              )
 
   :init
   ;; We require js2-mode as we use its fill function
@@ -67,6 +70,7 @@
               ("C-c t f" . jest-test-run)
               ("C-c t t" . jest-test-run-at-point)
               ("C-c t r" . jest-test-rerun-test)
+              ("C-c C-t" . git-timemachine-toggle)
               )
   :config
   (setq
@@ -82,6 +86,10 @@
                        "--verbose=false"
                        "--passWithNoTests")
    )
+  ;; Make the prefixes more obvious in which-key
+  (which-key-add-keymap-based-replacements typescript-mode-map
+    "C-c t" "run tests"
+    )
   )
 
 (provide 'setup-typescript-mode)
