@@ -3,7 +3,7 @@
   :after (recentf)
   :custom
   (ido-enable-prefix                      nil)
-  (ido-enable-flex-matching               t)
+  (ido-enable-flex-matching               nil)
   (ido-case-fold                          t)
   (ido-auto-merge-work-directories-length 0)
   (ido-create-new-buffer                  'prompt)
