@@ -75,6 +75,20 @@
   :init
   (add-hook 'python-mode-hook    'dtymon::common-python-hook)
   (add-hook 'python-ts-mode-hook 'dtymon::common-python-hook)
+  :bind (:map python-mode-map
+              ("C-c C-t" . git-timemachine-toggle)
+              ("C-c t a" . python-pytest)
+              ("C-c t f" . python-pytest-file)
+              ("C-c t t" . python-pytest-function-dwim)
+              ("C-c t r" . python-pytest-repeat)
+              )
+
+  :config
+  ;; Make the python prefixes more obvious in which-key
+  (which-key-add-keymap-based-replacements python-mode-map
+    "C-c C-i" "python imports"
+    "C-c t" "run tests"
+    )
   )
 
 (use-package python-black
@@ -83,16 +97,24 @@
   :blackout python-black-on-save-mode
   )
 
-;; (use-package lsp-pyright
-;;   :ensure t
-;;   :after python
-;;   :blackout
-;;   )
-
 (use-package pyenv-mode
-  :ensure t
-  :config
-  (pyenv-mode)
+  ;; This package is a bad citizen as it sets keys in the global map rather
+  ;; than being able to restrict it to just python keymaps. So override their
+  ;; keymap such that it is empty and set the key bindings when visiting python
+  ;; sources.
+  :init
+  (setq pyenv-mode-map
+        (let ((map (make-sparse-keymap)))
+          map))
+  :hook python-ts-mode python-mode
+  :bind
+  (:map python-mode-map
+        ("C-c C-s" . pyenv-mode-set)
+        ("C-c C-u" . pyenv-mode-unset)
+        :map python-ts-mode-map
+        ("C-c C-s" . pyenv-mode-set)
+        ("C-c C-u" . pyenv-mode-unset)
+        )
   )
 
 (use-package poetry
@@ -105,19 +127,6 @@
 
 (use-package python-pytest
   :ensure t
-  :config
-  (defalias 'dtymon::python-test-map
-    (let ((prefix-map (make-sparse-keymap)))
-      (define-key prefix-map "a" '("all" . python-pytest))
-      (define-key prefix-map "f" '("file" . python-pytest-file))
-      (define-key prefix-map "t" '("single" . python-pytest-function-dwim))
-      (define-key prefix-map "r" '("repeat" . python-pytest-repeat))
-      prefix-map
-      ))
-
-  (let ((map python-mode-map))
-    (define-key map (kbd "C-c t") '("test" . dtymon::python-test-map))
-    )
   )
 
 ;; (flycheck-define-checker python-dtymon

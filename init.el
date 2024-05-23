@@ -44,6 +44,7 @@
 (require 'setup-which-key)
 (require 'setup-whitespace-cleanup)
 (require 'setup-browse-kill-ring)
+(require 'setup-hydra)
 
 ;; Saving history, state etc
 ;; now setup earlier in early-init.el
@@ -80,6 +81,7 @@
 (require 'setup-consult)
 (require 'setup-mct)
 (require 'setup-hippie)
+;; (require 'setup-helm)
 
 ;; Dired
 (require 'setup-dired)
@@ -98,8 +100,8 @@
   (require 'setup-eglot))
  (t
   (require 'setup-flycheck)
-  (require 'setup-lsp-mode)
-  (require 'setup-dap-mode))
+  (require 'setup-lsp-mode))
+  ;; (require 'setup-dap-mode))
  )
 
 (require 'setup-prog-mode)

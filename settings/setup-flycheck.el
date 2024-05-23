@@ -56,6 +56,13 @@
                                          mode-enabled)
    )
 
+  :bind (:map flycheck-mode-map
+              ("C-c C-p" . flycheck-previous-error)
+              ("C-c C-n" . flycheck-next-error)
+              ("C-c C-d b" . dtymon::toggle-flycheck-show-buffer-diagnostics)
+              ("C-c C-d p" . dtymon::toggle-flycheck-show-project-diagnostics)
+              )
+
   :config
   (set-face-attribute 'flycheck-fringe-error nil :background "yellow" :foreground "red")
 
@@ -71,18 +78,10 @@
                           javascript-jshint
                           javascript-standard)))
 
-  ;; Key bindings
-  (defalias 'dtymon::flycheck-diag-map
-    (let ((prefix-map (make-sparse-keymap)))
-      (define-key prefix-map "b" '("buffer" . dtymon::toggle-flycheck-show-buffer-diagnostics))
-      (define-key prefix-map "p" '("project" . dtymon::toggle-flycheck-show-project-diagnostics))
-      prefix-map
-      ))
-
-  (let ((map flycheck-mode-map))
-    (define-key map (kbd "C-c C-p") '("previous error" . flycheck-previous-error))
-    (define-key map (kbd "C-c C-n") '("next error" . flycheck-next-error))
-    (define-key map (kbd "C-c C-d") '("diagnostics" . dtymon::flycheck-diag-map))
+  ;; Make the flycheck prefixes more obvious in which-key
+  (which-key-add-keymap-based-replacements flycheck-mode-map
+    "C-c !" "flycheck"
+    "C-c C-d" "diagnostics"
     )
   )
 
