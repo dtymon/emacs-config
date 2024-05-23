@@ -1,39 +1,25 @@
 (use-package ido
   :ensure t
   :after (recentf)
-  :config
-  (ido-mode 'buffers)
-
+  :custom
+  (ido-enable-prefix                      nil)
+  (ido-enable-flex-matching               t)
+  (ido-case-fold                          t)
+  (ido-auto-merge-work-directories-length 0)
+  (ido-create-new-buffer                  'prompt)
+  (ido-use-filename-at-point               nil)
+  (ido-max-prospects                       20)
+  (ido-ignore-buffers                     '("\\` " "\*EGLOT"))
+  ;; Don't raise frames to show selected buffer
+  (ido-default-buffer-method 'selected-window)
   ;; Always rescan buffer for imenu
-  (set-default 'imenu-auto-rescan t)
-
-  ;;(setq ido-enable-prefix nil
-  ;;      ido-enable-flex-matching t
-  ;;      ido-case-fold nil
-  ;;      ido-auto-merge-work-directories-length -1
-  ;;      ido-create-new-buffer 'always
-  ;;      ido-use-filename-at-point nil
-  ;;      ido-max-prospects 10)
-  (setq
-   ido-enable-prefix                      nil
-   ido-enable-flex-matching               nil
-   ido-case-fold                          t
-   ido-auto-merge-work-directories-length 0
-   ido-create-new-buffer                  'prompt
-   ido-use-filename-at-point               nil
-   ido-max-prospects                       20
-   ido-ignore-buffers                     '("\\` " "\*EGLOT")
-
-   ;; Don't raise frames to show selected buffer
-   ;; ido-default-buffer-method 'raise-frame
-   ido-default-buffer-method 'selected-window
-   )
+  (imenu-auto-rescan t)
 
   ;; Fix for the warnings produced by ido-ubiquitous
-  (defvar ido-cur-item nil)
-  (defvar ido-default-item nil)
-  (defvar ido-cur-list nil)
-  (defvar ido-require-match nil)
+  ;; (defvar ido-cur-item nil)
+  ;; (defvar ido-default-item nil)
+  ;; (defvar ido-cur-list nil)
+  ;; (defvar ido-require-match nil)
 
   :bind (:map ido-file-dir-completion-map
               ("<up>" . previous-history-element)
@@ -41,10 +27,10 @@
 
               :map global-map
               ("C-x b" . ido-switch-buffer)
-              ("C-x S-b" . ibuffer))
+              ("C-x C-b" . ibuffer))
 
-;; (add-to-list 'ido-ignore-directories "target")
-;; (add-to-list 'ido-ignore-directories "node_modules")
+  :config
+  (ido-mode 'buffers)
   )
 
 ;; Ido at point <M-tab>

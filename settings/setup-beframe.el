@@ -3,16 +3,18 @@
   :init
   (beframe-mode 1)
   :bind (:map global-map
-              ;; Use beframe for default bindings
-              ("C-x C-b" . beframe-switch-buffer)
-              ("C-x S-C-b" . beframe-buffer-menu)
+              ("s-b b" . beframe-switch-buffer)
+              ("s-b l" . beframe-buffer-menu)
               )
 
-  :config
+  :custom
   ;; Don't create separate scratch buffers for new frames as it quickly
   ;; degenerates to something unworkable.
-  (setq beframe-create-frame-scratch-buffer nil)
+  (beframe-create-frame-scratch-buffer nil)
 
+  :config
+  ;; Redefine the beframe buffer prompt to select the most recent buffer when
+  ;; an empty input is provided.
   (defun beframe--buffer-prompt (&optional frame)
     "Prompt for buffer among `beframe-buffer-names'.
 
