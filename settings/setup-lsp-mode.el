@@ -32,6 +32,10 @@
    lsp-modeline-diagnostics-enable       nil
    lsp-modeline-workspace-status-enable  nil
 
+   ;; Do not replace text to the right of the completion point when inserting
+   ;; the selected completion. Just insert the text instead.
+   lsp-completion-default-behaviour :insert
+
    ;; It looks like this poorly named variable is used to enable or disable lsp
    ;; displaying diagnostics in the minibuffer.
    ;; lsp--show-message nil
