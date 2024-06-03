@@ -98,6 +98,7 @@
   )
 
 (use-package pyenv-mode
+  :ensure t
   ;; This package is a bad citizen as it sets keys in the global map rather
   ;; than being able to restrict it to just python keymaps. So override their
   ;; keymap such that it is empty and set the key bindings when visiting python
