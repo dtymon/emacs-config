@@ -35,6 +35,10 @@
 
   ;; Don't use the fill column from the prettier config
   (and (eq (cadar prettier-sync-settings) ':printWidth) (pop prettier-sync-settings))
+
+  ;; Setup the tree-sitter highlighting
+  (setq-local treesit-font-lock-settings (typescript-ts-mode--font-lock-settings 'typescript))
+  (treesit-major-mode-setup)
   )
 
 (use-package typescript-mode
@@ -50,15 +54,20 @@
   ;; We require js2-mode as we use its fill function
   (require 'js2-mode)
 
-  ;; Turn on tree-sitter and use it for highlighting
-  (add-hook 'typescript-mode-hook #'tree-sitter-mode)
-  ;; (add-hook 'typescript-mode-hook #'tree-sitter-hl-mode)
+  ;; Include the tree-sitter settings for Typescript
+  (require 'typescript-ts-mode)
 
-  (add-hook 'typescript-mode-hook 'dtymon::common-ts-mode-hook)
-  (add-hook 'typescript-ts-mode-hook 'dtymon::common-ts-mode-hook)
-  :config
-  (require 'dap-node)
-  (dap-node-setup)
+  ;; Turn on tree-sitter and use it for highlighting. Also add the common
+  ;; initialisation hook.
+  (dolist (hook '(typescript-mode-hook typescript-ts-mode-hook))
+    (add-hook hook #'tree-sitter-mode)
+    (add-hook hook #'tree-sitter-hl-mode)
+    (add-hook hook 'dtymon::common-ts-mode-hook)
+    )
+
+  ;; :config
+  ;; (require 'dap-node)
+  ;; (dap-node-setup)
 )
 
 (use-package jest-test-mode

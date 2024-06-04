@@ -18,14 +18,14 @@
         (treesit-install-language-grammar (car grammar)))
       ))
 
-  (dolist (mapping
-         '((python-mode . python-ts-mode)
-           (typescript-mode . typescript-ts-mode)
-           (js2-mode . js-ts-mode)
-           (bash-mode . bash-ts-mode)
-           (json-mode . json-ts-mode)
-           (js-json-mode . json-ts-mode)))
-    (add-to-list 'major-mode-remap-alist mapping))
+  ;; (dolist (mapping
+  ;;        '((python-mode . python-ts-mode)
+  ;;          (typescript-mode . typescript-ts-mode)
+  ;;          (js2-mode . js-ts-mode)
+  ;;          (bash-mode . bash-ts-mode)
+  ;;          (json-mode . json-ts-mode)
+  ;;          (js-json-mode . json-ts-mode)))
+  ;;   (add-to-list 'major-mode-remap-alist mapping))
 
   :config
   (dtymon::setup-install-grammars)

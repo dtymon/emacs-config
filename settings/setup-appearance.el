@@ -2,7 +2,7 @@
 (defun dtymon::default-font-size ()
   (cond ((eq (dtymon::monitor-width) 3840) 190)
         ((eq (dtymon::monitor-width) 1920) 140)
-        ((eq (dtymon::monitor-width) 3440) 160)
+        ((eq (dtymon::monitor-width) 3440) 150)
         (t 180)))
 
 (defgroup dtymon-appearance nil
