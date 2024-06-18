@@ -22,6 +22,13 @@
         magit-auto-revert-mode nil
         magit-define-global-key-bindings 'recommended
         )
+
+  :config
+  (add-hook 'git-commit-setup-hook
+            (lambda ()
+              (setq-local fill-column 68)
+              (turn-on-auto-fill))
+            )
   )
 
 (use-package git-timemachine
