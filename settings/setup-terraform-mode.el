@@ -10,6 +10,7 @@
   "\\.tf\\'"
   :config
   (setq terraform-indent-level 2)
+  (setq terraform-format-on-save t)
   (setq dtymon::hcl--assignment-regexp
         "\\s-*\\(\\(?:[[:word:]]\\|_\\)+\\)\\s-*=\\(?:[^>=]\\)")
   (setq dtymon::hcl--map-regexp
