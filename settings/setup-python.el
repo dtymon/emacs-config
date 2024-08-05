@@ -65,6 +65,9 @@
    lsp-pylsp-plugins-autopep8-enabled        nil
    lsp-pylsp-plugins-yapf-enabled            nil
    lsp-pylsp-plugins-black-enabled           nil
+
+   ;; lsp-pylsp-plugins-mypy-enabled t
+   ;; lsp-pylsp-plugins-mypy-dmypy t
    )
   )
 
@@ -130,28 +133,13 @@
   :ensure t
   )
 
-;; (flycheck-define-checker python-dtymon
-;;   "A Python syntax and style checker using the ruff utility.
-;; To override the path to the ruff executable, set
-;; `flycheck-python-ruff-executable'.
-;; See URL `http://pypi.python.org/pypi/ruff'."
-;;   :command ("ruff"
-;;             "--format=text"
-;;             (eval (when buffer-file-name
-;;                     (concat "--stdin-filename=" buffer-file-name)))
-;;             "-")
-;;   :standard-input t
-;;   :error-filter (lambda (errors)
-;;                   (let ((errors (flycheck-sanitize-errors errors)))
-;;                     (seq-map #'flycheck-flake8-fix-error-level errors)))
-;;   :error-patterns
-;;   ((warning line-start
-;;             (file-name) ":" line ":" (optional column ":") " "
-;;             (id (one-or-more (any alpha)) (one-or-more digit)) " "
-;;             (message (one-or-more not-newline))
-;;             line-end))
-;;   :modes python-ts-mode)
-;;
-;; (add-to-list 'flycheck-checkers 'python-dtymon)
+(use-package lsp-pyright
+  :ensure t
+  :custom
+  ;; Turn this off to avoid the annoying unused variable stuff that the pyright
+  ;; developers aren't willing to suppress with a leading underscore.
+  ;; https://github.com/microsoft/pyright/issues/1118
+  (lsp-pyright-disable-tagged-hints t)
+  )
 
 (provide 'setup-python)
