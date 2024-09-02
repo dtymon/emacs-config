@@ -82,11 +82,13 @@
               ("C-c C-t" . git-timemachine-toggle)
               ("C-c t a" . python-pytest)
               ("C-c t f" . python-pytest-file)
-              ("C-c t t" . python-pytest-function-dwim)
+              ("C-c t t" . python-pytest-run-def-at-point-treesit)
               ("C-c t r" . python-pytest-repeat)
               )
 
   :config
+  (require 'dap-python)
+
   ;; Make the python prefixes more obvious in which-key
   (which-key-add-keymap-based-replacements python-mode-map
     "C-c C-i" "python imports"
