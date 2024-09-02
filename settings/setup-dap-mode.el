@@ -3,6 +3,9 @@
   :config
   (dap-ui-mode 1)
   (dap-ui-controls-mode 1)
+
+  :custom
+  (dap-python-debugger 'debugpy)
   )
 
 (provide 'setup-dap-mode)

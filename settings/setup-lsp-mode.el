@@ -44,6 +44,10 @@
 
    ;; Do not auto-configure dap-mode
    lsp-enable-dap-auto-configure nil
+
+   ;; Don't start a pyright running in every single project that I've ever
+   ;; visited!
+   lsp-pyright-multi-root nil
    )
 
   :config

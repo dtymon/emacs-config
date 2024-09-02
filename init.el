@@ -100,8 +100,8 @@
   (require 'setup-eglot))
  (t
   (require 'setup-flycheck)
-  (require 'setup-lsp-mode))
-  ;; (require 'setup-dap-mode))
+  (require 'setup-lsp-mode)
+  (require 'setup-dap-mode))
  )
 
 (require 'setup-prog-mode)
