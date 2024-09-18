@@ -21,6 +21,9 @@
         magit-bury-buffer-function #'magit-restore-window-configuration
         magit-auto-revert-mode nil
         magit-define-global-key-bindings 'recommended
+        magit-section-initial-visibility-alist '((stashes . hide)
+                                                 (untracked . show)
+                                                 )
         )
 
   :config
