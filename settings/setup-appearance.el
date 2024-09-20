@@ -1,6 +1,6 @@
 ;; Set the font size to use based on the monitor width
 (defun dtymon::default-font-size ()
-  (cond ((eq (dtymon::monitor-width) 3840) 190)
+  (cond ((eq (dtymon::monitor-width) 3840) 180)
         ((eq (dtymon::monitor-width) 1920) 140)
         ((eq (dtymon::monitor-width) 3440) 160)
         (t 180)))
@@ -16,7 +16,10 @@
   :group 'dtymon-appearance
   :type 'symbol)
 
-(defcustom dtymon::font-family "Monaco"
+;;(defcustom dtymon::font-family "Monaco"
+(defcustom dtymon::font-family "M+CodeLat60 Nerd Font Mono"
+;;(defcustom dtymon::font-family "UbuntuSansMono Nerd Font Mono"
+;;(defcustom dtymon::font-family "UbuntuMono Nerd Font Mono"
   "The default font family to use."
   :group 'dtymon-appearance
   :type 'string)
@@ -29,6 +32,11 @@
   "The default font size to use."
   :group 'dtymon-appearance
   :type 'number)
+
+(defcustom dtymon::font-weight 'regular
+  "The default font weight to use."
+  :group 'dtymon-appearance
+  :type 'symbol)
 
 (defcustom dtymon::frame-width-factor 0.9
   "The percentage of monitor width for frames."
@@ -86,9 +94,9 @@
    )
 
   ;; Set the default font
-  (set-face-attribute 'default nil :family dtymon::font-family :height dtymon::font-size)
-  (set-face-attribute 'fixed-pitch nil :family dtymon::font-family :height dtymon::font-size)
-  (set-face-attribute 'fixed-pitch-serif nil :family dtymon::font-family :height dtymon::font-size)
+  (set-face-attribute 'default nil :family dtymon::font-family :height dtymon::font-size :weight dtymon::font-weight)
+  (set-face-attribute 'fixed-pitch nil :family dtymon::font-family :height dtymon::font-size :weight dtymon::font-weight)
+  (set-face-attribute 'fixed-pitch-serif nil :family dtymon::font-family :height dtymon::font-size :weight dtymon::font-weight)
 
   ;; Modus vivendi overrides
   (add-to-list 'load-path (expand-file-name "modus-themes" site-lisp-dir))
