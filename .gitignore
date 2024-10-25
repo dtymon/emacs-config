@@ -2,6 +2,7 @@
 /.log
 /eln-cache
 /elpa
+/network-security.data
 /post-init-hooks.el
 /pre-init-hooks.el
 /pre-init-hooks.el
