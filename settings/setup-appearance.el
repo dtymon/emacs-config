@@ -16,10 +16,14 @@
   :group 'dtymon-appearance
   :type 'symbol)
 
-(defcustom dtymon::font-family "Monaco"
+(defcustom dtymon::font-family "M+CodeLat60 Nerd Font Mono"
   "The default font family to use."
   :group 'dtymon-appearance
   :type 'string)
+;; (defcustom dtymon::font-family "Monaco"
+;;   "The default font family to use."
+;;   :group 'dtymon-appearance
+;;   :type 'string)
 ;; (defcustom dtymon::font-family "Ubuntu Mono"
 ;;   "The default font family to use."
 ;;   :group 'dtymon-appearance
