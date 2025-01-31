@@ -30,7 +30,7 @@ unless it is a parent node."
   (defun ztree-diff-node-ignore-p (node) (dtymon::ztree-diff-node-ignore-p node))
   (setq
    ztree-diff-filter-list '("^\\." "__pycache__")
-   ztree-diff-dir-ignore-list '("/\\(__pycache__\\|\\.git\\)")
+   ztree-diff-dir-ignore-list '("/\\(__pycache__\\|\\.git\\|\\node_modules\\)")
    ztree-draw-unicode-lines t
    ))
 
