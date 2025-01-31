@@ -1,7 +1,7 @@
 (use-package ediff
   :defer t
   :config
-
+  (add-hook 'ediff-after-quit-hook-internal 'winner-undo)
   (setq
    ;; Don't ignore whitespace since it is important for Python
    ;; ediff-diff-options "-w"
