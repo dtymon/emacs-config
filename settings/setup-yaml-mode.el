@@ -8,7 +8,7 @@
                                (use-flymake (flymake-mode 1))
                                (t (flycheck-mode 1))
                                )
-                              (prettier-mode 1)
+                              ;; (prettier-mode 1)
                             ))
   )
 
