@@ -154,4 +154,28 @@
     (insert (int-to-string (floor (* 1000000 (float-time)))))
     ))
 
+(defun dtymon::project-root-dir ()
+  (file-name-as-directory (project-root (project-current t))))
+
+(defun dtymon::file-exists-in-project (filename)
+  (let ((project-filename (concat (dtymon::project-root-dir) filename)))
+    (file-exists-p project-filename))
+  )
+
+(defun dtymon::jest-config-file ()
+  (let ((project-root-dir (dtymon::project-root-dir))
+        (node-package-config-file "jest.config.js")
+        (node-application-config-file "application/jest.config.js"))
+    (cond ((file-exists-p (concat project-root-dir node-application-config-file)) node-application-config-file)
+           (t node-package-config-file))
+    ))
+
+(defun dtymon::kelpie-config-dir ()
+  (let ((project-root-dir (dtymon::project-root-dir))
+        (node-package-config-dir "./src/config")
+        (node-application-config-dir "./application/src/config"))
+    (cond ((file-exists-p (concat project-root-dir node-application-config-dir)) node-application-config-dir)
+           (t node-package-config-dir))
+    ))
+
 (provide 'setup-defuns)

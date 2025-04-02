@@ -39,6 +39,12 @@
   ;; Setup the tree-sitter highlighting
   (setq-local treesit-font-lock-settings (typescript-ts-mode--font-lock-settings 'typescript))
   (treesit-major-mode-setup)
+
+  (setq-local
+   ;; Run node rather than npx so we can pass some special arguments
+   ;; jest-test-command-string "node %s ./node_modules/.bin/jest %s %s"
+   jest-test-command-string (concat "NODE_CONFIG_DIR=" (dtymon::kelpie-config-dir) " NODE_ENV=test node %s ./node_modules/.bin/jest --config " (dtymon::jest-config-file) " %s %s")
+   )
   )
 
 (use-package typescript-mode
@@ -82,10 +88,15 @@
               ("C-c C-t" . git-timemachine-toggle)
               )
   :config
+  (make-local-variable 'jest-test-command-string)
+
   (setq
    ;; Run node rather than npx so we can pass some special arguments
-   jest-test-command-string "node %s ./node_modules/.bin/jest %s %s"
+   ;; jest-test-command-string "node %s ./node_modules/.bin/jest %s %s"
+   jest-test-command-string "NODE_CONFIG_DIR=./application/src/config NODE_ENV=test node %s ./node_modules/.bin/jest --config application/jest.config.js %s %s"
+   )
 
+  (setq
    ;; The arguments for node
    jest-test-npx-options '("--experimental-vm-modules")
 
