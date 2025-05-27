@@ -118,6 +118,7 @@
 (require 'setup-js2-mode)
 (require 'setup-json-mode)
 (require 'setup-python)
+(require 'setup-lua)
 (require 'setup-yaml-mode)
 (require 'setup-yasnippet)
 (require 'setup-makefile-mode)
