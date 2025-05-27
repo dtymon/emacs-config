@@ -63,6 +63,12 @@
   (define-key map (kbd "C-x <right>") #'winner-redo)
   )
 
+;; Rotate buffers clockwise and anticlockwise
+(let ((map global-map))
+  (define-key map (kbd "C-x C-<left>")  #'dtymon::rotate-window-buffers-clockwise)
+  (define-key map (kbd "C-x C-<right>") #'dtymon::rotate-window-buffers-anticlockwise)
+  )
+
 ;; Hide and show the sideline
 (let ((map global-map))
   (define-key map (kbd "<f5>") #'prot-sideline-mode)

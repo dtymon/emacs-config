@@ -178,4 +178,53 @@
            (t node-package-config-dir))
     ))
 
+(defun dtymon::get-windows-in-clockwise-order (&optional frame)
+  "Return a list of windows in FRAME ordered clockwise around the centre."
+  (let* ((windows (window-list frame 'no-minibuf frame))
+         (win-centres
+          (mapcar (lambda (win)
+                    (let* ((edges (window-edges win))
+                           (left (nth 0 edges))
+                           (top (nth 1 edges))
+                           (right (nth 2 edges))
+                           (bottom (nth 3 edges))
+                           (cx (/ (+ left right) 2.0))
+                           (cy (/ (+ top bottom) 2.0)))
+                      (list win cx cy)))
+                  windows))
+         ;; Calculate centre point of all windows
+         (avg-x (/ (apply #'+ (mapcar (lambda (w) (nth 1 w)) win-centres)) (float (length win-centres))))
+         (avg-y (/ (apply #'+ (mapcar (lambda (w) (nth 2 w)) win-centres)) (float (length win-centres)))))
+    ;; Sort windows clockwise relative to centre (0° = up)
+    (mapcar #'car
+            (sort win-centres
+                  (lambda (a b)
+                    (let* ((ax (- (nth 1 a) avg-x))
+                           (ay (- (nth 2 a) avg-y))
+                           (bx (- (nth 1 b) avg-x))
+                           (by (- (nth 2 b) avg-y))
+                           (angle-a (mod (- (/ pi 2) (atan ay ax)) (* 2 pi)))
+                           (angle-b (mod (- (/ pi 2) (atan by bx)) (* 2 pi))))
+                      (> angle-a angle-b)))))))
+
+(defun dtymon::rotate-window-buffers-clockwise ()
+  "Rotate the buffers displayed in windows clockwise in the current frame."
+  (interactive)
+  (let* ((windows (dtymon::get-windows-in-clockwise-order))
+         (buffers (mapcar #'window-buffer windows)))
+    ;; Assign each buffer to the next window in the list
+    (cl-loop for win in windows
+             for buf in (append (last buffers) (butlast buffers))
+             do (set-window-buffer win buf))))
+
+(defun dtymon::rotate-window-buffers-anticlockwise ()
+  "Rotate the buffers displayed in windows anticlockwise in the current frame."
+  (interactive)
+  (let* ((windows (reverse (dtymon::get-windows-in-clockwise-order)))
+         (buffers (mapcar #'window-buffer windows)))
+    ;; Assign each buffer to the next window in the list
+    (cl-loop for win in windows
+             for buf in (append (last buffers) (butlast buffers))
+             do (set-window-buffer win buf))))
+
 (provide 'setup-defuns)
