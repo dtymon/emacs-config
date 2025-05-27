@@ -143,6 +143,7 @@
 (load (locate-user-emacs-file "post-init-hooks.el") :no-error :no-message)
 
 ;; Load this as late as possible
-(require 'setup-envrc)
+;; (require 'setup-envrc)
+(require 'setup-direnv)
 
 ;;; init.el ends here
