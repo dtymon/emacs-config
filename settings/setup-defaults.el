@@ -71,6 +71,7 @@
 
  ;; Scroll interpreter output automatically
  comint-move-point-for-output t
+ compilation-scroll-output t
 
  ;; Timezones to show with world-clock
  world-clock-time-format "%Y-%m-%dT%H:%M:%S%z %a, %d %b %H:%M %Z"

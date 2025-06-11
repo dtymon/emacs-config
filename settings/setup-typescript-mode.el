@@ -47,6 +47,39 @@
    )
   )
 
+;; (defun dtymon::use-local-eslint ()
+;;   (let ((eslint (expand-file-name "node_modules/.bin/eslint"
+;;                                   (locate-dominating-file
+;;                                    (or (buffer-file-name) default-directory)
+;;                                    "node_modules"))))
+;;     (when (and eslint (file-executable-p eslint))
+;;       (setq-local flycheck-javascript-eslint-executable eslint)))
+;;   )
+;;
+;; (defun dtymon::set-eslint-config-path ()
+;;   (let* ((root (or (locate-dominating-file
+;;                     (or (buffer-file-name) default-directory)
+;;                     (lambda (dir)
+;;                       (directory-files dir nil "^\\.eslint\\(\\.config\\.mjs\\|\\.config\\.js\\|rc\\.*\\)$")))
+;;                    default-directory))
+;;          (flat-config (or (expand-file-name ".eslint.config.mjs" root)
+;;                           (expand-file-name ".eslint.config.js" root)))
+;;          (legacy-config (or (expand-file-name ".eslintrc" root)
+;;                             (expand-file-name ".eslintrc.js" root)
+;;                             (expand-file-name ".eslintrc.json" root))))
+;;     (cond
+;;      ((and flat-config (file-exists-p flat-config))
+;;       (setq-local flycheck-eslint-args (list "--config" flat-config "--no-error-on-unmatched-pattern" "--ignore-pattern" "application/src/**/*.spec.ts" "application/src/**/*.ts")))
+;;      ((and legacy-config (file-exists-p legacy-config))
+;;       ;; Should autodetect config file
+;;       (setq-local flycheck-eslint-args nil))
+;;      (t
+;;       (message "No ESLint config found in project"))
+;;      ))
+;;   )
+;;
+;; (defun flycheck-eslint-config-exists-p () t)
+
 (use-package typescript-mode
   :ensure t
   :blackout (typescript-mode . "TS")
@@ -69,11 +102,12 @@
     (add-hook hook #'tree-sitter-mode)
     (add-hook hook #'tree-sitter-hl-mode)
     (add-hook hook 'dtymon::common-ts-mode-hook)
+    ;; (add-hook hook 'dtymon::use-local-eslint)
+    ;; (add-hook hook 'dtymon::set-eslint-config-path)
     )
 
-  ;; :config
-  ;; (require 'dap-node)
-  ;; (dap-node-setup)
+  ;; (flycheck-add-mode 'javascript-eslint 'typescript-mode)
+  ;; (flycheck-add-mode 'javascript-eslint 'typescript-ts-mode)
 )
 
 (use-package jest-test-mode

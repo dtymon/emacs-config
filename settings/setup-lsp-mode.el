@@ -1,3 +1,13 @@
+;; (defun dtymon::set-eslint-config-after-direnv ()
+;;   (let ((eslint-config (getenv "ESLINT_CONFIG_PATH")))
+;;     (when eslint-config
+;;       (message "Setting ESLint config to: %s" eslint-config)
+;;       (setq-local lsp-eslint-options `(:overrideConfigFile eslint-config))
+;;       (when (bound-and-true-p lsp-mode)
+;;         (lsp--set-configuration)
+;;       ))
+;;   ))
+
 (use-package lsp-mode
   :ensure t
   :defer t
@@ -18,6 +28,7 @@
    ;; The eslint client seems to be very CPU-intensive so disable for now. Also
    ;; disable some Python checkers as we are going to use ruff instead.
    lsp-disabled-clients '(eslint pyls)
+   ;; lsp-disabled-clients '(pyls)
 
    ;; Turn this on for verbose logging to debug lsp
    ;; lsp-log-io t
@@ -48,6 +59,20 @@
    ;; Don't start a pyright running in every single project that I've ever
    ;; visited!
    lsp-pyright-multi-root nil
+
+   lsp-eslint-package-manager "yarn"
+   lsp-eslint-format nil
+   ;; lsp-eslint-server-command '("eslint" "--stdin" "--stdin-filename" "%f")
+   ;; lsp-eslint-options '(:overrideConfigFile "/Users/admzw26/work/ben/repos/kelpie/ben-kelpie-build/.eslint.config.mjs")
+   ;; lsp-eslint-options '(:overrideConfigFile "/Users/admzw26/work/ben/repos/kelpie/ben-kelpie-build/tests/.eslint.config.spec.mjs")
+   ;; lsp-eslint-options '(:overrideConfigFile "/Users/admzw26/work/ben/repos/kelpie/ben-kelpie-build/tests/.eslint.config.spec.mjs")
+   ;; lsp-eslint-options '(:overrideConfigFile "application/.eslint.config.mjs")
+   ;; lsp-eslint-options `(:overrideConfigFile ,(getenv "ESLINT_CONFIG_PATH"))
+   ;; lsp-log-io t
+
+   ;; lsp-eslint-working-directories '("." "./application" "./application/tests")
+   lsp-eslint-working-directories '("./application")
+   lsp-eslint-options '(:overrideConfigFile ".eslint.config.mjs")
    )
 
   :config
@@ -58,11 +83,15 @@
   ;; (flycheck-add-next-checker 'lsp 'python-pyright)
   ;; ;; (flycheck-add-next-checker 'lsp 'python-mypy)
 
+  ;; (flycheck-add-next-checker 'lsp 'javascript-eslint)
+
   ;; If ruff-lsp is installed (via brew) then lsp will run ruff automatically.
   ;; In this case, there is no need to configure flycheck to run ruff.
   ;; (flycheck-add-next-checker 'python-mypy 'python-ruff)
 
   (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]\\docs\\'")
+
+  ;; (add-hook 'hack-local-variables-hook #'dtymon::set-eslint-config-after-direnv)
 
   :bind (
          ;; ("C-c e e" . lsp-treemacs-errors-list)
@@ -89,7 +118,7 @@
     lsp-ui-doc-show-with-mouse  nil
 
     lsp-ui-sideline-delay             1
-    lsp-ui-sideline-show-code-actions t
+    lsp-ui-sideline-show-code-actions nil
     lsp-ui-sideline-update-mode       'line
     )
 )

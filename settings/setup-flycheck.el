@@ -76,7 +76,9 @@
                           emacs-lisp-checkdoc
                           javascript-jscs
                           javascript-jshint
-                          javascript-standard)))
+                          javascript-standard
+                          typescript-tslint
+                          ts-ls)))
 
   ;; Make the flycheck prefixes more obvious in which-key
   (which-key-add-keymap-based-replacements flycheck-mode-map

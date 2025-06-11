@@ -144,6 +144,7 @@
 
 ;; Highlight current line in text
 (add-hook 'text-mode-hook #'hl-line-mode)
+(add-hook 'ibuffer-mode-hook #'hl-line-mode)
 (setq
  ;; Do not shrink the width of the line numbers column as its really distracting
  ;; and compute the width required for line numbers upfront.
