@@ -47,38 +47,43 @@
    )
   )
 
-;; (defun dtymon::use-local-eslint ()
-;;   (let ((eslint (expand-file-name "node_modules/.bin/eslint"
-;;                                   (locate-dominating-file
-;;                                    (or (buffer-file-name) default-directory)
-;;                                    "node_modules"))))
-;;     (when (and eslint (file-executable-p eslint))
-;;       (setq-local flycheck-javascript-eslint-executable eslint)))
-;;   )
-;;
-;; (defun dtymon::set-eslint-config-path ()
-;;   (let* ((root (or (locate-dominating-file
-;;                     (or (buffer-file-name) default-directory)
-;;                     (lambda (dir)
-;;                       (directory-files dir nil "^\\.eslint\\(\\.config\\.mjs\\|\\.config\\.js\\|rc\\.*\\)$")))
-;;                    default-directory))
-;;          (flat-config (or (expand-file-name ".eslint.config.mjs" root)
-;;                           (expand-file-name ".eslint.config.js" root)))
-;;          (legacy-config (or (expand-file-name ".eslintrc" root)
-;;                             (expand-file-name ".eslintrc.js" root)
-;;                             (expand-file-name ".eslintrc.json" root))))
-;;     (cond
-;;      ((and flat-config (file-exists-p flat-config))
-;;       (setq-local flycheck-eslint-args (list "--config" flat-config "--no-error-on-unmatched-pattern" "--ignore-pattern" "application/src/**/*.spec.ts" "application/src/**/*.ts")))
-;;      ((and legacy-config (file-exists-p legacy-config))
-;;       ;; Should autodetect config file
-;;       (setq-local flycheck-eslint-args nil))
-;;      (t
-;;       (message "No ESLint config found in project"))
-;;      ))
-;;   )
-;;
-;; (defun flycheck-eslint-config-exists-p () t)
+(defun dtymon::use-local-eslint ()
+  (let ((eslint (expand-file-name "node_modules/.bin/eslint"
+                                  (locate-dominating-file
+                                   (or (buffer-file-name) default-directory)
+                                   "node_modules"))))
+    (when (and eslint (file-executable-p eslint))
+      (setq-local flycheck-javascript-eslint-executable eslint)))
+  )
+
+(defun dtymon::get-eslint-config-path ()
+  (let* ((root (or (locate-dominating-file
+                    (or (buffer-file-name) default-directory)
+                    (lambda (dir)
+                      (directory-files dir nil "^\\.eslint\\(\\.config\\.mjs\\|\\.config\\.js\\|rc\\.*\\)$")))
+                   default-directory))
+         (flat-config (or (expand-file-name ".eslint.config.mjs" root)
+                          (expand-file-name ".eslint.config.js" root)))
+         (legacy-config (or (expand-file-name ".eslintrc" root)
+                            (expand-file-name ".eslintrc.js" root)
+                            (expand-file-name ".eslintrc.json" root))))
+    (cond
+     ((and flat-config (file-exists-p flat-config)) flat-config)
+     ((and legacy-config (file-exists-p legacy-config)) legacy-config)
+     (t (error "No ESLint config found in project"))
+     ))
+  )
+
+(defun dtymon::set-eslint-config-path ()
+  (let* ((config-file (dtymon::get-eslint-config-path)))
+    (setq-local flycheck-eslint-args (list "--config" config-file))
+  ))
+
+(defun flycheck-eslint-config-exists-p ()
+  "Whether there is a valid eslint config for the current buffer."
+  (eql 0 (flycheck-call-checker-process
+          'javascript-eslint nil nil nil
+          "--config" (dtymon::get-eslint-config-path) "--print-config" (or buffer-file-name "index.js"))))
 
 (use-package typescript-mode
   :ensure t
