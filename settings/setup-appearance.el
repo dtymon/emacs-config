@@ -1,7 +1,8 @@
 ;; Set the font size to use based on the monitor width
 (defun dtymon::default-font-size ()
   (cond ((eq (dtymon::monitor-width) 3840) 200)
-        ((eq (dtymon::monitor-width) 1920) 150)
+        ((eq (dtymon::monitor-width) 2560) 150)
+        ((eq (dtymon::monitor-width) 1920) 120)
         ((eq (dtymon::monitor-width) 3440) 150)
         (t 180)))
 
