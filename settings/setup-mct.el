@@ -20,6 +20,8 @@
     (define-key map [remap next-line-or-history-element] nil)
     (define-key map [remap previous-line] nil)
     (define-key map [remap previous-line-or-history-element] nil)
+    (define-key map (kbd "<up>") #'previous-line-or-history-element)
+    (define-key map (kbd "<down>") #'next-line-or-history-element)
 
     ;; Map C-s and C-r to be a bit like ido-switch-buffer except it doesn't
     ;; search but goes back and forth through the history.
