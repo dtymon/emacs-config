@@ -47,8 +47,25 @@
   (remove-hook 'magit-status-sections-hook 'magit-insert-unpushed-to-upstream-or-recent)
 )
 
+(defun dtymon::maybe-bind-git-timemachine ()
+  (when (and (buffer-file-name)
+             (string= (vc-backend (buffer-file-name)) "Git"))
+    (local-set-key (kbd "C-c t m") #'git-timemachine-toggle))
+  )
+
+(defun dtymon::tweak-git-timemachine-visuals ()
+  (display-line-numbers-mode 1)
+  (setq display-line-numbers 'absolute)
+  (hl-line-mode 1)
+  )
+
 (use-package git-timemachine
   :ensure t
+  :config
+  (add-hook 'find-file-hook #'dtymon::maybe-bind-git-timemachine)
+  (advice-add #'git-timemachine-show-revision :after
+              (lambda (&rest _)
+                (dtymon::tweak-git-timemachine-visuals)))
   )
 
 (provide 'setup-magit)

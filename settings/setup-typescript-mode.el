@@ -90,10 +90,6 @@
   :blackout (typescript-mode . "TS")
   :mode "\\.[cm]?[jt]s"
   :interpreter "node"
-  :bind (:map typescript-mode-map
-              ("C-c C-t" . git-timemachine-toggle)
-              )
-
   :init
   ;; We require js2-mode as we use its fill function
   (require 'js2-mode)
@@ -124,10 +120,13 @@
               ("C-c t f" . jest-test-run)
               ("C-c t t" . jest-test-run-at-point)
               ("C-c t r" . jest-test-rerun-test)
-              ("C-c C-t" . git-timemachine-toggle)
               )
   :config
   (make-local-variable 'jest-test-command-string)
+
+  ;; Remove the crap bindings installed by default
+  (set-keymap-parent jest-test-mode-map nil)
+  (setcdr jest-test-mode-map nil)
 
   (setq
    ;; Run node rather than npx so we can pass some special arguments
