@@ -38,6 +38,7 @@
   (define-key map (kbd "M-w")     #'kill-ring-save)
   (define-key map (kbd "C-m")     #'newline-and-indent)
   (define-key map (kbd "C-S-k")   #'delete-region)
+  (define-key map (kbd "C-s-w")   #'delete-region)
   (define-key map (kbd "C-M-z")   #'scroll-other-window-down)
   (define-key map (kbd "C-x C-j") #'goto-line)
   (define-key map (kbd "C-x r N") #'rectangle-insert-number-sequence)

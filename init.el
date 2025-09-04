@@ -140,6 +140,9 @@
 
 (when is-mac (require 'setup-mac))
 
+;; site-lisp
+(require 'detect-tab-width-4)
+
 ;; Load any post-init-hooks
 (load (locate-user-emacs-file "post-init-hooks.el") :no-error :no-message)
 
