@@ -16,9 +16,7 @@
          ("S-<prior>" . magit-section-up)
          )
 
-  :custom
-  (magit-git-executable "/opt/homebrew/bin/git")
-  ;; (magit-git-executable "/usr/bin/git")
+  ;; :custom
   ;; enable this to get an idea on where all the time is spent
   ;; (magit-refresh-verbose t)
 
@@ -39,6 +37,7 @@
               (turn-on-auto-fill))
             )
 
+  ;; Remove some extra git stuff of little value to speed up magit
   ;; (remove-hook 'magit-status-sections-hook 'magit-insert-tags-header)
   ;; (remove-hook 'magit-status-sections-hook 'magit-insert-status-headers)
   ;; (remove-hook 'magit-status-sections-hook 'magit-insert-unpushed-to-pushremote)
