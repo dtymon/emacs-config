@@ -133,6 +133,7 @@
 (require 'setup-restclient)
 (require 'setup-ztree)
 (require 'setup-string-inflection)
+(require 'setup-mermaid-mode)
 
 ;; Terminals
 (require 'setup-vterm)
