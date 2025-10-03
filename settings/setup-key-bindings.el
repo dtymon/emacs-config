@@ -12,8 +12,8 @@
   (define-key map (kbd "<prior>") #'scroll-down-command)
 
   ;; Move more quickly
-  (define-key map (kbd "M-<up>")    #'backward-sexp)
-  (define-key map (kbd "M-<down>")  #'forward-sexp)
+  (define-key map (kbd "M-<up>")    #'backward-up-list)
+  (define-key map (kbd "M-<down>")  #'down-list)
   (define-key map (kbd "M-<left>")  #'backward-sexp)
   (define-key map (kbd "M-<right>") #'forward-sexp)
   (define-key map (kbd "C-S-n")     (lambda () (interactive) (ignore-errors (next-line 5))))
