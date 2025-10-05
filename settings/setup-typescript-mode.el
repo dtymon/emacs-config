@@ -87,6 +87,11 @@
           'javascript-eslint nil nil nil
           "--config" (dtymon::get-eslint-config-path) "--print-config" (or buffer-file-name "index.js"))))
 
+;; Shorten the mode name shown for typescript-ts-mode
+(use-package typescript-ts-mode
+  :blackout (typescript-ts-mode . "TSTS")
+  )
+
 (use-package typescript-mode
   :ensure t
   :blackout (typescript-mode . "TS")
