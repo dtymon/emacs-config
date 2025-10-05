@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t -*-
+
 (use-package elisp-slime-nav
   :ensure t
   :blackout elisp-slime-nav-mode

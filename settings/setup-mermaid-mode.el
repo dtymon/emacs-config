@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t -*-
+
 (use-package mermaid-mode
   :ensure t
   )

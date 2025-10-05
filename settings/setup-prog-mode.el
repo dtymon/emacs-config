@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t -*-
+
 (use-package prog-mode
   :hook
   (prog-mode . hl-line-mode)

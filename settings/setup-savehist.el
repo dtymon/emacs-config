@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t -*-
+
 (use-package savehist
   :init
   (setq history-length 1000)

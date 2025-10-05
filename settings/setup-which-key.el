@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t -*-
+
 (use-package which-key
   :ensure t
   :blackout which-key-mode

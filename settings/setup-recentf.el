@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t -*-
+
 ;; Save a list of recent files visited. (open recent file with C-x f)
 (use-package recentf
   :init

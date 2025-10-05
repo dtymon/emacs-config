@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t -*-
+
 (use-package browse-kill-ring
   :ensure t
   :config

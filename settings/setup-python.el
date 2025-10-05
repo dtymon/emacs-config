@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t -*-
+
 (defun dtymon::flycheck-after-save ()
   (run-with-timer 3 nil (lambda ()
                           (flycheck-buffer)

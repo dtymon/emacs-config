@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t -*-
+
 ;; Avoid exiting abruptly if I accidentally hit s-q instead of M-q
 (global-set-key (kbd "s-q") (lambda ()
                               (interactive)

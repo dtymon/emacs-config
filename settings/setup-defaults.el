@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t -*-
+
 ;; Seed the random-number generator
 (random t)
 

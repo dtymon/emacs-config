@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t -*-
+
 (defun dtymon::toggle-flymake-show-buffer-diagnostics ()
   "Show or destroy the flymake buffer diagnostics"
   (interactive)

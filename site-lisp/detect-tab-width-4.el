@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t -*-
+
 (defgroup dtymon::dtw nil
   "Set a buffer's tab with to 4 if there is evidence to suggest it was edited
    with that setting"

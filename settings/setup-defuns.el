@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t -*-
+
 (defun dtymon::kill-buffer-and-window (buffer window)
   (and (kill-buffer buffer)
        (not (eq window nil))

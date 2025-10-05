@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t -*-
+
 (let ((map global-map))
   ;; Simple navigation
   (define-key map (kbd "<home>") #'beginning-of-line)

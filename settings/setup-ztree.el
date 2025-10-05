@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t -*-
+
 (defun dtymon::ztree-diff-node-ignore-p (node)
   "Determine if the NODE is in filter list.
 If the node is in the filter list it shall not be visible,

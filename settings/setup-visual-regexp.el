@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t -*-
+
 (use-package visual-regexp
   :ensure t
   :config (define-key global-map (kbd "M-%")

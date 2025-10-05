@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t -*-
+
 (defun dtymon::dired-first-row ()
   (interactive)
   (beginning-of-buffer)

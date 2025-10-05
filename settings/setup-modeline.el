@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t -*-
+
 (defface dtymon::mode-line-intense
   '((((class color) (min-colors 88) (background light))
      :background "gray40" :foreground "white")

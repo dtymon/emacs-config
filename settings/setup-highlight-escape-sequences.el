@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t -*-
+
 (use-package highlight-escape-sequences
   :ensure t
   :config

@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t -*-
+
 ;; Define a list of flycheck error modes that use a buffer anchored to the
 ;; bottom of the frame.
 (defvar dtymon::flycheck-error-modes '())

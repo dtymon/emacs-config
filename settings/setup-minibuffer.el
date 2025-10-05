@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t -*-
+
 ;; Allow recursive minibuffers
 (setq enable-recursive-minibuffers t)
 

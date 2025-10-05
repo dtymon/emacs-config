@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t -*-
+
 (defun dtymon::display-buffer-from-compilation-p (_buffer-name _action)
   (unless current-prefix-arg
     (with-current-buffer (window-buffer)

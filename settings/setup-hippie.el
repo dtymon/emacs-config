@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t -*-
+
 (use-package hippie-exp
   :bind (
          ("M-/" . hippie-expand-no-case-fold)

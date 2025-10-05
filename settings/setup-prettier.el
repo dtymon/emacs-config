@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t -*-
+
 (use-package prettier
   :ensure t
   :blackout prettier-mode

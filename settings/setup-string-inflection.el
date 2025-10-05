@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t -*-
+
 (use-package string-inflection
   :ensure t
   :config

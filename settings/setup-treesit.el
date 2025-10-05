@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t -*-
+
 (use-package treesit
   :mode (("\\.tsx\\'" . tsx-ts-mode))
   :preface

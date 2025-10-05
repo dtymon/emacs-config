@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t -*-
+
 (defun dtymon::common-ts-mode-hook ()
   ;; Only auto-fill comment lines. prettier will handle the code.
   (dtymon::auto-fill-comments-only-hook)

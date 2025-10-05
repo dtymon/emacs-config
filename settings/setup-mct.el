@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t -*-
+
 (use-package mct
   :ensure t
   :custom

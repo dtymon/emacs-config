@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t -*-
+
 ;; Setup shell
 
 ;; Note: Emacs runs .bashrc in *shell*

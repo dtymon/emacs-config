@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t -*-
+
 (use-package hcl-mode
   :ensure t
   :defer t

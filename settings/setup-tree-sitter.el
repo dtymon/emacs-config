@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t -*-
+
 (use-package tree-sitter
   :ensure t
   :blackout tree-sitter-mode

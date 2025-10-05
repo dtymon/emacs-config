@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t -*-
+
 (use-package transpose-frame
   :ensure t
   :bind (:map global-map

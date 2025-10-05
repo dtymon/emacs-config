@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t -*-
+
 ;; Windows keyboard layout
 (setq
  mac-option-modifier 'meta

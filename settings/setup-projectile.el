@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t -*-
+
 (use-package projectile
   :ensure t
   :blackout projectile-mode

@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t -*-
+
 ;; Bump up the GC cons limit during initialisation but reset it after
 ;; loading to avoid large pauses during GC.
 ;;(setq gc-cons-threshold 100000000)

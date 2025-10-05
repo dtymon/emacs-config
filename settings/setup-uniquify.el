@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t -*-
+
 ;; Add parts of each file's directory to the buffer name if not unique
 (use-package uniquify
   :init

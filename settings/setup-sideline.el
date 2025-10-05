@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t -*-
+
 ;; Taken from Protesilaos' prot-sideline.el found here:
 ;; https://git.sr.ht/~protesilaos/dotfiles/tree/master/item/emacs/.emacs.d/prot-lisp/prot-sideline.el
 ;;

@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t -*-
+
 (use-package dimmer
   :ensure t
   :custom (dimmer-fraction 0.23)

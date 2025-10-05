@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t -*-
+
 (setq
  ;; The archives to use
  package-archives

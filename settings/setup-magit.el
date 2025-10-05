@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t -*-
+
 (require 'vc-annotate)
 
 (defun vc-annotate-quit ()

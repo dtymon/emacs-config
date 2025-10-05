@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t -*-
+
 (use-package whitespace-cleanup-mode
   :ensure t
   :blackout whitespace-cleanup-mode
