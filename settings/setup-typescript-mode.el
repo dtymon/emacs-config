@@ -102,9 +102,9 @@
   ;; Turn on tree-sitter and use it for highlighting. Also add the common
   ;; initialisation hook.
   (dolist (hook '(typescript-mode-hook typescript-ts-mode-hook))
-    (add-hook hook #'tree-sitter-mode)
-    (add-hook hook #'tree-sitter-hl-mode)
     (add-hook hook 'dtymon::common-ts-mode-hook)
+    ;; (add-hook hook #'tree-sitter-mode)
+    ;; (add-hook hook #'tree-sitter-hl-mode)
     ;; (add-hook hook 'dtymon::use-local-eslint)
     ;; (add-hook hook 'dtymon::set-eslint-config-path)
     )

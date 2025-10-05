@@ -112,7 +112,7 @@
 (require 'setup-projectile)
 (require 'setup-treemacs)
 (require 'setup-treesit)
-(require 'setup-tree-sitter)
+;; (require 'setup-tree-sitter)
 (require 'setup-magit)
 (require 'setup-prettier)
 (require 'setup-elisp-slime-nav)
