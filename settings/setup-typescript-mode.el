@@ -35,11 +35,18 @@
    comment-line-break-function #'js2-line-break
    )
 
+
   ;; Don't use the fill column from the prettier config
   (and (eq (cadar prettier-sync-settings) ':printWidth) (pop prettier-sync-settings))
 
   ;; Setup the tree-sitter highlighting
   (setq-local treesit-font-lock-settings (typescript-ts-mode--font-lock-settings 'typescript))
+  (setq-local treesit-font-lock-feature-list '((comment declaration)
+                                               (keyword string escape-sequence)
+                                               (constant expression identifier number pattern property decorator)
+                                               (operator function bracket delimiter))
+              )
+
   (treesit-major-mode-setup)
 
   (setq-local
@@ -123,6 +130,12 @@
   :commands jest-test-mode
   :hook (typescript-mode typescript-mode-ts)
   :bind (:map typescript-mode-map
+              ("C-c t a" . jest-test-run-all-tests)
+              ("C-c t f" . jest-test-run)
+              ("C-c t t" . jest-test-run-at-point)
+              ("C-c t r" . jest-test-rerun-test)
+              )
+        (:map typescript-ts-mode-map
               ("C-c t a" . jest-test-run-all-tests)
               ("C-c t f" . jest-test-run)
               ("C-c t t" . jest-test-run-at-point)
