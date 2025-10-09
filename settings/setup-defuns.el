@@ -31,28 +31,32 @@
           )))
 
 (defun uuidgen ()
+  "Generate a new uuid"
+  (downcase (substring (shell-command-to-string "uuidgen") 0 -1)))
+
+(defun uuid-insert ()
   "Generate a new uuid and insert at the point"
   (interactive)
   (save-excursion
-    (insert (downcase (substring (shell-command-to-string "uuidgen") 0 -1)))
+    (insert (uuidgen))
     ))
 
-(defun uuidgen-short ()
+(defun uuid-short-insert ()
   "Generate a new uuid, remove the dashes and insert at the point"
   (interactive)
   (save-excursion
-    (insert (replace-regexp-in-string "-" "" (downcase (substring (shell-command-to-string "uuidgen") 0 -1))))
+    (insert (replace-regexp-in-string "-" "" (uuidgen)))
     ))
 
 (defun uuidgen-rectangle (start end)
-  "For each line in the rectangle insert a new uuid, removing the dashes"
+  "For each line in the rectangle insert a new uuid"
   (interactive "r")
   (kill-rectangle start end)
   (apply-on-rectangle
    (lambda (startcol endcol &rest args)
      (delete-extract-rectangle startcol endcol)
      (move-to-column startcol)
-     (uuidgen-short)) (region-beginning) (region-end) nil))
+     (uuid-insert)) (region-beginning) (region-end) nil))
 
 (defun rectangle-insert-number-sequence (start end &optional no-padding)
   "For each line in the rectangle insert an increasing number"

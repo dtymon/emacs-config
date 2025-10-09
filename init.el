@@ -48,6 +48,10 @@
 (require 'setup-browse-kill-ring)
 (require 'setup-hydra)
 
+;; Org
+(require 'setup-org-mode)
+(require 'setup-verb)
+
 ;; Saving history, state etc
 ;; now setup earlier in early-init.el
 ;;(require 'setup-desktop)
