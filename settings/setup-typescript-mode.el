@@ -102,7 +102,7 @@
 (use-package typescript-mode
   :ensure t
   :blackout (typescript-mode . "TS")
-  :mode "\\.[cm]?[jt]s"
+  :mode "\\.[cm]?[jt]s$"
   :interpreter "node"
   :init
   ;; We require js2-mode as we use its fill function
