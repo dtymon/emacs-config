@@ -10,6 +10,8 @@
 
   :custom
   verb-suppress-load-unsecure-prelude-warning t
+  verb-auto-kill-response-buffers             t
+  verb-auto-show-headers-buffer               t
   )
 
 (provide 'setup-verb)
