@@ -30,7 +30,7 @@
            (js-json-mode    . json-ts-mode)
            (json-mode       . json-ts-mode)
            (python-mode     . python-ts-mode)
-           (typescript-mode . typescript-ts-mode)
+           ;; (typescript-mode . typescript-ts-mode)
            (yaml-mode       . yaml-ts-mode)
            ))
     (add-to-list 'major-mode-remap-alist mapping))

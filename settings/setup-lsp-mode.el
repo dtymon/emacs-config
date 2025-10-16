@@ -9,6 +9,7 @@
   :hook
   (typescript-mode    . lsp-deferred)
   (typescript-ts-mode . lsp-deferred)
+  (tsx-ts-mode        . lsp-deferred)
   (python-mode        . lsp-deferred)
   (python-ts-mode     . lsp-deferred)
 

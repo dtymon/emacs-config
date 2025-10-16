@@ -35,18 +35,11 @@
    comment-line-break-function #'js2-line-break
    )
 
-
   ;; Don't use the fill column from the prettier config
   (and (eq (cadar prettier-sync-settings) ':printWidth) (pop prettier-sync-settings))
 
   ;; Setup the tree-sitter highlighting
   (setq-local treesit-font-lock-settings (typescript-ts-mode--font-lock-settings 'typescript))
-  (setq-local treesit-font-lock-feature-list '((comment declaration)
-                                               (keyword string escape-sequence)
-                                               (constant expression identifier number pattern property decorator)
-                                               (operator function bracket delimiter))
-              )
-
   (treesit-major-mode-setup)
 
   (setq-local
@@ -114,9 +107,9 @@
   ;; Turn on tree-sitter and use it for highlighting. Also add the common
   ;; initialisation hook.
   (dolist (hook '(typescript-mode-hook typescript-ts-mode-hook))
+    (add-hook hook #'tree-sitter-mode)
+    (add-hook hook #'tree-sitter-hl-mode)
     (add-hook hook 'dtymon::common-ts-mode-hook)
-    ;; (add-hook hook #'tree-sitter-mode)
-    ;; (add-hook hook #'tree-sitter-hl-mode)
     ;; (add-hook hook 'dtymon::use-local-eslint)
     ;; (add-hook hook 'dtymon::set-eslint-config-path)
     )
