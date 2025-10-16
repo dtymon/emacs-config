@@ -7,6 +7,7 @@
   :bind (:map global-map
               ("s-b b" . beframe-switch-buffer)
               ("s-b l" . beframe-buffer-menu)
+              ("s-b s-b" . beframe-buffer-menu)
               )
 
   :custom
