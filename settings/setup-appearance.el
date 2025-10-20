@@ -145,11 +145,11 @@
     )
 
   ;; This seems to be the only way to get a red cursor in new frames
-  (defun dtymon::change-cursor-colour (frame)
+  (defun dtymon::configure-new-frame (frame)
     (set-frame-parameter frame 'cursor-color "red")
     (set-frame-size frame (dtymon::initial-frame-width-pixels) (dtymon::initial-frame-height-pixels) t)
     )
-  (add-hook 'after-make-frame-functions #'dtymon::change-cursor-colour)
+  (add-hook 'after-make-frame-functions #'dtymon::configure-new-frame)
 )
 
 ;; Highlight current line in text
