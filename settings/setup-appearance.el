@@ -63,6 +63,14 @@
   :group 'dtymon-appearance
   :type 'number)
 
+(defun dtymon::initial-frame-width-pixels ()
+  "The width to use for new frames in pixels"
+  (round (* dtymon::frame-width-factor (dtymon::monitor-width))))
+
+(defun dtymon::initial-frame-height-pixels ()
+  "The height to use for new frames in pixels"
+  (round (* dtymon::frame-height-factor (dtymon::monitor-height))))
+
 (when window-system
   ;; Set some basic appearance configuration
   (setq
@@ -121,18 +129,15 @@
   (set-face-background 'fill-column-indicator "#884444")
 
   (dolist (var '(default-frame-alist initial-frame-alist))
-    ;; Set the desired locations for frames
+    ;; Set the desired location for frames
     (when dtymon::reposition-initial-frame
       (add-to-list var (cons 'top dtymon::frame-top))
       (add-to-list var (cons 'left dtymon::frame-left))
       )
 
     ;; Set the dimensions of frames based on the factor configured
-    (let ((initial-frame-width (round (* dtymon::frame-width-factor (dtymon::monitor-width))))
-          (initial-frame-height (round (* dtymon::frame-height-factor (dtymon::monitor-height)))))
-      (add-to-list var (cons 'width (cons 'text-pixels initial-frame-width)))
-      (add-to-list var (cons 'height (cons 'text-pixels initial-frame-height)))
-      )
+    (add-to-list var (cons 'width (cons 'text-pixels (dtymon::initial-frame-width-pixels))))
+    (add-to-list var (cons 'height (cons 'text-pixels (dtymon::initial-frame-height-pixels))))
 
     ;; Set the cursor colour in all frames. This doesn't seem to work for some
     ;; reason so setting it via the hook below.
@@ -142,6 +147,7 @@
   ;; This seems to be the only way to get a red cursor in new frames
   (defun dtymon::change-cursor-colour (frame)
     (set-frame-parameter frame 'cursor-color "red")
+    (set-frame-size frame (dtymon::initial-frame-width-pixels) (dtymon::initial-frame-height-pixels) t)
     )
   (add-hook 'after-make-frame-functions #'dtymon::change-cursor-colour)
 )

@@ -7,11 +7,11 @@
   ;;             )
   :config
   (define-key org-mode-map (kbd "C-c C-r") verb-command-map)
-
-  :custom
-  verb-suppress-load-unsecure-prelude-warning t
-  verb-auto-kill-response-buffers             t
-  verb-auto-show-headers-buffer               t
+  (setq
+   verb-suppress-load-unsecure-prelude-warning t
+   verb-auto-kill-response-buffers             t
+   verb-auto-show-headers-buffer               t
+   )
   )
 
 (provide 'setup-verb)
