@@ -1,6 +1,9 @@
 ;; -*- lexical-binding: t -*-
 
 (defun dtymon::common-ts-mode-hook ()
+  ;; We require js2-mode as we use its fill function
+  (require 'js2-mode)
+
   ;; Only auto-fill comment lines. prettier will handle the code.
   (dtymon::auto-fill-comments-only-hook)
   (prettier-mode 1)
@@ -98,9 +101,6 @@
   :mode "\\.[cm]?[jt]s$"
   :interpreter "node"
   :init
-  ;; We require js2-mode as we use its fill function
-  (require 'js2-mode)
-
   ;; Include the tree-sitter settings for Typescript
   (require 'typescript-ts-mode)
 
@@ -116,6 +116,13 @@
 
   ;; (flycheck-add-mode 'javascript-eslint 'typescript-mode)
   ;; (flycheck-add-mode 'javascript-eslint 'typescript-ts-mode)
+)
+
+(use-package tsx-ts-mode
+  :mode "\\.tsx$"
+  :interpreter "node"
+  :init
+  (add-hook 'tsx-ts-mode-hook 'dtymon::common-ts-mode-hook)
 )
 
 (use-package jest-test-mode
