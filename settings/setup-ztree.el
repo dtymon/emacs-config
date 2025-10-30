@@ -26,12 +26,24 @@ unless it is a parent node."
 
 (use-package ztree
   :ensure t
+  :config
+  (setq-default
+   ;; ztree-diff-filter-list '("^\\." "__pycache__")
+   ztree-diff-filter-list '("\\.git" "/node_modules/" "/__pycache__/")
+   ztree-diff-dir-ignore-list '("/\\(__pycache__\\|\\.git\\|\\node_modules\\)")
+   ztree-draw-unicode-lines t
+   )
+
+  (dolist (hook '(ztree-mode-hook))
+    (add-hook hook #'hl-line-mode)
+    )
   )
 
 (with-eval-after-load 'ztree
   (defun ztree-diff-node-ignore-p (node) (dtymon::ztree-diff-node-ignore-p node))
-  (setq
-   ztree-diff-filter-list '("^\\." "__pycache__")
+  (setq-default
+   ;; ztree-diff-filter-list '("^\\." "__pycache__")
+   ztree-diff-filter-list '("\\.git" "/node_modules/" "/__pycache__/")
    ztree-diff-dir-ignore-list '("/\\(__pycache__\\|\\.git\\|\\node_modules\\)")
    ztree-draw-unicode-lines t
    ))
