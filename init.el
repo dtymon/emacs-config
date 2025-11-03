@@ -132,6 +132,7 @@
 (require 'setup-markdown-mode)
 (require 'setup-dockerfile-mode)
 (require 'setup-nxml-mode)
+(require 'setup-css-mode)
 (require 'setup-terraform-mode)
 (require 'setup-groovy-mode)
 (require 'setup-cmake-mode)
