@@ -77,4 +77,18 @@
   (exec-path-from-shell-initialize)
   )
 
+;; Tweak the path
+(setq dtymon::nvm-bin (getenv "NVM_BIN"))
+(cond (dtymon::nvm-bin
+         (add-to-list 'exec-path dtymon::nvm-bin)
+         (setenv "PATH" (concat dtymon::nvm-bin ":" (getenv "PATH")))
+         (setenv "NODE_PATH" (concat dtymon::nvm-bin "/lib/node_modules:" (getenv "NODE_PATH")))
+         )
+      (t
+       (error "There is no Node version configured")
+        ))
+
+;; Other env vars
+(setenv "MYPATH" "src")
+
 (provide 'setup-mac)
