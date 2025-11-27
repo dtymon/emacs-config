@@ -11,6 +11,7 @@
                (go         . ("https://github.com/tree-sitter/tree-sitter-go"))
                (html       . ("https://github.com/tree-sitter/tree-sitter-html"))
                (javascript . ("https://github.com/tree-sitter/tree-sitter-javascript"))
+               (jsdoc      . ("https://github.com/tree-sitter/tree-sitter-jsdoc"))
                (json       . ("https://github.com/tree-sitter/tree-sitter-json"))
                (python     . ("https://github.com/tree-sitter/tree-sitter-python"))
                (toml       . ("https://github.com/tree-sitter/tree-sitter-toml"))
