@@ -146,6 +146,9 @@
 (require 'setup-vterm)
 (require 'setup-eshell)
 
+;; AI
+(require 'setup-gptel)
+
 (when is-mac (require 'setup-mac))
 
 ;; site-lisp
