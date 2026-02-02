@@ -97,6 +97,11 @@
   (define-key map (kbd "C-c u") #'uncomment-region)
   )
 
+;; AI
+(let ((map global-map))
+  (define-key map (kbd "s-g") #'gptel-quick)
+  )
+
 ;; Stop me minimising the frame when I accidentally hit C-z instead of C-x
 (global-unset-key (kbd "C-x C-z"))
 
