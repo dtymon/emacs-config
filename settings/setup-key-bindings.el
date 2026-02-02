@@ -31,7 +31,8 @@
   (define-key map (kbd "C-x !")      #'delete-other-windows-vertically)
   (define-key map (kbd "C-x _")      #'balance-windows)
   (define-key map (kbd "C-x -")      #'fit-window-to-buffer)
-  (define-key map (kbd "C-x +")      #'balance-windows-area)
+  ;; This is really annoying
+  ;; (define-key map (kbd "C-x +")      #'balance-windows-area)
   (define-key map (kbd "C-x }")      #'enlarge-window)
   (define-key map (kbd "C-x {")      #'shrink-window)
   (define-key map (kbd "C-x >")      #'enlarge-window-horizontally)
@@ -70,6 +71,17 @@
 (let ((map global-map))
   (define-key map (kbd "C-x C-<left>")  #'dtymon::rotate-window-buffers-anticlockwise)
   (define-key map (kbd "C-x C-<right>") #'dtymon::rotate-window-buffers-clockwise)
+  )
+
+;; Scale buffers and all frames
+(let ((map global-map))
+  (define-key map (kbd "s-+")   #'text-scale-adjust)  ;; Increase buffer zoom
+  (define-key map (kbd "s-=")   #'text-scale-adjust)  ;; Increase buffer zoom
+  (define-key map (kbd "s--")   #'text-scale-adjust)  ;; Decrease buffer zoom
+  (define-key map (kbd "s-0")   #'text-scale-adjust)  ;; Reset buffer zoom
+  (define-key map (kbd "s-M-+") (lambda () (interactive) (global-text-scale-adjust +1)))
+  (define-key map (kbd "s-M-=") (lambda () (interactive) (global-text-scale-adjust +1)))
+  (define-key map (kbd "s-M--") (lambda () (interactive) (global-text-scale-adjust -1)))
   )
 
 ;; Hide and show the sideline
