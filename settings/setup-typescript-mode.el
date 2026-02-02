@@ -143,6 +143,7 @@
 
 (use-package jest-test-mode
   :ensure t
+  :blackout
   :commands jest-test-mode
   :hook (typescript-mode typescript-mode-ts)
   :bind (:map typescript-mode-map

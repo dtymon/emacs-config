@@ -172,6 +172,9 @@
 ;; https://github.com/emacs-lsp/lsp-ui/issues/285
 (fringe-mode '(16 . 0))
 
+;; Hide some minor modes from the mode line
+(setq mode-line-collapse-minor-modes '(prettier-mode projectile-mode yas-minor-mode))
+
 (provide 'setup-appearance)
 
 ;;; setup-appearance.el ends here

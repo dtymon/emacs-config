@@ -2,9 +2,8 @@
 
 (use-package projectile
   :ensure t
-  :blackout projectile-mode
   :init
-  (setq projectile-project-search-path '("~/work/ben/repos"))
+  (setq projectile-project-search-path '("~/work/cba/repos"))
   (setq projectile-mode-line-prefix " ")
   (projectile-mode +1)
   :bind (:map projectile-mode-map
