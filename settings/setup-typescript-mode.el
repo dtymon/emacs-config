@@ -45,10 +45,26 @@
   (setq-local treesit-font-lock-settings (typescript-ts-mode--font-lock-settings 'typescript))
   (treesit-major-mode-setup)
 
+  (cond ((dtymon::file-exists-in-project "vitest.config.ts")
+         (dtymon:configure-vitest-local))
+        (t (dtymon:configure-jest-local)))
+  )
+
+(defun dtymon:configure-jest-local ()
   (setq-local
    ;; Run node rather than npx so we can pass some special arguments
    ;; jest-test-command-string "node %s ./node_modules/.bin/jest %s %s"
    jest-test-command-string (concat "NODE_CONFIG_DIR=" (dtymon::kelpie-config-dir) " NODE_ENV=test node %s ./node_modules/.bin/jest --config " (dtymon::jest-config-file) " %s %s")
+   )
+  )
+
+(defun dtymon:configure-vitest-local ()
+  (setq-local
+   jest-test-npx-options ""
+   jest-test-options '("--color"
+                       "--coverage=false"
+                       "--passWithNoTests")
+   jest-test-command-string (concat "SST_STAGE=local ./node_modules/.bin/vitest run --config " (dtymon::vitest-config-file) " %s %s %s")
    )
   )
 

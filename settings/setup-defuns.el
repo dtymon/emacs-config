@@ -176,6 +176,12 @@
            (t node-package-config-file))
     ))
 
+(defun dtymon::vitest-config-file ()
+  (let ((default-config-file (concat (dtymon::project-root-dir) "vitest.config.ts")))
+    (cond ((file-exists-p default-config-file) default-config-file)
+           (t (error "No vitest config file found")))
+    ))
+
 (defun dtymon::kelpie-config-dir ()
   (let ((project-root-dir (dtymon::project-root-dir))
         (node-package-config-dir "./src/config")
