@@ -97,58 +97,14 @@
     lsp-ui-imenu-enable         nil
     lsp-ui-peek-enable          nil
     lsp-ui-doc-enable           nil
+    lsp-ui-doc-max-height       50
     lsp-ui-doc-show-with-cursor nil
     lsp-ui-doc-show-with-mouse  nil
 
     lsp-ui-sideline-delay             1
     lsp-ui-sideline-show-code-actions nil
-    lsp-ui-sideline-update-mode       'line
+    lsp-ui-sideline-update-mode       'point
     )
 )
-
-;; (use-package lsp-ui
-;;   :ensure t
-;;   :after lsp-mode
-;;   :commands lsp-ui-mode
-;;   :bind (:map global-map
-;;               ;; Bind a global key to bring up the documentation on on-demand
-;;               ("C-x s-d" . lsp-ui-doc-glance))
-;;
-;;   :config
-;;   ;;(set-face-attribute 'lsp-ui-doc-background nil :background "#10264a")
-;;
-;;   (setq
-;;     lsp-ui-peek-enable          nil
-;;     lsp-ui-doc-enable           nil
-;;     lsp-ui-imenu-enable         nil
-;;     lsp-ui-doc-enable           nil
-;;     lsp-ui-doc-show-with-cursor nil
-;;     lsp-ui-doc-show-with-mouse  nil
-;;
-;;    lsp-ui-doc-delay               2
-;;    lsp-ui-doc-position            'top
-;;    lsp-ui-doc-header              t
-;;    lsp-ui-doc-include-signature   t
-;;    lsp-ui-doc-text-scale-level    1
-;;    lsp-ui-doc-border              "white"
-;;    lsp-ui-doc-alignment           'frame
-;;    lsp-ui-doc-use-childframe      t
-;;    lsp-ui-doc-use-webkit          t
-;;    lsp-ui-doc-webkit-max-width-px 2000
-;;    lsp-ui-doc-max-height          50
-;;
-;;    ;; Do not display the code actions (ie: what can be done to fix the issue) as
-;;    ;; they are too distracting. Delay showing the sideline so that it does not
-;;    ;; show as we move around the file.
-;;    ;;
-;;    ;; It's too annoying. Doesn't take into consideration the left fringe width
-;;    ;; so the messages always wrap by about one char. Disable it for now.
-;;    lsp-ui-sideline-enable            nil
-;;    ;; lsp-ui-sideline-show-hover        t
-;;    ;; lsp-ui-sideline-show-code-actions nil
-;;    ;; lsp-ui-sideline-delay             1
-;;    ;; lsp-ui-sideline-update-mode       'line
-;;    )
-;;   )
 
 (provide 'setup-lsp-mode)
