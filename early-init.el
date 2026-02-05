@@ -36,23 +36,22 @@
 (desktop-save-mode 1)
 (setq
   desktop-auto-save-timeout 300
+  ;; desktop-buffers-not-to-save ".*"
+  ;; desktop-files-not-to-save ".*"
+  ;; desktop-globals-to-clear nil
   desktop-missing-file-warning nil
+  ;; desktop-restore-eager 0
+  desktop-restore-frames t
 
   ;; Don't load a locked desktop
   desktop-load-locked-desktop nil
 
   ;; And ask to save the desktop if it is new
   desktop-save 'ask-if-new
-
-;;   desktop-files-not-to-save ".*"
-;;   desktop-buffers-not-to-save ".*"
-;;   desktop-globals-to-clear nil
-;;   desktop-restore-eager 0
-;;   desktop-restore-frames 0
   )
 
-;; (dolist (symbol '(kill-ring log-edit-comment-ring))
-;;   (add-to-list 'desktop-globals-to-save symbol))
+(dolist (symbol '(log-edit-comment-ring read-expression-history))
+  (add-to-list 'desktop-globals-to-save symbol))
 
 ;; Turn off other stuff too
 (setq
