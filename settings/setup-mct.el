@@ -9,7 +9,7 @@
   (mct-completion-passlist '(beframe-switch-buffer))
 
   :config
-  (mct-minibuffer-mode 1)
+  (mct-mode 1)
 
   ;; Restore DEL back to just deleting a char
   (let ((map mct-minibuffer-local-completion-map))
