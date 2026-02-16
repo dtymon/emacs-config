@@ -57,7 +57,11 @@
  fill-column 80
  comment-fill-column 80
 
+ ;; Force reindentation when certain keys are pressed
  electric-indent-mode t
+
+ ;; Use case-sensitive filename matching
+ read-file-name-completion-ignore-case nil
 
  ;; Show the full stack when eval'ing an expression
  eval-expression-print-level nil
