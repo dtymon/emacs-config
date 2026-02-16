@@ -50,7 +50,8 @@
   (setq
    flycheck-display-errors-function #'flycheck-display-error-messages
    flycheck-checker-error-threshold 2000
-   flycheck-idle-change-delay 1
+   flycheck-idle-change-delay 0.5
+   flycheck-idle-buffer-switch-delay 0.5
    flycheck-check-syntax-automatically '(save
                                          idle-change
                                          idle-buffer-switch
