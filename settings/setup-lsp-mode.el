@@ -18,11 +18,8 @@
    ;; Restart lsp if/when it crashes which it does a bit
    lsp-restart 'auto-restart
 
-   ;; The eslint client seems to be very CPU-intensive so disable for now. And
-   ;; besides, it doesn't work well with ESLint v9.
-   ;;
-   ;; Also disable some Python checkers as we are going to use ruff instead.
-   lsp-disabled-clients '(eslint pyls)
+   ;; Disable some Python checkers as we are going to use ruff instead.
+   lsp-disabled-clients '(pyls)
 
    ;; Turn this on for verbose logging to debug lsp
    ;; lsp-log-io t
@@ -69,10 +66,6 @@
   ;; If ruff-lsp is installed (via brew) then lsp will run ruff automatically.
   ;; In this case, there is no need to configure flycheck to run ruff.
   ;; (flycheck-add-next-checker 'python-mypy 'python-ruff)
-
-  ;; Use flycheck's eslint checker after lsp rather than lsp-eslint
-  ;; Nah, it's super slow and everything is really laggy.
-  ;; (flycheck-add-next-checker 'lsp 'javascript-eslint)
 
   (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]\\docs\\'")
 

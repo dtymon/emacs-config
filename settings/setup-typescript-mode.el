@@ -1,5 +1,7 @@
 ;; -*- lexical-binding: t -*-
 
+(defvar dtymon::use-eslint-checker t)
+
 (defun dtymon::common-ts-mode-hook ()
   ;; We require js2-mode as we use its fill function
   (require 'js2-mode)
@@ -72,39 +74,10 @@
   (let ((eslint (expand-file-name "node_modules/.bin/eslint"
                                   (locate-dominating-file
                                    (or (buffer-file-name) default-directory)
-                                   "node_modules"))))
+                                   "node_modules/.bin/eslint"))))
     (when (and eslint (file-executable-p eslint))
       (setq-local flycheck-javascript-eslint-executable eslint)))
   )
-
-(defun dtymon::get-eslint-config-path ()
-  (let* ((root (or (locate-dominating-file
-                    (or (buffer-file-name) default-directory)
-                    (lambda (dir)
-                      (directory-files dir nil "^\\.eslint\\(\\.config\\.mjs\\|\\.config\\.js\\|rc\\.*\\)$")))
-                   default-directory))
-         (flat-config (or (expand-file-name ".eslint.config.mjs" root)
-                          (expand-file-name ".eslint.config.js" root)))
-         (legacy-config (or (expand-file-name ".eslintrc" root)
-                            (expand-file-name ".eslintrc.js" root)
-                            (expand-file-name ".eslintrc.json" root))))
-    (cond
-     ((and flat-config (file-exists-p flat-config)) flat-config)
-     ((and legacy-config (file-exists-p legacy-config)) legacy-config)
-     (t (error "No ESLint config found in project"))
-     ))
-  )
-
-(defun dtymon::set-eslint-config-path ()
-  (let* ((config-file (dtymon::get-eslint-config-path)))
-    (setq-local flycheck-eslint-args (list "--config" config-file))
-  ))
-
-(defun flycheck-eslint-config-exists-p ()
-  "Whether there is a valid eslint config for the current buffer."
-  (eql 0 (flycheck-call-checker-process
-          'javascript-eslint nil nil nil
-          "--config" (dtymon::get-eslint-config-path) "--print-config" (or buffer-file-name "index.js"))))
 
 ;; Shorten the mode name shown for typescript-ts-mode
 (use-package typescript-ts-mode
@@ -126,12 +99,20 @@
     (add-hook hook #'tree-sitter-mode)
     (add-hook hook #'tree-sitter-hl-mode)
     (add-hook hook 'dtymon::common-ts-mode-hook)
-    ;; (add-hook hook 'dtymon::use-local-eslint)
-    ;; (add-hook hook 'dtymon::set-eslint-config-path)
+    (add-hook hook 'dtymon::use-local-eslint)
     )
 
-  ;; (flycheck-add-mode 'javascript-eslint 'typescript-mode)
-  ;; (flycheck-add-mode 'javascript-eslint 'typescript-ts-mode)
+  ;; Add the eslint checker
+  (flycheck-add-mode 'javascript-eslint 'typescript-mode)
+  (flycheck-add-mode 'javascript-eslint 'typescript-ts-mode)
+
+  ;; However, disable the eslint checker if it is not to be used
+  (cond (dtymon::use-eslint-checker
+         (flycheck-add-next-checker 'lsp 'javascript-eslint 'append))
+        (t
+         (setq-default flycheck-disabled-checkers
+                       (cons 'javascript-eslint (default-value 'flycheck-disabled-checkers))))
+        )
 )
 
 (use-package tsx-ts-mode
