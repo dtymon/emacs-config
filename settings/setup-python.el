@@ -1,11 +1,5 @@
 ;; -*- lexical-binding: t -*-
 
-(defun dtymon::flycheck-after-save ()
-  (run-with-timer 3 nil (lambda ()
-                          (flycheck-buffer)
-                          ))
-  )
-
 (defun dtymon::common-python-hook ()
   ;; Format on save
   (python-black-on-save-mode)
@@ -21,8 +15,6 @@
   ;; Turn on auto fill but only for comments
   (auto-fill-mode 1)
   (dtymon::auto-fill-comments-only-hook)
-
-  (add-hook 'after-save-hook #'dtymon::flycheck-after-save t t)
 
   (setq
    tab-width 4

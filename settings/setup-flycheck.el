@@ -6,6 +6,13 @@
 (defun dtymon::flycheck-error-modes-window-p (buf act)
   (with-current-buffer buf (member major-mode dtymon::flycheck-error-modes)))
 
+(defun dtymon::flycheck-after-save-actions ()
+  (when (bound-and-true-p flycheck-mode)
+    ;; Drop stale diagnostics and then request a fresh run after a delay
+    (run-at-time 0.25 nil #'flycheck-clear)
+    (run-at-time 0.75 nil #'flycheck-buffer)
+    ))
+
 ;; Define the attributes for the flycheck error buffer
 (add-to-list 'display-buffer-alist
              '(dtymon::flycheck-error-modes-window-p
@@ -48,9 +55,9 @@
   :ensure t
   :init
   (setq
-   flycheck-display-errors-function #'flycheck-display-error-messages
-   flycheck-checker-error-threshold 2000
-   flycheck-idle-change-delay 0.5
+   flycheck-display-errors-function  #'flycheck-display-error-messages
+   flycheck-checker-error-threshold  2000
+   flycheck-idle-change-delay        1.0
    flycheck-idle-buffer-switch-delay 0.5
    flycheck-check-syntax-automatically '(save
                                          idle-change
@@ -88,6 +95,9 @@
     "C-c !" "flycheck"
     "C-c C-d" "diagnostics"
     )
+
+  ;; Force a recheck after save to clear any stale errors
+  (add-hook 'after-save-hook #'dtymon::flycheck-after-save-actions)
   )
 
 (use-package flycheck-projectile
