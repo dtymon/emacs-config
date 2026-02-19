@@ -5,7 +5,8 @@
   (let ((monitor-width (dtymon::monitor-width)))
     (cond ((eq monitor-width 3840) 200)
           ((eq monitor-width 2560) 150)
-          ((eq monitor-width 1920) 150)
+          ((eq monitor-width 1920)
+           (if (eq (dtymon::monitor-height) 1080) 120 150))
           ((eq monitor-width 3440) 160)
           (t 180))))
 
@@ -143,6 +144,15 @@
     ;; reason so setting it via the hook below.
     (add-to-list var (cons 'cursor-color "red"))
     )
+
+  ;; Replace the title bar with something more within our control
+  (dolist (var '(default-frame-alist initial-frame-alist))
+    (add-to-list var (cons 'undecorated-round t))
+    )
+  (setq-default header-line-format '("  " mode-line-buffer-identification))
+
+  ;; And use smoother resizing
+  (setq frame-resize-pixelwise t)
 
   ;; This seems to be the only way to get a red cursor in new frames
   (defun dtymon::configure-new-frame (frame)
