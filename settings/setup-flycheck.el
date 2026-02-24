@@ -9,7 +9,7 @@
 (defun dtymon::flycheck-after-save-actions ()
   (when (bound-and-true-p flycheck-mode)
     ;; Drop stale diagnostics and then request a fresh run after a delay
-    (run-at-time 0.25 nil #'flycheck-clear)
+    (run-at-time 0.5 nil #'flycheck-clear)
     (run-at-time 0.75 nil #'flycheck-buffer)
     ))
 
@@ -59,10 +59,11 @@
    flycheck-checker-error-threshold  2000
    flycheck-idle-change-delay        1.0
    flycheck-idle-buffer-switch-delay 0.5
+   flycheck-buffer-switch-check-intermediate-buffers t
    flycheck-check-syntax-automatically '(save
                                          idle-change
                                          idle-buffer-switch
-                                         new-line
+                                         ;; new-line
                                          mode-enabled)
    )
 

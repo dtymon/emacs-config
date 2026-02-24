@@ -108,7 +108,7 @@
 
   ;; However, disable the eslint checker if it is not to be used
   (cond (dtymon::use-eslint-checker
-         (flycheck-add-next-checker 'lsp 'javascript-eslint 'append))
+         (flycheck-add-next-checker 'lsp '(warning . javascript-eslint) 'append))
         (t
          (setq-default flycheck-disabled-checkers
                        (cons 'javascript-eslint (default-value 'flycheck-disabled-checkers))))

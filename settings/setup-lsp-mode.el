@@ -15,6 +15,8 @@
 
   :init
   (setq
+   lsp-idle-delay 1.0
+
    ;; Restart lsp if/when it crashes which it does a bit
    lsp-restart 'auto-restart
 
@@ -68,6 +70,9 @@
   ;; (flycheck-add-next-checker 'python-mypy 'python-ruff)
 
   (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]\\docs\\'")
+  (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]\\.git\\'")
+  (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]\\dist\\'")
+  (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]\\build\\'")
 
   :bind (
          ;; ("C-c e e" . lsp-treemacs-errors-list)
