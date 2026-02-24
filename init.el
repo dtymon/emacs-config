@@ -31,6 +31,9 @@
 ;; Set some sensible defaults
 (require 'setup-defaults)
 
+;; Load any pre-init hooks
+(load (locate-user-emacs-file "pre-init-hooks.el") :no-error :no-message)
+
 ;; Configure the packaging
 (require 'setup-package)
 

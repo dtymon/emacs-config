@@ -18,8 +18,8 @@
   (nth 4 (assq 'geometry (frame-monitor-attributes)))
   )
 
-;; Load any pre-init-hooks
-(load (locate-user-emacs-file "pre-init-hooks.el") :no-error :no-message)
+;; Load any pre-early-init hooks
+(load (locate-user-emacs-file "pre-early-init-hooks.el") :no-error :no-message)
 
 ;; Don't want a custom file. Can't use /dev/null with Emacs 30 as it complains
 ;; amount maximum buffer size exceeded.
