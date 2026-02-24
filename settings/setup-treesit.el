@@ -40,4 +40,25 @@
   (dtymon::setup-install-grammars)
   )
 
+(defconst dtymon::treesit-fold-dir (expand-file-name "treesit-fold" site-lisp-dir))
+
+(use-package treesit-fold
+  :load-path dtymon::treesit-fold-dir
+  :blackout
+  :bind (:map treesit-fold-mode-map
+              ("C-s-o"   . treesit-fold-open)
+              ("C-S-s-o" . treesit-fold-open-all)
+              ("C-s-c"   . treesit-fold-close)
+              ("C-S-s-c" . treesit-fold-close-all)
+              )
+  :config
+  (global-treesit-fold-mode t)
+  (setq treesit-fold-line-count-show t)
+  )
+(require 'treesit-fold)
+
+(use-package treesit-fold-indicators
+  :load-path dtymon::treesit-fold-dir
+  )
+
 (provide 'setup-treesit)

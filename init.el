@@ -20,10 +20,6 @@
  ;; Make sure we always default to the home directory when opening files
  default-directory (concat (getenv "HOME") "/")
 
- ;; Set path to dependencies
- site-lisp-dir (expand-file-name "site-lisp" user-emacs-directory)
- settings-dir (expand-file-name "settings" user-emacs-directory)
-
  ;; Don't make backups of files that are under version control
  vc-make-backup-files nil
  )
