@@ -14,10 +14,6 @@
          ("C-x j"   . consult-register-load)
          )
 
-  ;; Enable automatic preview at point in the *Completions* buffer. This is
-  ;; relevant when you use the default completion UI.
-  :hook (completion-list-mode . consult-preview-at-point-mode)
-
   ;; The :init configuration is always executed (Not lazy)
   :init
 
