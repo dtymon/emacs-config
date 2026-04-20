@@ -4,10 +4,11 @@
 (defun dtymon::default-font-size ()
   (let ((monitor-width (dtymon::monitor-width)))
     (cond ((eq monitor-width 3840) 200)
+          ((eq monitor-width 3440) 160)
           ((eq monitor-width 2560) 150)
           ((eq monitor-width 1920)
            (if (eq (dtymon::monitor-height) 1080) 120 150))
-          ((eq monitor-width 3440) 160)
+          ((eq monitor-width 1800) 140)
           (t 180))))
 
 (defgroup dtymon-appearance nil
