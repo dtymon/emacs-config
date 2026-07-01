@@ -140,6 +140,7 @@
 (require 'setup-ztree)
 (require 'setup-string-inflection)
 (require 'setup-mermaid-mode)
+(require 'setup-claude)
 
 ;; Terminals
 (require 'setup-vterm)
