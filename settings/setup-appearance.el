@@ -1,17 +1,22 @@
 ;; -*- lexical-binding: t -*-
 
-;; Set the font size to use based on the monitor width
 (defun dtymon::default-font-size ()
-  (let ((monitor-width (dtymon::monitor-width)))
-    (cond ((eq monitor-width 3840)
-           (if (eq (dtymon::monitor-height) 1620) 180 200))
-          ((eq monitor-width 3440) 160)
-          ((eq monitor-width 3008) 140)
-          ((eq monitor-width 2560) 150)
-          ((eq monitor-width 1920)
-           (if (eq (dtymon::monitor-height) 1080) 120 150))
-          ((eq monitor-width 1800) 140)
-          (t 180))))
+  "Return the default font size for the current monitor resolution."
+  (let* ((width (dtymon::monitor-width))
+         (height (dtymon::monitor-height))
+         (res (format "%dx%d" width height))
+         (resolution-sizes '(("3840x1620" . 180)
+                             ("2560x1080" . 120)
+                             ("1920x1080" . 120)))
+         (width-sizes '((3840 . 200)
+                        (3440 . 160)
+                        (3008 . 140)
+                        (2560 . 150)
+                        (1920 . 150)
+                        (1800 . 140))))
+    (or (cdr (assoc res resolution-sizes))
+        (cdr (assoc width width-sizes))
+        180)))
 
 (defgroup dtymon-appearance nil
   "Variables used to set the appearance of Emacs."
@@ -69,11 +74,11 @@
 
 (defun dtymon::initial-frame-width-pixels ()
   "The width to use for new frames in pixels"
-  (round (* dtymon::frame-width-factor (dtymon::monitor-width))))
+  (min 1600 (round (* dtymon::frame-width-factor (dtymon::monitor-width)))))
 
 (defun dtymon::initial-frame-height-pixels ()
   "The height to use for new frames in pixels"
-  (round (* dtymon::frame-height-factor (dtymon::monitor-height))))
+  (min 800 (round (* dtymon::frame-height-factor (dtymon::monitor-height)))))
 
 (when window-system
   ;; Set some basic appearance configuration
